@@ -1,4 +1,5 @@
 import React from "react";
+import GameSearch from "@/components/GameSearch";
 
 export default function Home() {
   return (
@@ -16,7 +17,8 @@ export default function Home() {
       6. Until when
 
 
-      <div>Single Game Data</div>
+      <div>Single Game Data: e.g. 1091500</div>
+      <GameSearch />
     </>
   );
 }

@@ -18,6 +18,7 @@ export default function Navbar() {
       <Link href="/" passHref className="">
         <NavButton name="Trending" />
       </Link>
+      
     </div>
   );
 }
