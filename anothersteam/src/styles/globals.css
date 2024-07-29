@@ -1,0 +1,27 @@
+
+
+/* NAVBAR */
+.navbar {
+  width: 100%;
+  height: auto;
+  background-color: navy;
+  color:white;
+}
+
+
+/* HEADER */
+.header {
+  width: 100%;
+  height: auto;
+  background-color: #2b2b2b;
+  color:white;
+}
+
+
+/* FOOTER */
+.footer {
+  width: 100%;
+  height: auto;
+  background-color: #2b2b2b;
+  color:white;
+}

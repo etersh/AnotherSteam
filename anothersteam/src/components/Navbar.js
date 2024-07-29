@@ -6,7 +6,7 @@ import { HomeButton, NavButton } from "./Button"
 
 export default function Navbar() {
   return (
-    <div className="">
+    <div className="navbar">
       <Link href="/" passHref className="">
         <HomeButton />
       </Link>
