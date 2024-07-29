@@ -4,9 +4,10 @@ import React from 'react';
 
 function Header() {
   return (
-    <footer className="header">
-
-    </footer>
+    <header className="header">
+        <h1>SteamAPI</h1>
+        
+    </header>
   )
 }
 
