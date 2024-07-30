@@ -5,16 +5,34 @@ const UserInfo = ({ userData, error }) => {
     return <div>Error: {error}</div>;
   }
 
+  const getFlag = (countryCode) => {
+    return countryCode !== 'Not Available'
+      ? `https://flagsapi.com/${countryCode}/flat/32.png`
+      : null;
+  };
+  //theme:flat/shiny supported
+  //size:16/24/32/48/64px supported
+
   return (
     <div>
       <div className="user-info">
         <h2>
           {userData.name}
-          <img src={userData.profilePic} alt={userData.name} />
+          <img src={userData.profilePic} style={{ marginLeft: '8px' }} />
         </h2>
         <p>Name: {userData.realName}</p>
         <p>Steam ID: {userData.steamID}</p>
-        <p>Country: {userData.countryCode}</p>
+        <p>
+          Country:{' '}
+          {userData.countryCode !== 'Not Available' ? (
+            <img
+              src={getFlag(userData.countryCode)}
+              style={{ marginLeft: '8px' }}
+            />
+          ) : (
+            'Not Available'
+          )}
+        </p>
         <p>City: {userData.cityID}</p>
       </div>
     </div>
