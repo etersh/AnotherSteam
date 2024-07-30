@@ -1,78 +1,60 @@
-// src/pages/game/SearchResult.js
-
-// THIS SHOULD BE A CARD, USER CAN CLICK ON IT AND IT WILL GO TO [id].js
-
-
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
 
-export default function SearchResult() {
+export default function SearchResult({ data, errorMessage }) {
   const router = useRouter();
-  const { gameid } = router.query;
-  const [data, setData] = useState(null);
-  const [errorMessage, setErrorMessage] = useState("");
 
-  useEffect(() => {
-    if (gameid) {
-      // query
-      fetchGame(gameid);
-    }
-  }, [gameid]); // Re-fetch data when gameid changes
-
-  const fetchGame = (query) => {
-    // const url = `https://store.steampowered.com/api/appdetails?appids=${query}`
-
-    const url = `/api/appdetails?appids=${query}`; // Use proxy URL
-
-    fetch(url)
-      .then((res) => res.json())
-      .then((result) => {
-        if (!result || Object.keys(result).length === 0) {
-          setErrorMessage("No matching results");
-          setData([]);
-          return;
-        } else {
-          setErrorMessage("");
-          setData(result);
-          console.log(result);
-        }
-      })
-      .catch((err) => {
-        console.error(`Error fetching data: ${err}`);
-        setErrorMessage("System error: cannot fetch game data");
-      });
-  };
+  if (errorMessage) {
+    return <div>Error: {errorMessage}</div>;
+  }
 
   return (
     <div>
       {data &&
-        Object.keys(data).map((appId) => (
-          <div key={appId} className="game-details">
-            <h2>{data[appId].data.name}</h2>
-            <img
-              src={data[appId].data.header_image}
-              alt={data[appId].data.name}
-            />
-            <p
-              dangerouslySetInnerHTML={{
-                __html: data[appId].data.detailed_description,
-              }}
-            ></p>
-            <p>
-              Price:{" "}
-              {data[appId].data.price_overview
-                ? data[appId].data.price_overview.final_formatted
-                : "Free"}
-            </p>
-            <p>Developers: {data[appId].data.developers.join(", ")}</p>
-            <p>
-              Genres:{" "}
-              {data[appId].data.genres
-                .map((genre) => genre.description)
-                .join(", ")}
-            </p>
+        data.map((game) => (
+          <div
+            key={game.appid}
+            className="game-details"
+            onClick={() => router.push(`/game/${game.appid}`)}
+            style={{ cursor: "pointer", border: "1px solid #ccc", padding: "10px", margin: "10px", borderRadius: "5px" }}
+          >
+            <h2>{game.name || "No Name Available"}</h2>
           </div>
         ))}
     </div>
   );
+}
+
+export async function getServerSideProps(context) {
+  const { app } = context.query;
+  let data = null;
+  let errorMessage = "";
+
+  try {
+    const res = await fetch(
+      `https://api.steampowered.com/ISteamApps/GetAppList/v0002/?format=json`
+    );
+
+    if (!res.ok) {
+      throw new Error("(SearchResult) Failed to fetch game by name");
+    }
+
+    const responseData = await res.json();
+    data = responseData.applist.apps;
+
+    // Filter games by the search query
+    data = data.filter(game => game.name && game.name.toLowerCase().includes(app.toLowerCase()));
+
+    console.log('Filtered data: ', data);
+
+  } catch (err) {
+    console.error("(SearchResult) Error searching for game:", err);
+    errorMessage = "Error fetching data";
+  }
+
+  return {
+    props: {
+      data,
+      errorMessage,
+    },
+  };
 }

@@ -31,7 +31,7 @@ export async function getServerSideProps() {
     );
 
     if (!res.ok) {
-      throw new Error('Failed to fetch top games');
+      throw new Error('(MostPlayedGames) Failed to fetch top games');
     }
 
     const data = await res.json();

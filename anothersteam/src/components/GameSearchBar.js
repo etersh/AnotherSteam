@@ -14,9 +14,6 @@ export default function GameSearch() {
   } = useForm();
   const [errorMessage, setErrorMessage] = useState("");
 
-  // const [data, setData] = useState(null);
-  // const [query, setQuery] = useState(null);
-
   const validateForm = (inputData) => {
     const trimmedInput = inputData.gameid.trim(); // Trim leading / trailing spaces
     if (trimmedInput === "") {
@@ -28,39 +25,9 @@ export default function GameSearch() {
       .replace(/\s+/g, " "); // Replace multiple spaces with a single space
     // setQuery(formattedInput);
     router.push(
-      `/game/SearchResult?gameid=${encodeURIComponent(formattedInput)}`
+      `/game/SearchResult?app=${encodeURIComponent(formattedInput)}`
     );
   };
-
-  // useEffect(() => {
-  //   if (query) {
-  //     fetchGame(query);
-  //   }
-  // }, [query]); // Re-fetch data when query changes
-
-  // const fetchGame = (query) => {
-  //   // const url = `https://store.steampowered.com/api/appdetails?appids=${query}`
-
-  //   const url = `/api/appdetails?appids=${query}`; // Use proxy URL
-
-  //   fetch(url)
-  //     .then((res) => res.json())
-  //     .then((result) => {
-  //       if (!result || Object.keys(result).length === 0) {
-  //         setErrorMessage("No matching results");
-  //         setData([]);
-  //         return;
-  //       } else {
-  //         setErrorMessage("");
-  //         setData(result);
-  //         console.log(result);
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       console.error(`Error fetching data: ${err}`);
-  //       setErrorMessage("System error: cannot fetch game data");
-  //     });
-  // };
 
   return (
     <div className="">
@@ -73,11 +40,11 @@ export default function GameSearch() {
           aria-label="searchById"
           className=""
           {...register("gameid", {
-            required: "Game ID is required",
-            minLength: {
-              value: 7,
-              message: "Game ID must be 7 characters long",
-            },
+            // required: "Game ID / Name is required",
+            // minLength: {
+            //   value: 7,
+            //   message: "Game ID must be 7 characters long",
+            // },
           })}
         />
         <button type="submit" className="">
