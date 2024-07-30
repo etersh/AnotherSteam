@@ -45,7 +45,7 @@ export async function getServerSideProps() {
     const tempSteamID = '76561198157968527';
 
     const res = await fetch(
-      `http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=${process.env.NEXT_PUBLIC_XPAW_API_ACCESS_TOKEN}&steamids=${tempSteamID}`
+      `http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=${process.env.NEXT_PUBLIC_STEAM_API_ACCESS_TOKEN}&steamids=${tempSteamID}`
     );
 
     if (!res.ok) {

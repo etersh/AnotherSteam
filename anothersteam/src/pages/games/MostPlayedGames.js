@@ -27,7 +27,7 @@ export async function getServerSideProps() {
   try {
     // Fetch top 3 game ids
     const res = await fetch(
-      `https://api.steampowered.com/ISteamChartsService/GetMostPlayedGames/v1/?key=${process.env.NEXT_PUBLIC_STEAM_API_ACCESS_TOKEN}`
+      `https://api.steampowered.com/ISteamChartsService/GetMostPlayedGames/v1/?key=${process.env.NEXT_PUBLIC_XPAW_API_ACCESS_TOKEN}`
     );
 
     if (!res.ok) {
