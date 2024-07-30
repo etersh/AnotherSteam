@@ -19,8 +19,12 @@ export default function Navbar() {
         <NavButton name="Trending" />
       </Link>
 
-      <Link href="/users/UserInfo" passHref className="">
+      <Link href="/user/UserInfo" passHref className="">
         <NavButton name="User Information" />
+      </Link>
+
+      <Link href="/user/FriendInfo" passHref className="">
+        <NavButton name="Friend's Information" />
       </Link>
     </div>
   );
