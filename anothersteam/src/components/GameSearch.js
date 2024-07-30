@@ -34,7 +34,7 @@ export default function GameSearch() {
 
   const fetchGame = (query) => {
     // const url = `https://store.steampowered.com/api/appdetails?appids=${query}`
-    
+
     const url = `/api/appdetails?appids=${query}`; // Use proxy URL
 
     fetch(url)
@@ -47,7 +47,7 @@ export default function GameSearch() {
         } else {
           setErrorMessage("");
           setData(result);
-            console.log(result)
+          console.log(result);
         }
       })
       .catch((err) => {
@@ -80,8 +80,14 @@ export default function GameSearch() {
       </form>
 
       <div id="">{errorMessage}</div>
+
+      {/* 
+      - Push id to routes
+      - DISPLAY game details on /game/[id] page
+      */}
+
+      {/*
       <div>
-        {/* DISPLAY */}
         {data && Object.keys(data).map((appId) => (
           <div key={appId} className="game-details">
             <h2>{data[appId].data.name}</h2>
@@ -92,7 +98,8 @@ export default function GameSearch() {
             <p>Genres: {data[appId].data.genres.map(genre => genre.description).join(", ")}</p>
           </div>
         ))}
-      </div>
+      </div>*/}
+
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import GameSearch from "@/components/GameSearch";
+// import GameSearch from "@/components/GameSearch";
 
 export default function Home() {
 	return (
@@ -9,7 +9,7 @@ export default function Home() {
 			<p>Phase1: Fetching data from Steam Web API</p>
 
 			<div>Single Game Data: e.g. 1091500</div>
-			<GameSearch />
+
 		</>
 	);
 }
