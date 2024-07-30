@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const MostPlayedGames = ({ games, error }) => {
   if (error) {
@@ -31,11 +31,13 @@ export async function getServerSideProps() {
     );
 
     if (!res.ok) {
-      throw new Error("Failed to fetch top games");
+      throw new Error('Failed to fetch top games');
     }
 
     const data = await res.json();
-    const topGameIds = data.response.ranks.slice(0, 3).map((game) => game.appid);
+    const topGameIds = data.response.ranks
+      .slice(0, 3)
+      .map((game) => game.appid);
 
     // Fetch game details
     const gameDetails = await Promise.all(
@@ -57,9 +59,9 @@ export async function getServerSideProps() {
       name: game.name,
       photo: game.header_image,
       discountRate: game.price_overview?.discount_percent || 0,
-      discountPrice: game.price_overview?.final_formatted || "Not Available",
-      originalPrice: game.price_overview?.initial_formatted || "Not Available",
-      discountUntil: "Not Available",
+      discountPrice: game.price_overview?.final_formatted || 'Not Available',
+      originalPrice: game.price_overview?.initial_formatted || 'Not Available',
+      discountUntil: 'Not Available',
     }));
 
     return {
@@ -68,7 +70,7 @@ export async function getServerSideProps() {
       },
     };
   } catch (err) {
-    console.error("Error fetching top 3 most played games:", err);
+    console.error('Error fetching top 3 most played games:', err);
     return {
       props: {
         games: [],
