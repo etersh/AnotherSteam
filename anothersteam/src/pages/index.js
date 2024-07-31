@@ -4,7 +4,7 @@ import React from "react";
 // import GameSearch from "@/components/GameSearch";
 
 import GameCard from "@/components/GameCard";
-import MostPlayedGames from "./games/MostPlayedGames-old";
+// import MostPlayedGames from "./games/MostPlayedGames";
 // import {useAtom} from 'jotai'
 // import { mostPlayedGamesAtom } from "@/state/store";
 
@@ -39,7 +39,7 @@ export async function getServerSideProps() {
 	  // Fetch top 3 game ids
 	  // `https://api.steampowered.com/ISteamChartsService/GetMostPlayedGames/v1/?key=${process.env.NEXT_PUBLIC_XPAW_API_ACCESS_TOKEN}`
 	  const res = await fetch(
-		`https://api.steampowered.com/ISteamChartsService/GetMostPlayedGames/v1/?`
+		`https://api.steampowered.com/ISteamChartsService/GetMostPlayedGames/v1/`
 	  );
   
 	  if (!res.ok) {

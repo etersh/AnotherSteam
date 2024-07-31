@@ -1,20 +1,21 @@
 import React from "react";
-import { useAtom } from "jotai";
 
-
-// GAME CARD for HOME display
-export default function GameCard({games}) {
-
+export default function GameCard({ games = [] }) {
+  console.log("(GameCard) games", games);
 
   return (
     <div className="mostPlayedGames-container">
-      {games.map((game) => (
-        <div key={game.id} className="card">
-          <p>PHOTO: 'img' </p>
-          <p>ID: {game.id}</p>
-          <p>NAME: {game.name}</p>
-        </div>
-      ))}
+      {Array.isArray(games) && games.length > 0 ? (
+        games.map((game) => (
+          <div key={game.id} className="card">
+            <p>PHOTO: 'img' </p>
+            <p>ID: {game.id}</p>
+            <p>NAME: {game.name}</p>
+          </div>
+        ))
+      ) : (
+        <p>No games available</p>
+      )}
     </div>
   );
 }

@@ -1,3 +1,5 @@
+// src/utils/fetchGames.js
+
 export async function fetchGames(topGames) {
     try {
       const gameDetails = await Promise.all(
@@ -30,7 +32,7 @@ export async function fetchGames(topGames) {
         },
       };
     } catch (err) {
-      console.error("(MostPlayedGames) Error fetching most played games:", err);
+      console.error("(fetchGames) Error fetching most played games:", err);
       return {
         props: {
           games: [],
