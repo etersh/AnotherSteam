@@ -4,7 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { HomeButton, NavButton } from './Button';
 
-import GameSearchBar from "./GameSearchBar";
+import GameSearchBar from './GameSearchBar';
 
 export default function Navbar() {
   return (
@@ -29,8 +29,11 @@ export default function Navbar() {
         <NavButton name="Friend's Information" />
       </Link>
 
+      <Link href="/user/RecentlyPlayedGames" passHref className="">
+        <NavButton name="Recently Played Games" />
+      </Link>
+
       <GameSearchBar />
-    
     </div>
   );
 }
