@@ -27,10 +27,18 @@
 /********/
 
 /* GAME CARD */
-.card {
+.gamecard {
   display: flex;
-  width: 300px;
+  width: 600px;
   height: auto;
   background-color: rgb(190, 255, 255);
+  border: solid 2px #2b2b2b;
+}
+
+.longcard {
+  display: flex;
+  width: 600px;
+  height: auto;
+  background-color: rgb(221, 255, 190);
   border: solid 2px #2b2b2b;
 }
