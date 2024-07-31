@@ -6,9 +6,15 @@ export default function Home() {
 		<>
 			<img src="#" alt="HomeBanner"></img>
 			<h1>HOME</h1>
-			<p>Phase1: Fetching data from Steam Web API</p>
-
-			<div>Single Game Data: e.g. 1091500</div>
+			<p> SearchBar testing: </p>
+			<ul>
+				<li>october</li>
+				<li>nightmare</li>
+				<li>cyberpunk</li>
+				<li>chaintogether</li>
+				<li>don't starv</li>
+			</ul>
+			<div>after click on a game, get the game id, and search again</div>
 
 		</>
 	);
