@@ -2,8 +2,12 @@ import React from "react";
 // import GameSearch from "@/components/GameSearch";
 
 import GameCard from "@/components/GameCard";
+import {useAtom} from 'jotai'
+import { mostPlayedGamesAtom } from "@/state/store";
 
 export default function Home() {
+	const [mostPlayedGames] = useAtom(mostPlayedGamesAtom);
+
 	return (
 		<>
 			<img src="#" alt="HomeBanner"></img>
@@ -17,6 +21,7 @@ export default function Home() {
 				<li>don't starv</li>
 			</ul>
 			<div>after click on a game, get the game id, and search again</div>
+			<GameCard games={mostPlayedGames} />
 
 		</>
 	);
