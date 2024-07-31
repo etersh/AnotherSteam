@@ -6,9 +6,10 @@
 
 // pages/api/steam-games.js
 export default async function handler(req, res) {
+  // `https://api.steampowered.com/ISteamChartsService/GetMostPlayedGames/v1/?key=${process.env.NEXT_PUBLIC_STEAM_API_ACCESS_TOKEN}`
   try {
     const response = await fetch(
-      `https://api.steampowered.com/ISteamChartsService/GetMostPlayedGames/v1/?key=${process.env.NEXT_PUBLIC_STEAM_API_ACCESS_TOKEN}`
+      `https://api.steampowered.com/ISteamChartsService/GetMostPlayedGames/v1/`
     );
 
     if (!response.ok) {
