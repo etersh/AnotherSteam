@@ -15,7 +15,13 @@ export default function SearchResult({ data, errorMessage }) {
             key={game.appid}
             className="game-details"
             onClick={() => router.push(`/game/${game.appid}`)}
-            style={{ cursor: "pointer", border: "1px solid #ccc", padding: "10px", margin: "10px", borderRadius: "5px" }}
+            style={{
+              cursor: "pointer",
+              border: "1px solid #ccc",
+              padding: "10px",
+              margin: "10px",
+              borderRadius: "5px",
+            }}
           >
             <h2>{game.name || "No Name Available"}</h2>
           </div>
@@ -28,6 +34,8 @@ export async function getServerSideProps(context) {
   const { app } = context.query;
   let data = null;
   let errorMessage = "";
+
+  const isGameId = /^\d+$/.test(app);
 
   try {
     const res = await fetch(
@@ -42,10 +50,16 @@ export async function getServerSideProps(context) {
     data = responseData.applist.apps;
 
     // Filter games by the search query
-    data = data.filter(game => game.name && game.name.toLowerCase().includes(app.toLowerCase()));
+    data = isGameId
+      ? data
+          .filter((game) => game.appid.toString() === app) // Check if appid matches the query
+        //   .map((game) => game.appid)
+      : data.filter(
+          (game) =>
+            game.name && game.name.toLowerCase().includes(app.toLowerCase())
+        );
 
-    console.log('Filtered data: ', data);
-
+    console.log("Filtered data: ", data);
   } catch (err) {
     console.error("(SearchResult) Error searching for game:", err);
     errorMessage = "Error fetching data";
