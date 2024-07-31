@@ -1,9 +1,15 @@
-import React from 'react';
+import React from "react";
+import { useAtom } from "jotai";
+import { mostPlayedGamesAtom } from "@/state/store";
 
 const MostPlayedGames = ({ games, error }) => {
+  const [mostPlayedGames, setMostPlayedGames] = useAtom(mostPlayedGamesAtom);
   if (error) {
     return <div>Error: {error}</div>;
   }
+  setMostPlayedGames(games);
+  console.log("mostPlayedGames :", mostPlayedGames);
+
 
   return (
     <div>
@@ -24,6 +30,8 @@ const MostPlayedGames = ({ games, error }) => {
 };
 
 export async function getServerSideProps() {
+  // const [mostPlayedGames, setMostPlayedGames] = useAtom(mostPlayedGamesAtom);
+
   try {
     // Fetch top 3 game ids
     const res = await fetch(
@@ -31,10 +39,14 @@ export async function getServerSideProps() {
     );
 
     if (!res.ok) {
-      throw new Error('(MostPlayedGames) Failed to fetch top games');
+      throw new Error("(MostPlayedGames) Failed to fetch top games");
     }
 
     const data = await res.json();
+
+    // setMostPlayedGames(data);
+    // console.log("mostPlayedGames :", mostPlayedGames);
+
     const topGameIds = data.response.ranks
       .slice(0, 3)
       .map((game) => game.appid);
@@ -59,9 +71,9 @@ export async function getServerSideProps() {
       name: game.name,
       photo: game.header_image,
       discountRate: game.price_overview?.discount_percent || 0,
-      discountPrice: game.price_overview?.final_formatted || 'Not Available',
-      originalPrice: game.price_overview?.initial_formatted || 'Not Available',
-      discountUntil: 'Not Available',
+      discountPrice: game.price_overview?.final_formatted || "Not Available",
+      originalPrice: game.price_overview?.initial_formatted || "Not Available",
+      discountUntil: "Not Available",
     }));
 
     return {
@@ -70,7 +82,7 @@ export async function getServerSideProps() {
       },
     };
   } catch (err) {
-    console.error('Error fetching top 3 most played games:', err);
+    console.error("Error fetching top 3 most played games:", err);
     return {
       props: {
         games: [],

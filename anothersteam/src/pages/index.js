@@ -1,6 +1,8 @@
 import React from "react";
 // import GameSearch from "@/components/GameSearch";
 
+import GameCard from "@/components/GameCard";
+
 export default function Home() {
 	return (
 		<>

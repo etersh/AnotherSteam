@@ -1,27 +1,36 @@
-
-
 /* NAVBAR */
 .navbar {
   width: 100%;
   height: auto;
   background-color: navy;
-  color:white;
+  color: white;
 }
-
 
 /* HEADER */
 .header {
   width: 100%;
   height: auto;
   background-color: #2b2b2b;
-  color:white;
+  color: white;
 }
-
 
 /* FOOTER */
 .footer {
   width: 100%;
   height: auto;
   background-color: #2b2b2b;
-  color:white;
+  color: white;
+}
+
+/********/
+/* CARD */
+/********/
+
+/* GAME CARD */
+.card {
+  display: flex;
+  width: 60px;
+  height: auto;
+  background-color: aqua;
+  border: solid 2px #2b2b2b;
 }
