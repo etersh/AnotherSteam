@@ -1,36 +1,27 @@
-// src/page/index.js
-
+// pages/games/MostPlayedGames.js
 import React from "react";
-// import GameSearch from "@/components/GameSearch";
 
-import GameCard from "@/components/GameCard";
-import MostPlayedGames from "./games/MostPlayedGames-old";
-// import {useAtom} from 'jotai'
-// import { mostPlayedGamesAtom } from "@/state/store";
 
-export default function Home({ mostPlayedGames, error }) {
-	// const [mostPlayedGames] = useAtom(mostPlayedGamesAtom);
+export default function MostPlayedGames({ games, error }) {
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
-	return (
-		<>
-			<img src="#" alt="HomeBanner"></img>
-			<h1>HOME</h1>
-			<p> SearchBar testing: </p>
-			<ul>
-				<li>october</li>
-				<li>nightmare</li>
-				<li>cyberpunk</li>
-				<li>chained together</li>
-				<li>don't starv</li>
-			</ul>
-			<div>after click on a game, get the game id, and search again</div>
-			<GameCard games={mostPlayedGames} err={error} />
-			{/* <MostPlayedGames games={mostPlayedGames} err={error} /> */}
-
-		</>
-	);
-}
-
+  return (
+    <div className="game-list">
+      {games.map((game, index) => (
+        <div key={index} className="game">
+          <h2>{game.name}</h2>
+          <img src={game.photo} alt={game.name} />
+          <p>Discount Rate: {game.discountRate}%</p>
+          <p>Discount Price: {game.discountPrice}</p>
+          <p>Original Price: {game.originalPrice}</p>
+          <p>Discount Until: {game.discountUntil}</p>
+        </div>
+      ))}
+    </div>
+  );
+};
 
 export async function getServerSideProps() {
 	// const [mostPlayedGames, setMostPlayedGames] = useAtom(mostPlayedGamesAtom);
@@ -82,7 +73,7 @@ export async function getServerSideProps() {
   
 	  return {
 		props: {
-			mostPlayedGames: mostPlayedGames,
+			games: mostPlayedGames,
 		},
 	  };
 	} catch (err) {

@@ -1,14 +1,37 @@
-// pages/games/MostPlayedGames.js
-import React from "react";
+import React, { useEffect, useState } from 'react';
+import fetchGames from '@/utils/fetchGames';
 
-export default function MostPlayedGames({ games, error }) {
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
+const MostPlayedGames = () => {
+  const [topGames, setTopGames] = useState([]);
+  const [detailedGames, setDetailedGames] = useState([]);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    fetch('/api/most-played-games')
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.error) {
+          throw new Error(data.error);
+        }
+        const gameIds = data.response.ranks.map((game) => game.appid);
+        setTopGames(gameIds);
+      })
+      .catch((err) => setError(err.message));
+  }, []);
+
+  useEffect(() => {
+    if (topGames.length > 0) {
+      fetchGames(topGames)
+        .then((data) => setDetailedGames(data.props.games))
+        .catch((err) => setError(err.message));
+    }
+  }, [topGames]);
+
+  if (error) return <div>Error: {error}</div>;
 
   return (
     <div className="game-list">
-      {games.map((game, index) => (
+      {detailedGames.map((game, index) => (
         <div key={index} className="game">
           <h2>{game.name}</h2>
           <img src={game.photo} alt={game.name} />
@@ -22,66 +45,49 @@ export default function MostPlayedGames({ games, error }) {
   );
 };
 
-export async function getServerSideProps() {
-	// const [mostPlayedGames, setMostPlayedGames] = useAtom(mostPlayedGamesAtom);
+export default MostPlayedGames;
+
+
+
+// export async function fetchGames(topGames){
+//     try {
+// 	  // Fetch game details
+// 	  const gameDetails = await Promise.all(
+// 		topGames.map(async (id) => {
+// 		  const res = await fetch(
+// 			`https://store.steampowered.com/api/appdetails?appids=${id}`
+// 		  );
   
-	try {
-	  // Fetch top 3 game ids
-	  // `https://api.steampowered.com/ISteamChartsService/GetMostPlayedGames/v1/?key=${process.env.NEXT_PUBLIC_XPAW_API_ACCESS_TOKEN}`
-	  const res = await fetch(
-		`https://api.steampowered.com/ISteamChartsService/GetMostPlayedGames/v1/?`
-	  );
+// 		  if (!res.ok) {
+// 			throw new Error(`Failed to fetch details for game id: ${id}`);
+// 		  }
   
-	  if (!res.ok) {
-		throw new Error("(MostPlayedGames) Failed to fetch top games");
-	  }
+// 		  const data = await res.json();
+// 		  return data[id].data;
+// 		})
+// 	  );
   
-	  const data = await res.json();
+// 	  const formattedGames = gameDetails.map((game) => ({
+// 		name: game.name,
+// 		photo: game.header_image,
+// 		discountRate: game.price_overview?.discount_percent || 0,
+// 		discountPrice: game.price_overview?.final_formatted || "Not Available",
+// 		originalPrice: game.price_overview?.initial_formatted || "Not Available",
+// 		discountUntil: "Not Available",
+// 	  }));
   
-	  // setMostPlayedGames(data);
-	  // console.log("mostPlayedGames :", mostPlayedGames);
-  
-	  const topGameIds = data.response.ranks
-		.slice(0, 10)
-		.map((game) => game.appid);
-  
-	  // Fetch game details
-	  const gameDetails = await Promise.all(
-		topGameIds.map(async (id) => {
-		  const res = await fetch(
-			`https://store.steampowered.com/api/appdetails?appids=${id}`
-		  );
-  
-		  if (!res.ok) {
-			throw new Error(`Failed to fetch details for game id: ${id}`);
-		  }
-  
-		  const data = await res.json();
-		  return data[id].data;
-		})
-	  );
-  
-	  const mostPlayedGames = gameDetails.map((game) => ({
-		name: game.name,
-		photo: game.header_image,
-		discountRate: game.price_overview?.discount_percent || 0,
-		discountPrice: game.price_overview?.final_formatted || "Not Available",
-		originalPrice: game.price_overview?.initial_formatted || "Not Available",
-		discountUntil: "Not Available",
-	  }));
-  
-	  return {
-		props: {
-			games: mostPlayedGames,
-		},
-	  };
-	} catch (err) {
-	  console.error("Error fetching top 3 most played games:", err);
-	  return {
-		props: {
-		  games: [],
-		  error: err.message,
-		},
-	  };
-	}
-  }
+// 	  return {
+// 		props: {
+// 			games: formattedGames,
+// 		},
+// 	  };
+// 	} catch (err) {
+// 	  console.error("(MostPlayedGames) Error fetching most played games:", err);
+// 	  return {
+// 		props: {
+// 		  games: [],
+// 		  error: err.message,
+// 		},
+// 	  };
+// 	}
+//   }
