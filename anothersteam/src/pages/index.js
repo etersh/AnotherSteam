@@ -11,7 +11,7 @@ export default function Home() {
 				<li>october</li>
 				<li>nightmare</li>
 				<li>cyberpunk</li>
-				<li>chaintogether</li>
+				<li>chained together</li>
 				<li>don't starv</li>
 			</ul>
 			<div>after click on a game, get the game id, and search again</div>
