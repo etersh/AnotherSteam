@@ -21,6 +21,11 @@ export default function Navbar() {
         <NavButton name="Trending" />
       </Link>
 
+      <Link href="/user/UserInformation" passHref className="">
+        <NavButton name="User Information" />
+      </Link>
+
+      {/* 
       <Link href="/user/UserInfo" passHref className="">
         <NavButton name="User Information" />
       </Link>
@@ -31,7 +36,7 @@ export default function Navbar() {
 
       <Link href="/user/RecentlyPlayedGames" passHref className="">
         <NavButton name="Recently Played Games" />
-      </Link>
+      </Link> */}
 
       <GameSearchBar />
     </div>
