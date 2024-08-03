@@ -3,7 +3,7 @@
 import React from "react";
 // import GameSearch from "@/components/GameSearch";
 
-import GameCard from "@/components/GameCard";
+import GameCard from "@/components/Card/GameCard";
 // import MostPlayedGames from "./games/MostPlayedGames";
 // import { useAtom } from "jotai";
 // import { mostPlayedGamesAtom } from "@/state/store";
