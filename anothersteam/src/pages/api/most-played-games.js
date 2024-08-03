@@ -18,11 +18,11 @@ export default async function handler(req, res) {
           throw new Error(`Failed to fetch details for game id: ${id}`);
         }
         const data = await res.json();
-        // return data[id].data;
-        return {
-          ...data[id].data,
-          rank: topGames[index].rank, // Access the rank from topGames
-        };  
+        return data[id].data;
+        // return {
+        //   ...data[id].data,
+        //   rank: topGames[index].rank, // Access the rank from topGames
+        // };  
       })
     );
 
