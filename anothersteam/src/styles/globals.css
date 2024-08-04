@@ -1,19 +1,61 @@
 @import url("https://fonts.cdnfonts.com/css/motiva-sans");
+
+:root {
+  /* Text Colors */
+  --text-main: #F3F3F3;
+  --text-dim: #76808C;
+
+  /* Background Colors */
+  --bg-main: #0E141B;
+  --bg-highlight: #1E2329;
+  --bg-hover: #313843;
+  --bg-secondary: #14344B;
+  --bg-tertiary: #212B45;
+
+  /* Primary and Secondary Colors */
+  --color-primary: #66C0F4;
+  --color-secondary: #4B619B;
+
+  /* Accent Colors */
+  --accent-green: #A1CD44;
+  --accent-red: #CD5444;
+  --accent-yellow: #C1B15F;
+}
+
+
 body {
   font-family: "Motiva Sans", sans-serif;
   font-weight:bolder;
   margin-top: 0;
+  /* background-color: var(--bg-secondary); */
+  background: linear-gradient(to bottom, var(--bg-main), var(--bg-secondary));
+  color: var(--text-main);
 }
 
-/* STEAM COLOR */
-/* grey */
-.darkgrey {
-  color: #0e141b;
+a {
+  color: var(--color-primary);
 }
 
-.grey {
-  color: #c5c3c0;
+a:hover {
+  color: var(--color-secondary);
 }
+
+.button {
+  background-color: var(--accent-green);
+  color: var(--text-main);
+  border: none;
+  padding: 10px 20px;
+}
+
+.button:hover {
+  background-color: var(--accent-yellow);
+}
+
+/* .footer {
+  background-color: var(--bg-tertiary);
+  color: var(--text-dim);
+} */
+
 
 /* HEADER */
 .header {
@@ -23,17 +65,17 @@ body {
   top: 0;
   align-items: center;
   width: 100%;
-  height: auto;
+  min-height: 60px;
   padding: 0 0 0 10px; /*top right buttom left*/
   /* justify-content: space-between; */
   gap: 5px;
-  background-color: #2b2b2b;
-  color: #c5c3c0;
+  background-color: var(--bg-highlight);
+  /* color: var(--text-main); */
   /* text-decoration: none; */
 }
 
 .header-logo {
-  width: 30px;
+  width: auto;
   height: 30px;
 }
 
@@ -51,36 +93,6 @@ body {
   color: white;
 }
 
-
-/*========*/
-/* FOOTER */
-/*========*/
-
-.footer {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  background-color: #2b2b2b;
-  border-radius: 6px;
-  color: white;
-  padding: 2rem 0rem;
-}
-
-.footer h3 {
-  margin-top: 0;
-}
-.footer p,
-.footer a {
-  margin-top: 0;
-  margin-bottom: 0.2rem;
-}
-.footer a {
-  cursor: crosshair;
-  margin-right: 2px;
-}
-.footer a:hover {
-  color: black;
-}
 
 /********/
 /* CARD */
@@ -134,4 +146,14 @@ flex-direction: column;
 
 .gap-xs{
   gap: 5px;
+}
+
+/* STEAM COLOR */
+/* text */
+.darkgrey {
+  color: #0e141b;
+}
+
+.grey {
+  color: #c5c3c0;
 }

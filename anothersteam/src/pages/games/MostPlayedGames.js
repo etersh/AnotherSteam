@@ -1,13 +1,8 @@
-<<<<<<< HEAD
-import React, { useEffect, useState } from "react";
-import LongCard from "@/components/Card/LongCard";
-=======
 import Pagination from '@/components/Pagination';
 import React, { useEffect, useState } from 'react';
->>>>>>> d040cd514154c0c8907878b92fdb008306725f5d
 
 const MostPlayedGames = () => {
-  const [topGames, setTopGames] = useState([]);
+  const [detailedGames, setDetailedGames] = useState([]);
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const gamesPerPage = 3;
@@ -19,12 +14,7 @@ const MostPlayedGames = () => {
         if (data.error) {
           throw new Error(data.error);
         }
-<<<<<<< HEAD
-        // Correctly access mostPlayedGames instead of data.response.ranks
-        setTopGames(data.mostPlayedGames);
-=======
         setDetailedGames(data.mostPlayedGames);
->>>>>>> d040cd514154c0c8907878b92fdb008306725f5d
       })
       .catch((err) => setError(err.message));
   }, []);
@@ -37,10 +27,6 @@ const MostPlayedGames = () => {
   if (error) return <div>Error: {error}</div>;
 
   return (
-<<<<<<< HEAD
-
-    <LongCard games={topGames}/>
-=======
     <div>
       <div className="game-list">
         {currentGames.map((game, index) => (
@@ -60,7 +46,6 @@ const MostPlayedGames = () => {
         onPageChange={setCurrentPage}
       />
     </div>
->>>>>>> d040cd514154c0c8907878b92fdb008306725f5d
   );
 };
 
