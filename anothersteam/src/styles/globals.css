@@ -87,6 +87,7 @@ a:hover {
 /* Search bar styling */
 .search-bar {
   background-color: var(--bg-tertiary);
+  font-family: "Motiva Sans", sans-serif;
   color: var(--color-secondary);
   border: none;
   outline: none;
@@ -99,7 +100,13 @@ a:hover {
 /* Placeholder styling */
 .search-bar::placeholder {
   color: var(--color-secondary);
+  font-size: smaller;
   opacity: 0.7; /* Adjust opacity for placeholder */
+}
+
+.search-button img {
+  height: 20px; /* Adjust icon size as needed */
+  width: 20px;
 }
 
 /* HEADER */
@@ -131,6 +138,9 @@ a:hover {
 
 /* NAVBAR */
 .navbar {
+  display: flex;
+  /* align-content: center; */
+  align-items: center;
   position: -webkit-sticky;
   position: sticky;
   top: 60px; /* Positioned below the header */
