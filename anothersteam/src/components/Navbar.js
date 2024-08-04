@@ -9,18 +9,19 @@ import GameSearchBar from './GameSearchBar';
 export default function Navbar() {
   return (
     <div className="navbar">
-      <Link href="/" passHref className="">
+          <div className="button-container">
+      <Link href="/" passHref>
         <HomeButton />
       </Link>
 
-      <Link href="/games/MostPlayedGames" passHref className="">
+      <Link href="/games/MostPlayedGames" passHref>
         <NavButton name="Most Played Games" />
       </Link>
 
-      <Link href="/games/TrendingGames" passHref className="">
+      <Link href="/games/TrendingGames" passHref>
         <NavButton name="Trending Games" />
       </Link>
-
+      </div>
       <GameSearchBar />
     </div>
   );

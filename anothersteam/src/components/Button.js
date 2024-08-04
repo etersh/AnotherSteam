@@ -2,11 +2,11 @@
 import React from "react";
 
 export function HomeButton() {
-  return <button className="">Home</button>;
+  return <button className="button home-button">Home</button>;
 }
 
 export function NavButton({ name }) {
-  return <button className="">{name}</button>;
+  return <button className="button nav-button">{name}</button>;
 }
 
 
