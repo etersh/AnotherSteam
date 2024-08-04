@@ -1,6 +1,5 @@
-import React from 'react';
-import SlickMultiple from '@/components/GameSlick';
-import { getCachedData, setCachedData } from '@/utils/cache';
+import React from "react";
+import SlickMultiple from "@/components/GameSlick";
 
 export default function Home({ mostPlayedGames, trendingGames, error }) {
   return (
@@ -55,20 +54,12 @@ export async function getServerSideProps() {
 
   try {
     //1. Most Played Games
-    const cacheKey = 'mostPlayedGames';
-    const cachedData = getCachedData(cacheKey);
-
-    if (cachedData) {
-      res.setHeader('Cache-Control', 'max-age=3600, must-revalidate');
-      return res.status(200).json({ mostPlayedGames: cachedData });
-    }
-
     const res = await fetch(
       `https://api.steampowered.com/ISteamChartsService/GetMostPlayedGames/v1/`
     );
 
     if (!res.ok) {
-      throw new Error('Failed to fetch most played games');
+      throw new Error("Failed to fetch most played games");
     }
 
     const data = await res.json();
@@ -96,27 +87,18 @@ export async function getServerSideProps() {
       name: game.name,
       photo: game.header_image,
       discountRate: game.price_overview?.discount_percent || 0,
-      discountPrice: game.price_overview?.final_formatted || 'Not Available',
-      originalPrice: game.price_overview?.initial_formatted || 'Not Available',
-      discountUntil: 'Not Available',
+      discountPrice: game.price_overview?.final_formatted || "Not Available",
+      originalPrice: game.price_overview?.initial_formatted || "Not Available",
+      discountUntil: "Not Available",
     }));
 
-    setCachedData(cacheKey, mostPlayedGames);
-
     //2. Trending Games
-    const cacheKey2 = 'trendingGames';
-    const cachedData2 = getCachedData(cacheKey2);
-
-    if (cachedData2) {
-      return res.status(200).json({ trendingGames: cachedData2 });
-    }
-
     const res2 = await fetch(
       `https://api.steampowered.com/ISteamChartsService/GetTopReleasesPages/v1/?access_token=${process.env.NEXT_PUBLIC_XPAW_API_ACCESS_TOKEN}`
     );
 
     if (!res2.ok) {
-      throw new Error('Failed to fetch trending games');
+      throw new Error("Failed to fetch trending games");
     }
 
     const data2 = await res2.json();
@@ -167,11 +149,10 @@ export async function getServerSideProps() {
       name: game.name,
       photo: game.header_image,
       discountRate: game.price_overview?.discount_percent || 0,
-      discountPrice: game.price_overview?.final_formatted || 'Not Available',
-      originalPrice: game.price_overview?.initial_formatted || 'Not Available',
-      discountUntil: 'Not Available',
+      discountPrice: game.price_overview?.final_formatted || "Not Available",
+      originalPrice: game.price_overview?.initial_formatted || "Not Available",
+      discountUntil: "Not Available",
     }));
-    setCachedData(cacheKey2, trendingGames);
 
     return {
       props: {
@@ -180,7 +161,7 @@ export async function getServerSideProps() {
       },
     };
   } catch (err) {
-    console.error('Error fetching games:', err);
+    console.error("Error fetching games:", err);
     return {
       props: {
         games: [],
