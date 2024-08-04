@@ -28,16 +28,12 @@ const TrendingGames = () => {
             <img src={game.photo} alt={game.name} />
 
             <div>
-              {game.isFree ? (
-                <p>FREE</p>
-              ) : (
-                <>
+ 
                   <p>Discount Rate: {game.discountRate}%</p>
                   <p>Discount Price: {game.discountPrice}</p>
                   <p>Original Price: {game.originalPrice}</p>
                   <p>Discount Until: {game.discountUntil}</p>
-                </>
-              )}
+   
             </div>
           </div>
         ))}
