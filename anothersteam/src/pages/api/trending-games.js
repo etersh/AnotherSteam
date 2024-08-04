@@ -1,5 +1,14 @@
+import { getCachedData, setCachedData } from '@/utils/cache';
+
 export default async function handler(req, res) {
   try {
+    const cacheKey = 'trendingGames';
+    const cachedData = getCachedData(cacheKey);
+
+    if (cachedData) {
+      return res.status(200).json({ trendingGames: cachedData });
+    }
+
     const response = await fetch(
       `https://api.steampowered.com/ISteamChartsService/GetTopReleasesPages/v1/?access_token=${process.env.NEXT_PUBLIC_XPAW_API_ACCESS_TOKEN}`
     );
@@ -63,9 +72,10 @@ export default async function handler(req, res) {
       discountRate: game.price_overview?.discount_percent || 0,
       discountPrice: game.price_overview?.final_formatted || 'Not Available',
       originalPrice: game.price_overview?.initial_formatted || 'Not Available',
-      discountUntil: "Summer sale",
+      discountUntil: 'Summer sale',
     }));
 
+    setCachedData(cacheKey, trendingGames);
     res.status(200).json({ trendingGames });
   } catch (error) {
     console.error('Error fetching trending games:', error);

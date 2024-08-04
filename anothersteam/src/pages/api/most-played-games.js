@@ -1,10 +1,19 @@
+import { getCachedData, setCachedData } from '../../utils/cache';
+
 export default async function handler(req, res) {
   try {
+    const cacheKey = 'mostPlayedGames';
+    const cachedData = getCachedData(cacheKey);
+
+    if (cachedData) {
+      return res.status(200).json({ mostPlayedGames: cachedData });
+    }
+
     const response = await fetch(
       `https://api.steampowered.com/ISteamChartsService/GetMostPlayedGames/v1/`
     );
     if (!response.ok) {
-      throw new Error("Failed to fetch top games");
+      throw new Error('Failed to fetch top games');
     }
 
     const data = await response.json();
@@ -32,19 +41,18 @@ export default async function handler(req, res) {
       name: game.name,
       photo: game.header_image,
       discountRate: game.price_overview?.discount_percent || 0,
-      discountPrice: game.price_overview?.final_formatted || "Not available",
-      originalPrice: game.price_overview?.initial_formatted || "Not available",
+      discountPrice: game.price_overview?.final_formatted || 'Not available',
+      originalPrice: game.price_overview?.initial_formatted || 'Not available',
       isFree: game.is_free,
-      discountUntil: "Summer sale",
+      discountUntil: 'Summer sale',
       rank: game.rank,
       peak: game.peak,
     }));
 
-    console.log("(api most-played-games) mostPlayedGames:", mostPlayedGames);
-
+    setCachedData(cacheKey, mostPlayedGames);
     res.status(200).json({ mostPlayedGames });
   } catch (error) {
-    console.error("Error fetching top games:", error);
+    console.error('Error fetching top games:', error);
     res.status(500).json({ error: error.message });
   }
 }
