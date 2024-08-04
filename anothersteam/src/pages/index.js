@@ -1,19 +1,28 @@
-import React from 'react';
-import SlickMultiple from '@/components/GameSlick';
+import React from "react";
+import SlickMultiple from "@/components/GameSlick";
 
 export default function Home({ mostPlayedGames, trendingGames, error }) {
   return (
     <>
       <div className="home">
-        <img
+        {/* <img
           // src="/steam/home-banner.png" // Summer Sale
           // src="https://i.redd.it/id7chkilm62c1.gif" // Autumn Sale1
-          src="https://i.redd.it/4xyeokdnm62c1.gif"  // Autumn Sale2
+          // src="https://i.redd.it/4xyeokdnm62c1.gif"  // Autumn Sale2
           // src="https://i.redd.it/u73pmphmm62c1.gif"  // Autumn Sale3
           // src="/steam/home-super-banner.png"            // Autumn
+
           alt="HomeBanner"
           className="homeBanner"
-        ></img>
+        ></img> */}
+        <video className="homeBanner" autoPlay muted loop playsInline>
+          <source
+            src="https://cdn.donmai.us/original/e1/60/__steam_delivery_girl_atlas_and_p_body_portal_and_4_more_drawn_by_nemupan__e16074d688bee3764db908243a9b3e67.webm"
+            type="video/webm"
+          />
+
+          {/* <source src="https://preview.redd.it/f6wxdatim6oa1.gif?width=2316&format=mp4&s=d0d7d71075cf409f827874ba5d2d953381f4521a" type="video/webm" /> */}
+        </video>
       </div>
 
       <div className="slick-container">
@@ -30,14 +39,12 @@ export default function Home({ mostPlayedGames, trendingGames, error }) {
         </div>
       </div> */}
 
-
       <div className="slick-container">
         <h4>Most Played Games</h4>
         <div className="card-container">
           <SlickMultiple games={trendingGames} />
         </div>
       </div>
-
     </>
   );
 }
@@ -52,7 +59,7 @@ export async function getServerSideProps() {
     );
 
     if (!res.ok) {
-      throw new Error('Failed to fetch most played games');
+      throw new Error("Failed to fetch most played games");
     }
 
     const data = await res.json();
@@ -80,9 +87,9 @@ export async function getServerSideProps() {
       name: game.name,
       photo: game.header_image,
       discountRate: game.price_overview?.discount_percent || 0,
-      discountPrice: game.price_overview?.final_formatted || 'Not Available',
-      originalPrice: game.price_overview?.initial_formatted || 'Not Available',
-      discountUntil: 'Not Available',
+      discountPrice: game.price_overview?.final_formatted || "Not Available",
+      originalPrice: game.price_overview?.initial_formatted || "Not Available",
+      discountUntil: "Not Available",
     }));
 
     //2. Trending Games
@@ -91,7 +98,7 @@ export async function getServerSideProps() {
     );
 
     if (!res2.ok) {
-      throw new Error('Failed to fetch trending games');
+      throw new Error("Failed to fetch trending games");
     }
 
     const data2 = await res2.json();
@@ -142,9 +149,9 @@ export async function getServerSideProps() {
       name: game.name,
       photo: game.header_image,
       discountRate: game.price_overview?.discount_percent || 0,
-      discountPrice: game.price_overview?.final_formatted || 'Not Available',
-      originalPrice: game.price_overview?.initial_formatted || 'Not Available',
-      discountUntil: 'Not Available',
+      discountPrice: game.price_overview?.final_formatted || "Not Available",
+      originalPrice: game.price_overview?.initial_formatted || "Not Available",
+      discountUntil: "Not Available",
     }));
 
     return {
@@ -154,7 +161,7 @@ export async function getServerSideProps() {
       },
     };
   } catch (err) {
-    console.error('Error fetching games:', err);
+    console.error("Error fetching games:", err);
     return {
       props: {
         games: [],
