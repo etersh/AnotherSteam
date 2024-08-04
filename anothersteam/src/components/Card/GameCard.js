@@ -9,15 +9,15 @@ export default function GameCard({ game = [] }) {
     <div key={game.id} className="gamecard">
       <img src={game.photo} alt="Avatar" />
       <h3>{game.name}</h3>
-      <div>
+      <div className="flex">
         <img src="/" alt="" />
-        <p>until</p>
+        <span>until time</span>
         <div>
-          <p>discount%</p>
-          <div>
+          <span>discount%</span>
+          {/* <div>
             <p>original $</p>
             <p>discounted $</p>
-          </div>
+          </div> */}
         </div>
       </div>
       </div>
