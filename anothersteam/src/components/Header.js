@@ -37,7 +37,7 @@ function Header() {
 					</div>
 				</Link>
 
-				<Link href="/user/UserInformation" passHref className="right">
+				<Link href="/user/userInformation" passHref className="right">
 					<UserButton name={user.name} profilePic={user.profilePic} />
 				</Link>
 			</header>
