@@ -1,11 +1,14 @@
 // src/page/index.js
 import React from "react";
-import GameCard from "@/components/Card/GameCard";
+
+// import GameCard from "@/components/Card/GameCard";
+import MultipleItems from "@/components/GameSlick";
 
 export default function Home({ mostPlayedGames, error }) {
   //   const [mostPlayedGames] = useAtom(mostPlayedGamesAtom);
-  console.log(mostPlayedGames);
+  console.log("(Home):", mostPlayedGames);
   return (
+    <>
     <div className="home">
       <img
         //   src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/steamworks_docs/english/Steam_Theme_Doc_Banner.jpg"
@@ -23,8 +26,10 @@ export default function Home({ mostPlayedGames, error }) {
         <li>don't starv</li>
       </ul>
       <div>after click on a game, get the game id, and search again</div>
-      <GameCard games={mostPlayedGames} err={error} />
+      {/* <GameCard games={mostPlayedGames} err={error} /> */}
     </div>
+      <MultipleItems games={mostPlayedGames} />
+      </>
   );
 }
 

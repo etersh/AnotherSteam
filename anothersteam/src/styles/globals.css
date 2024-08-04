@@ -1,5 +1,6 @@
 @import url("https://fonts.cdnfonts.com/css/motiva-sans");
 
+
 :root {
 	--primary-font: "Motiva Sans", sans-serif;
 
@@ -175,17 +176,34 @@ a:hover {
 	height: auto;
 }
 
+
+
 /********/
 /* CARD */
 /********/
 
 /* GAME CARD */
+
+/* .gamecard-container{
+  display:flex;
+} */
+
 .gamecard {
   display: flex;
-  width: 600px;
-  height: auto;
+  flex-direction: column;
+  /* width: 10px; */
+  width: auto;
+  /* height: 330px; */
+  /* height: auto; */
+  margin: 2px;
+  border-radius: 2px;
   background-color: var(--bg-secondary);
   border: solid 2px whitesmoke;
+}
+
+.gamecard img {
+  width: 200px;
+  height: auto;
 }
 
 .longcard {
@@ -205,8 +223,8 @@ a:hover {
 	width: 100%;
 }
 .homeBanner {
-	max-width: 1000px;
-	max-height: 360px;
+	max-width: 1200px;
+	max-height: 400px;
 	width: 80%;
 	margin-top: 1rem;
 }

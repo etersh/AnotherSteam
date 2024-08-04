@@ -28,7 +28,7 @@ export default function GameSearch() {
 		<div className="right">
 			{errors.gameid && <span className="">{errors.gameid.message}</span>}
 			<form onSubmit={handleSubmit(validateForm)} id="searchForm">
-				<div class="search-bar-container">
+				<div className="search-bar-container">
 					<input
 						type="text"
 						id="userInput"
@@ -43,7 +43,7 @@ export default function GameSearch() {
 							// },
 						})}
 					/>
-					<button type="submit" class="search-button">
+					<button type="submit" className="search-button">
 						<img src="/steam/icon/search.png" alt="Search Icon" />
 					</button>
 					{/* <button  className="hidden">
