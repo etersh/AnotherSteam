@@ -1,6 +1,6 @@
 // src/page/index.js
 import React from "react";
-import MultipleItems from "@/components/GameSlick";
+import SlickMultiple from "@/components/GameSlick";
 
 export default function Home({ mostPlayedGames, error }) {
   console.log("(Home):", mostPlayedGames);
@@ -28,9 +28,9 @@ export default function Home({ mostPlayedGames, error }) {
       </div>
       <div className="slick-container">
         <h4>Most Played Games</h4>
-        <MultipleItems games={mostPlayedGames} />
+        <SlickMultiple games={mostPlayedGames} />
         <h4>Most Played Games</h4>
-        <MultipleItems games={mostPlayedGames} />
+        <SlickMultiple games={mostPlayedGames} />
       </div>
     </>
   );
