@@ -1,12 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 
 const TrendingGames = () => {
   const [detailedGames, setDetailedGames] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch("/api/trending-games")
-      .then((res) => res.json())
+    fetch('/api/trending-games')
+      .then((res) => {
+        if (res.status === 304) {
+          console.log('Using cached data for most played games');
+          return res.json();
+        }
+        return res.json();
+      })
       .then((data) => {
         if (data.error) {
           throw new Error(data.error);
@@ -18,7 +24,7 @@ const TrendingGames = () => {
 
   if (error) return <div>Error: {error}</div>;
 
-  console.log("(TrendingGames) detailedGames: ", detailedGames);
+  console.log('(TrendingGames) detailedGames: ', detailedGames);
   return (
     <div>
       <div className="game-list">
@@ -28,12 +34,10 @@ const TrendingGames = () => {
             <img src={game.photo} alt={game.name} />
 
             <div>
- 
-                  <p>Discount Rate: {game.discountRate}%</p>
-                  <p>Discount Price: {game.discountPrice}</p>
-                  <p>Original Price: {game.originalPrice}</p>
-                  <p>Discount Until: {game.discountUntil}</p>
-   
+              <p>Discount Rate: {game.discountRate}%</p>
+              <p>Discount Price: {game.discountPrice}</p>
+              <p>Original Price: {game.originalPrice}</p>
+              <p>Discount Until: {game.discountUntil}</p>
             </div>
           </div>
         ))}

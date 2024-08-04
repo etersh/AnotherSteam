@@ -46,6 +46,16 @@ export default async function handler(req, res) {
       })
     );
 
+    //filter out null values
+    const validGameDetails = gameInfo.filter((game) => game !== null);
+
+    //if no valid game details are found, do not set cache
+    if (validGameDetails.length === 0) {
+      return res
+        .status(500)
+        .json({ error: 'No valid recently played game details found' });
+    }
+
     const formattedGames = gameInfo.map((game, index) => ({
       name: game.name,
       photo: game.header_image,
