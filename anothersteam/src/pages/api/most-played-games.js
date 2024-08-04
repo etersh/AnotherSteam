@@ -8,20 +8,18 @@ export default async function handler(req, res) {
     }
 
     const data = await response.json();
-    const topGameIds = data.response.ranks
-      .slice(0, 15)
-      .map((game) => game.appid);
+    const topGames = data.response.ranks.slice(0, 16);
 
     const gameDetails = await Promise.all(
-      topGameIds.map(async (id) => {
+      topGames.map(async (game) => {
         const res = await fetch(
-          `https://store.steampowered.com/api/appdetails?appids=${id}`
+          `https://store.steampowered.com/api/appdetails?appids=${game.appid}`
         );
         if (!res.ok) {
-          throw new Error(`Failed to fetch details for game id: ${id}`);
+          throw new Error(`Failed to fetch details for game id: ${game.appid}`);
         }
         const data = await res.json();
-        return data[id].data;
+        return { ...data[game.appid].data, rank: game.rank, peak: game.peak_in_game };
       })
     );
 
@@ -30,10 +28,14 @@ export default async function handler(req, res) {
       name: game.name,
       photo: game.header_image,
       discountRate: game.price_overview?.discount_percent || 0,
-      discountPrice: game.price_overview?.final_formatted || 'Not Available',
-      originalPrice: game.price_overview?.initial_formatted || 'Not Available',
-      discountUntil: 'Not Available',
+      discountPrice: game.price_overview?.final_formatted || 'Not available',
+      originalPrice: game.price_overview?.initial_formatted || 'Not available',
+      discountUntil: 'Summer sale',
+      rank: game.rank,
+      peak: game.peak,
     }));
+
+    console.log("(api most-played-games) mostPlayedGames:", mostPlayedGames)
 
     res.status(200).json({ mostPlayedGames });
   } catch (error) {
