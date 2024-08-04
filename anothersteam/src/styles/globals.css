@@ -148,6 +148,7 @@ a:hover {
   /* justify-content: space-between; */
   gap: 5px;
   background-color: var(--bg-highlight);
+  z-index: 99;
   /* color: var(--text-main); */
   /* text-decoration: none; */
 }
@@ -177,16 +178,19 @@ a:hover {
 
 /* SLICK */
 .slick-container {
-  max-width: 1100px;
-  margin: 0 auto; /* Center the container */
+  max-width: 1200px;
+  margin: auto;
 }
-.slick-container div{
-    align-items: center;
-}
+
 
 .slider {
   /* display: flex; */
   display: block;
+}
+.slick-slide > div {
+  display: flex;             /* Enable flexbox */
+  justify-content: center;   /* Center horizontally */
+  align-items: center;       /* Center vertically */
 }
 
 
@@ -241,6 +245,10 @@ a:hover {
 .flex-col {
   flex-direction: column;
 }
+
+.flex-row {
+	flex-direction: row;
+  }
 
 .align-vertical-center {
   align-items: center;
