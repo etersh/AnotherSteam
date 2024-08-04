@@ -26,13 +26,19 @@ export default function Home({ mostPlayedGames, error }) {
           <li>don't starv</li>
         </ul> */}
       </div>
+
       <div className="slick-container">
-      <h4>Most Played Games</h4>
-        <SlickMultiple games={mostPlayedGames} />
+        <h4>Most Played Games</h4>
+        <div className="card-container">
+          <SlickMultiple games={mostPlayedGames} />
+        </div>
       </div>
+
       <div className="slick-container">
-      <h4>Trending Games</h4>
-        <SlickMultiple games={mostPlayedGames} />
+        <h4>Trending Games</h4>
+        <div className="card-container">
+          <SlickMultiple games={mostPlayedGames} />
+        </div>
       </div>
     </>
   );
