@@ -8,20 +8,23 @@ export default function Home({ mostPlayedGames, error }) {
     <>
       <div className="home">
         <img
-          //   src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/steamworks_docs/english/Steam_Theme_Doc_Banner.jpg"
-          src="/steam/home-banner.png"
+          // src="/steam/home-banner.png" // Summer Sale
+          src="https://i.redd.it/id7chkilm62c1.gif"  // Autumn Sale1
+          // src="https://i.redd.it/decqildnm62c1.gif"  // Autumn Sale2
+          // src="https://i.redd.it/u73pmphmm62c1.gif"  // Autumn Sale3
+          // src="/steam/home-super-banner.png"            // Autumn
           alt="HomeBanner"
           className="homeBanner"
         ></img>
 
-        <p> SearchBar testing: </p>
+        {/* <p> SearchBar testing: </p>
         <ul>
           <li>october</li>
           <li>nightmare</li>
           <li>cyberpunk</li>
           <li>chained together</li>
           <li>don't starv</li>
-        </ul>
+        </ul> */}
       </div>
       <div className="slick-container">
         <h4>Most Played Games</h4>
