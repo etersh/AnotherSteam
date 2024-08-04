@@ -1,21 +1,25 @@
+// src/components/Card/GameCard.js
+
 import React from "react";
 
-export default function GameCard({ games = [] }) {
-  console.log("(GameCard) games", games);
+export default function GameCard({ game = [] }) {
+  console.log("(GameCard) games", game);
 
   return (
-    <div>
-      {Array.isArray(games) && games.length > 0 ? (
-        games.map((game) => (
-          <div key={game.id} className="gamecard">
-            <p>PHOTO: 'img' </p>
-            <p>ID: {game.id}</p>
-            <p>NAME: {game.name}</p>
+    <div key={game.id} className="gamecard">
+      <img src={game.photo} alt="Avatar" />
+      <h3>{game.name}</h3>
+      <div>
+        <img src="/" alt="" />
+        <p>until</p>
+        <div>
+          <p>discount%</p>
+          <div>
+            <p>original $</p>
+            <p>discounted $</p>
           </div>
-        ))
-      ) : (
-        <p>No games available</p>
-      )}
-    </div>
+        </div>
+      </div>
+      </div>
   );
 }
