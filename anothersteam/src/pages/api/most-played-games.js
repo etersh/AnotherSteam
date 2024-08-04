@@ -9,7 +9,7 @@ export default async function handler(req, res) {
 
     const data = await response.json();
     const topGameIds = data.response.ranks
-      .slice(0, 10)
+      .slice(0, 15)
       .map((game) => game.appid);
 
     const gameDetails = await Promise.all(
