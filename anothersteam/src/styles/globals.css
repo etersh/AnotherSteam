@@ -168,8 +168,8 @@ a:hover {
   display: flex;
   width: 600px;
   height: auto;
-  background-color: rgb(190, 255, 255);
-  border: solid 2px #2b2b2b;
+  background-color: var(--bg-secondary);
+  border: solid 2px whitesmoke;
 }
 
 .longcard {
