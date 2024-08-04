@@ -15,13 +15,19 @@ export default function Home({ mostPlayedGames, trendingGames, error }) {
           className="homeBanner"
         ></img>
       </div>
+
       <div className="slick-container">
         <h4>Most Played Games</h4>
-        <SlickMultiple games={mostPlayedGames} />
+        <div className="card-container">
+          <SlickMultiple games={mostPlayedGames} />
+        </div>
       </div>
+
       <div className="slick-container">
         <h4>Trending Games</h4>
-        <SlickMultiple games={trendingGames} />
+        <div className="card-container">
+          <SlickMultiple games={mostPlayedGames} />
+        </div>
       </div>
     </>
   );

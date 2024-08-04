@@ -54,7 +54,7 @@ a:hover {
   padding: 10px;
   color: var(--text-main);
   border: none;
-  border-radius: 2px;
+  border-radius: 3px;
   font-size: 14px;
   text-align: center;
   cursor: pointer;
@@ -180,32 +180,61 @@ a:hover {
 .slick-container {
   max-width: 1100px;
   margin: auto;
-}
+  margin-top: 3rem;
 
+}
 
 .slider {
   /* display: flex; */
   display: block;
 }
 .slick-slide > div {
-  display: flex;             /* Enable flexbox */
-  justify-content: center;   /* Center horizontally */
-  align-items: center;       /* Center vertically */
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
 }
 
+.slick-dots {
+  position:relative;
+  top: 280px;
+  margin-top: 2rem;
+  /* background-color: white; */  /* debug use */
+}
+
+.slick-dots li.slick-active button:before  {
+  color:var(--accent-green) !important;
+}
+
+.slick-prev:before {
+  color: var(--bg-tertiary) !important;
+  /* background-color: #eee; */
+}
+.slick-next:before {
+  color: var(--bg-tertiary) !important;
+  /* background-color: #eee; */
+}
 
 /********/
 /* CARD */
 /********/
+.card-container {
+  padding: 1rem 2.6rem;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.2), /* More opaque color */ 
+    rgba(0, 0, 0, 0.1) /* Less opaque color */
+  );
+  border-radius: 3px;
+}
 
 /* GAME CARD */
 .gamecard {
   display: flex;
   flex-direction: column;
-  width: 330px;
+  width: 300px;
   /* margin: 2px; */
   padding: 10px;
-  border-radius: 2px;
+  border-radius: 3px;
   /* background-color: var(--bg-secondary); */
   background-color: var(--bg-main);
   /* border: solid 1px whitesmoke; */
@@ -216,7 +245,7 @@ a:hover {
   width: 100%;
   align-self: center;
   height: auto;
-  border-radius: 2px;
+  border-radius: 3px;
 }
 
 .longcard {
@@ -240,7 +269,7 @@ a:hover {
   max-height: 400px;
   width: 80%;
   margin-top: 1rem;
-  box-shadow: 0px 0px 6px 0px black;
+  box-shadow: 0px 0px 6px 10px rgba(0, 0, 0, 0.025);
 }
 
 /* COMMON */
@@ -253,8 +282,8 @@ a:hover {
 }
 
 .flex-row {
-	flex-direction: row;
-  }
+  flex-direction: row;
+}
 
 .align-vertical-center {
   align-items: center;
