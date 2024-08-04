@@ -4,7 +4,9 @@ import React from "react";
 import Slider from "react-slick";
 import GameCard from "@/components/Card/GameCard";
 
+
 // npm i react-slick slick-carousel
+// MUST NOT APPLY "flex"
 
 export default function MultipleItems({ games = [] }) {
   const settings = {
@@ -15,14 +17,12 @@ export default function MultipleItems({ games = [] }) {
     slidesToScroll: 3,
   };
   return (
-    <div className="slider-container">
+
       <Slider {...settings}>
         {games.map((game) => (
-          <div key={game.id} className="gamecard">
-            <GameCard game={game} />
-          </div>
+          <GameCard game={game} />
         ))}
       </Slider>
-    </div>
+
   );
 }

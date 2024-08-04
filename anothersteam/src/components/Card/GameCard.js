@@ -6,7 +6,7 @@ export default function GameCard({ game = [] }) {
   console.log("(GameCard) games", game);
 
   return (
-    <>
+    <div key={game.id} className="gamecard">
       <img src={game.photo} alt="Avatar" />
       <h3>{game.name}</h3>
       <div>
@@ -20,6 +20,6 @@ export default function GameCard({ game = [] }) {
           </div>
         </div>
       </div>
-    </>
+      </div>
   );
 }

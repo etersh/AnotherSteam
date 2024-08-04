@@ -1,181 +1,193 @@
 @import url("https://fonts.cdnfonts.com/css/motiva-sans");
 
-
 :root {
-	--primary-font: "Motiva Sans", sans-serif;
+  --primary-font: "Motiva Sans", sans-serif;
 
-	/* Text Colors */
-	--text-main: #f3f3f3;
-	--text-dim: #76808c;
+  /* Text Colors */
+  --text-main: #f3f3f3;
+  --text-dim: #76808c;
 
-	/* Background Colors */
-	--bg-main: #0e141b;
-	--bg-highlight: #1e2329;
-	--bg-hover: #313843;
-	--bg-secondary: #14344b;
-	--bg-tertiary: #212b45;
+  /* Background Colors */
+  --bg-main: #0e141b;
+  --bg-highlight: #1e2329;
+  --bg-hover: #313843;
+  --bg-secondary: #14344b;
+  --bg-tertiary: #212b45;
 
-	/* Primary and Secondary Colors */
-	--color-primary: #66c0f4;
-	--color-secondary: #4b619b;
+  /* Primary and Secondary Colors */
+  --color-primary: #66c0f4;
+  --color-secondary: #4b619b;
 
-	/* Accent Colors */
-	--accent-green: #a1cd44;
-	--accent-red: #cd5444;
-	--accent-yellow: #c1b15f;
+  /* Accent Colors */
+  --accent-green: #a1cd44;
+  --accent-red: #cd5444;
+  --accent-yellow: #c1b15f;
 }
 
 body {
-	font-family: "Motiva Sans", sans-serif;
-	font-weight: bolder;
-	margin-top: 0;
-	background: linear-gradient(to bottom, var(--bg-main), var(--bg-secondary));
-	color: var(--text-main);
+  font-family: "Motiva Sans", sans-serif;
+  font-weight: bolder;
+  margin-top: 0;
+  background: linear-gradient(to bottom, var(--bg-main), var(--bg-secondary));
+  color: var(--text-main);
 }
 
 a {
-	color: var(--color-primary);
+  color: var(--color-primary);
 }
 
 a:hover {
-	color: var(--color-secondary);
+  color: var(--color-secondary);
 }
 
 /* BUTTONS */
 
 .button-container {
-	display: flex;
-	gap: 20px;
-	margin-left: 2rem;
+  display: flex;
+  gap: 20px;
+  margin-left: 2rem;
 }
 
 .button {
-	font-family: "Motiva Sans", sans-serif;
-	margin: 6px 0;
-	padding: 10px;
-	color: var(--text-main);
-	border: none;
-	border-radius: 2px;
-	font-size: 14px;
-	text-align: center;
-	cursor: pointer;
-	transition: background-color 0.1s;
+  font-family: "Motiva Sans", sans-serif;
+  margin: 6px 0;
+  padding: 10px;
+  color: var(--text-main);
+  border: none;
+  border-radius: 2px;
+  font-size: 14px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.1s;
 }
 .home-button {
-	background-color: var(--color-secondary);
+  background-color: var(--color-secondary);
 }
 .home-button:hover {
-	background-color: var(--bg-hover);
+  background-color: var(--bg-hover);
 }
 
 .nav-button {
-	background-color: var(--bg-secondary);
+  background-color: var(--bg-secondary);
 }
 .nav-button:hover {
-	background-color: var(--bg-hover);
+  background-color: var(--bg-hover);
 }
 
 .user-button {
-	background-color: #333;
-	color: #fff;
-	border: none;
-	padding: 10px;
-	border-radius: 5px;
-	cursor: pointer;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .user-profile-pic {
-	width: 32px; /* Adjust size as needed */
-	height: 32px; /* Adjust size as needed */
-	border-radius: 8%;
-	margin-right: 8px;
+  width: 32px; /* Adjust size as needed */
+  height: 32px; /* Adjust size as needed */
+  border-radius: 8%;
+  margin-right: 8px;
 }
 
 /* SEARCH BAR */
 .search-bar-container {
-	display: flex;
-	align-items: center;
-	background-color: var(--bg-tertiary);
-	padding: 5px 10px;
-	border-radius: 5px;
-	width: 300px; /* Adjust as needed */
+  display: flex;
+  align-items: center;
+  background-color: var(--bg-tertiary);
+  padding: 5px 10px;
+  border-radius: 5px;
+  width: 300px; /* Adjust as needed */
 }
 
 /* Search bar styling */
 .search-bar {
-	border: none;
-	outline: none;
-	padding: 5px;
-	width: 100%;
-	font-family: "Motiva Sans", sans-serif;
-	font-size: 14px;
-	color: var(--text-main);
-	background-color: var(--bg-tertiary);
-	border-radius: 5px 0 0 5px; /* Rounded corners for left side */
+  border: none;
+  outline: none;
+  padding: 5px;
+  width: 100%;
+  font-family: "Motiva Sans", sans-serif;
+  font-size: 14px;
+  color: var(--text-main);
+  background-color: var(--bg-tertiary);
+  border-radius: 5px 0 0 5px; /* Rounded corners for left side */
 }
 
 /* Placeholder styling */
 .search-bar::placeholder {
-	color: var(--color-secondary);
-	font-size: 14px;
-	opacity: 0.9;
+  color: var(--color-secondary);
+  font-size: 14px;
+  opacity: 0.9;
 }
 .search-button {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	border: none;
-	/* outline: none; */
-	cursor: pointer;
-	background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  /* outline: none; */
+  cursor: pointer;
+  background-color: transparent;
 }
 
 .search-button img {
-	height: 20px; /* Adjust icon size as needed */
-	width: 20px;
-	cursor: pointer;
+  height: 20px; /* Adjust icon size as needed */
+  width: 20px;
+  cursor: pointer;
 }
 
 /* HEADER */
 .header {
-	display: flex;
-	position: -webkit-sticky;
-	position: sticky;
-	top: 0;
-	align-items: center;
-	/* width: 100%; */
-	min-height: 60px;
-	padding: 0 0 0 10px; /*top right buttom left*/
-	/* justify-content: space-between; */
-	gap: 5px;
-	background-color: var(--bg-highlight);
-	/* color: var(--text-main); */
-	/* text-decoration: none; */
+  display: flex;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  align-items: center;
+  /* width: 100%; */
+  min-height: 60px;
+  padding: 0 0 0 10px; /*top right buttom left*/
+  /* justify-content: space-between; */
+  gap: 5px;
+  background-color: var(--bg-highlight);
+  /* color: var(--text-main); */
+  /* text-decoration: none; */
 }
 
 .header-logo {
-	width: auto;
-	height: 36px;
+  width: auto;
+  height: 36px;
 }
 
 .right {
-	margin-left: auto; /* Pushes the element to the right end */
-	margin-right: 2rem; /* Adds margin to the right */
+  margin-left: auto; /* Pushes the element to the right end */
+  margin-right: 2rem; /* Adds margin to the right */
 }
 
 /* NAVBAR */
 .navbar {
-	display: flex;
-	/* align-content: center; */
-	align-items: center;
-	position: -webkit-sticky;
-	position: sticky;
-	top: 60px; /* Positioned below the header */
-	z-index: 999;
-	background-color: var(--bg-secondary);
-	height: auto;
+  display: flex;
+  /* align-content: center; */
+  align-items: center;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 60px; /* Positioned below the header */
+  z-index: 999;
+  background-color: var(--bg-secondary);
+  height: auto;
 }
 
+/* SLICK */
+.slick-container {
+  max-width: 1100px;
+  margin: 0 auto; /* Center the container */
+}
+.slick-container div{
+    align-items: center;
+}
+
+.slider {
+  /* display: flex; */
+  display: block;
+}
 
 
 /********/
@@ -183,19 +195,11 @@ a:hover {
 /********/
 
 /* GAME CARD */
-
-/* .gamecard-container{
-  display:flex;
-} */
-
 .gamecard {
   display: flex;
   flex-direction: column;
-  /* width: 10px; */
-  width: auto;
-  /* height: 330px; */
-  /* height: auto; */
-  margin: 2px;
+  width: 300px;
+  /* margin: 2px; */
   border-radius: 2px;
   background-color: var(--bg-secondary);
   border: solid 2px whitesmoke;
@@ -207,63 +211,63 @@ a:hover {
 }
 
 .longcard {
-	display: flex;
-	width: 600px;
-	height: auto;
-	background-color: rgb(221, 255, 190);
-	border: solid 2px #2b2b2b;
+  display: flex;
+  width: 600px;
+  height: auto;
+  background-color: rgb(221, 255, 190);
+  border: solid 2px #2b2b2b;
 }
 
 /* HOME PAGE */
 .home {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	width: fit-content;
-	width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: fit-content;
+  width: 100%;
 }
 .homeBanner {
-	max-width: 1200px;
-	max-height: 400px;
-	width: 80%;
-	margin-top: 1rem;
+  max-width: 1600px;
+  max-height: 400px;
+  width: 80%;
+  margin-top: 1rem;
 }
 
 /* COMMON */
 .flex {
-	display: flex;
+  display: flex;
 }
 
 .flex-col {
-	flex-direction: column;
+  flex-direction: column;
 }
 
 .align-vertical-center {
-	align-items: center;
+  align-items: center;
 }
 
 .justify-center {
-	justify-content: center;
+  justify-content: center;
 }
 
 .text-decro-none {
-	text-decoration: none;
+  text-decoration: none;
 }
 
 .gap-xs {
-	gap: 5px;
+  gap: 5px;
 }
 
 .hidden {
-	display: none;
+  display: none;
 }
 
 /* STEAM COLOR */
 /* text */
 .darkgrey {
-	color: #0e141b;
+  color: #0e141b;
 }
 
 .grey {
-	color: #c5c3c0;
+  color: #c5c3c0;
 }
