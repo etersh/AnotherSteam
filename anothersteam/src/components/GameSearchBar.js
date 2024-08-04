@@ -32,13 +32,14 @@ export default function GameSearch() {
   return (
     <div className="">
       {errors.gameid && <span className="">{errors.gameid.message}</span>}
-      <form onSubmit={handleSubmit(validateForm)} id="searchForm" className="">
+      <form onSubmit={handleSubmit(validateForm)} id="searchForm">
+      <div class="search-bar-container">
         <input
           type="text"
           id="userInput"
           placeholder="> Enter game id"
+          className="search-bar"
           aria-label="searchById"
-          className=""
           {...register("gameid", {
             // required: "Game ID / Name is required",
             // minLength: {
@@ -47,9 +48,10 @@ export default function GameSearch() {
             // },
           })}
         />
-        <button type="submit" className="">
+        <button type="submit" className="hidden">
           Search
         </button>
+        </div>
       </form>
 
       {/* <div id="">{errorMessage}</div> */}

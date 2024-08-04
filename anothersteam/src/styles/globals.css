@@ -51,11 +51,11 @@ a:hover {
 .button {
   font-family: "Motiva Sans", sans-serif;
   margin: 6px 0;
-  padding: 10px 10px;
+  padding: 10px;
   color: var(--text-main);
   border: none;
   border-radius: 2px;
-  font-size: 12px;
+  font-size: 14px;
   text-align: center;
   cursor: pointer;
   transition: background-color 0.1s;
@@ -72,6 +72,34 @@ a:hover {
 }
 .nav-button:hover {
   background-color: var(--bg-hover);
+}
+
+/* SEARCH BAR */
+.search-bar-container {
+  display: flex;
+  align-items: center;
+  background-color: var(--bg-tertiary);
+  padding: 5px 10px;
+  border-radius: 5px;
+  width: 300px; /* Adjust as needed */
+}
+
+/* Search bar styling */
+.search-bar {
+  background-color: var(--bg-tertiary);
+  color: var(--color-secondary);
+  border: none;
+  outline: none;
+  padding: 5px;
+  width: 100%;
+  font-size: 16px; /* Adjust font size as needed */
+  border-radius: 5px 0 0 5px; /* Rounded corners for left side */
+}
+
+/* Placeholder styling */
+.search-bar::placeholder {
+  color: var(--color-secondary);
+  opacity: 0.7; /* Adjust opacity for placeholder */
 }
 
 /* HEADER */
@@ -192,6 +220,10 @@ a:hover {
 
 .font-18 {
   font-size: 18px;
+}
+
+.hidden{
+  display: none;
 }
 
 /* STEAM COLOR */
