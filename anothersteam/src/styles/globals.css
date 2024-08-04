@@ -100,7 +100,7 @@ a:hover {
 /* Placeholder styling */
 .search-bar::placeholder {
   color: var(--color-secondary);
-  font-size: smaller;
+  font-size: 14px;
   opacity: 0.9;
 }
 .search-button{
@@ -180,16 +180,6 @@ a:hover {
   border: solid 2px #2b2b2b;
 }
 
-/* Trademark */
-.trademark {
-  margin-left: 0px;
-  vertical-align: text-top; /* Align to the top */
-  display: inline;
-  color: #c5c3c0; /* Adjust color as needed */
-  font-size: 0.3rem; /* Adjust font size as needed */
-  white-space: nowrap; /* Prevent line breaks */
-}
-
 /* HOME PAGE */
 .home {
   display: flex;
@@ -228,18 +218,6 @@ a:hover {
 
 .gap-xs {
   gap: 5px;
-}
-
-.font-12 {
-  font-size: 12px;
-}
-
-.font-16 {
-  font-size: 16px;
-}
-
-.font-18 {
-  font-size: 18px;
 }
 
 .hidden{
