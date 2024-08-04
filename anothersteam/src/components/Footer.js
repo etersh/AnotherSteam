@@ -10,12 +10,12 @@ function Footer() {
         <div className="flex flex-col">
           <div className={styles.footerLogoSection}>
             <img
-              src="/steamicon/Valve_logo_grey.png"
+              src="/steam/steamicon/Valve_logo_grey.png"
               alt="Valve Logo"
               className={styles.footerLogo}
             />
             <img
-              src="/steamicon/New_Steam_Logo_with_name_grey.png"
+              src="/steam/steamicon/New_Steam_Logo_with_name_grey.png"
               alt="Steam Logo"
               className={styles.footerLogo}
             />
@@ -69,10 +69,10 @@ function Footer() {
         </div>
         <div className={styles.footerSocial}>
           <a href="#">
-            <img src="/steamicon/facebook.png" alt="Facebook" />
+            <img src="/steam/steamicon/facebook.png" alt="Facebook" />
           </a>
           <a href="#">
-            <img src="/steamicon/twitter.png" alt="Twitter" />
+            <img src="/steam/steamicon/twitter.png" alt="Twitter" />
           </a>
         </div>
       </div>
