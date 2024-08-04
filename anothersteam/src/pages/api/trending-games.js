@@ -63,7 +63,8 @@ export default async function handler(req, res) {
       discountRate: game.price_overview?.discount_percent || 0,
       discountPrice: game.price_overview?.final_formatted || 'Not Available',
       originalPrice: game.price_overview?.initial_formatted || 'Not Available',
-      discountUntil: 'Not Available',
+      isFree: game.is_free,
+      discountUntil: "Summer sale",
     }));
 
     res.status(200).json({ trendingGames });

@@ -40,7 +40,7 @@ export default function Home({ mostPlayedGames, trendingGames, error }) {
       </div> */}
 
       <div className="slick-container">
-        <h4>Most Played Games</h4>
+        <h4>Trending Games</h4>
         <div className="card-container">
           <SlickMultiple games={trendingGames} />
         </div>
