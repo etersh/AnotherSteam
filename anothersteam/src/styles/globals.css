@@ -1,3 +1,48 @@
+@import url("https://fonts.cdnfonts.com/css/motiva-sans");
+body {
+  font-family: "Motiva Sans", sans-serif;
+  font-weight:bolder;
+  margin-top: 0;
+}
+
+/* STEAM COLOR */
+/* grey */
+.darkgrey {
+  color: #0e141b;
+}
+
+.grey {
+  color: #c5c3c0;
+}
+
+/* HEADER */
+.header {
+  display: flex;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  padding: 0 0 0 10px; /*top right buttom left*/
+  /* justify-content: space-between; */
+  gap: 5px;
+  background-color: #2b2b2b;
+  color: #c5c3c0;
+  /* text-decoration: none; */
+}
+
+.header-logo {
+  width: 30px;
+  height: 30px;
+}
+
+.right {
+  margin-left: auto; /* Pushes the element to the right end */
+  margin-right: 2rem; /* Adds margin to the right */
+}
+
+
 /* NAVBAR */
 .navbar {
   width: 100%;
@@ -6,20 +51,35 @@
   color: white;
 }
 
-/* HEADER */
-.header {
-  width: 100%;
-  height: auto;
+
+/*========*/
+/* FOOTER */
+/*========*/
+
+.footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
   background-color: #2b2b2b;
+  border-radius: 6px;
   color: white;
+  padding: 2rem 0rem;
 }
 
-/* FOOTER */
-.footer {
-  width: 100%;
-  height: auto;
-  background-color: #2b2b2b;
-  color: white;
+.footer h3 {
+  margin-top: 0;
+}
+.footer p,
+.footer a {
+  margin-top: 0;
+  margin-bottom: 0.2rem;
+}
+.footer a {
+  cursor: crosshair;
+  margin-right: 2px;
+}
+.footer a:hover {
+  color: black;
 }
 
 /********/
@@ -41,4 +101,33 @@
   height: auto;
   background-color: rgb(221, 255, 190);
   border: solid 2px #2b2b2b;
+}
+
+/* Trademark */
+.trademark {
+  margin-left: 0px;
+  vertical-align: text-top; /* Align to the top */
+  display: inline;
+  color: #c5c3c0; /* Adjust color as needed */
+  font-size: 0.3rem; /* Adjust font size as needed */
+  white-space: nowrap; /* Prevent line breaks */
+}
+
+
+
+/* COMMON */
+.flex {
+  display: flex;
+}
+
+.align-vertical-center {
+  align-items: center;
+}
+
+.text-decro-none{
+  text-decoration: none;
+}
+
+.gap-xs{
+  gap: 5px;
 }
