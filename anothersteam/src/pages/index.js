@@ -1,9 +1,7 @@
-// src/page/index.js
-import React from "react";
-import SlickMultiple from "@/components/GameSlick";
+import React from 'react';
+import SlickMultiple from '@/components/GameSlick';
 
-export default function Home({ mostPlayedGames, error }) {
-  console.log("(Home):", mostPlayedGames);
+export default function Home({ mostPlayedGames, trendingGames, error }) {
   return (
     <>
       <div className="home">
@@ -16,23 +14,14 @@ export default function Home({ mostPlayedGames, error }) {
           alt="HomeBanner"
           className="homeBanner"
         ></img>
-
-        {/* <p> SearchBar testing: </p>
-        <ul>
-          <li>october</li>
-          <li>nightmare</li>
-          <li>cyberpunk</li>
-          <li>chained together</li>
-          <li>don't starv</li>
-        </ul> */}
       </div>
       <div className="slick-container">
-      <h4>Most Played Games</h4>
+        <h4>Most Played Games</h4>
         <SlickMultiple games={mostPlayedGames} />
       </div>
       <div className="slick-container">
-      <h4>Trending Games</h4>
-        <SlickMultiple games={mostPlayedGames} />
+        <h4>Trending Games</h4>
+        <SlickMultiple games={trendingGames} />
       </div>
     </>
   );
@@ -42,26 +31,21 @@ export async function getServerSideProps() {
   // const [mostPlayedGames, setMostPlayedGames] = useAtom(mostPlayedGamesAtom);
 
   try {
-    // Fetch top 3 game ids
-    // `https://api.steampowered.com/ISteamChartsService/GetMostPlayedGames/v1/?key=${process.env.NEXT_PUBLIC_XPAW_API_ACCESS_TOKEN}`
+    //1. Most Played Games
     const res = await fetch(
       `https://api.steampowered.com/ISteamChartsService/GetMostPlayedGames/v1/`
     );
 
     if (!res.ok) {
-      throw new Error("(MostPlayedGames) Failed to fetch top games");
+      throw new Error('Failed to fetch most played games');
     }
 
     const data = await res.json();
 
-    // setMostPlayedGames(data);
-    // console.log("mostPlayedGames :", mostPlayedGames);
-
     const topGameIds = data.response.ranks
-      .slice(0, 10)
+      .slice(0, 15)
       .map((game) => game.appid);
 
-    // Fetch game details
     const gameDetails = await Promise.all(
       topGameIds.map(async (id) => {
         const res = await fetch(
@@ -81,18 +65,81 @@ export async function getServerSideProps() {
       name: game.name,
       photo: game.header_image,
       discountRate: game.price_overview?.discount_percent || 0,
-      discountPrice: game.price_overview?.final_formatted || "Not Available",
-      originalPrice: game.price_overview?.initial_formatted || "Not Available",
-      discountUntil: "Not Available",
+      discountPrice: game.price_overview?.final_formatted || 'Not Available',
+      originalPrice: game.price_overview?.initial_formatted || 'Not Available',
+      discountUntil: 'Not Available',
+    }));
+
+    //2. Trending Games
+    const res2 = await fetch(
+      `https://api.steampowered.com/ISteamChartsService/GetTopReleasesPages/v1/?access_token=${process.env.NEXT_PUBLIC_XPAW_API_ACCESS_TOKEN}`
+    );
+
+    if (!res2.ok) {
+      throw new Error('Failed to fetch trending games');
+    }
+
+    const data2 = await res2.json();
+    const mostRecentMonthPage = data2.response.pages[0];
+    const appIds = mostRecentMonthPage.item_ids
+      .slice(0, 15)
+      .map((game) => game.appid);
+
+    const gameDetails2 = await Promise.all(
+      appIds.map(async (id) => {
+        try {
+          const res = await fetch(
+            `https://store.steampowered.com/api/appdetails?appids=${id}`
+          );
+
+          if (res.status === 403) {
+            console.warn(
+              `Access forbidden for game id: ${id} with status ${res.status}`
+            );
+            return null;
+          }
+          if (!res.ok) {
+            console.warn(
+              `Failed to fetch details for game id: ${id} with status ${res.status}`
+            );
+            return null;
+          }
+          const details = await res.json();
+          if (!details[id] || !details[id].data) {
+            console.warn(`No data found for game id: ${id}`);
+            return null;
+          }
+          return details[id].data;
+        } catch (error) {
+          console.warn(
+            `Error fetching details for game id: ${id} - ${error.message}`
+          );
+          return null;
+        }
+      })
+    );
+
+    //filter out null values
+    const validGameDetails = gameDetails2.filter((game) => game !== null);
+
+    const trendingGames = validGameDetails.map((game) => ({
+      //id: game.steam_appid,
+      name: game.name,
+      photo: game.header_image,
+      discountRate: game.price_overview?.discount_percent || 0,
+      discountPrice: game.price_overview?.final_formatted || 'Not Available',
+      originalPrice: game.price_overview?.initial_formatted || 'Not Available',
+      discountUntil: 'Not Available',
     }));
 
     return {
       props: {
         mostPlayedGames: mostPlayedGames,
+        trendingGames: trendingGames,
       },
     };
   } catch (err) {
-    console.error("Error fetching top 3 most played games:", err);
+    console.error('Error fetching games:', err);
     return {
       props: {
         games: [],

@@ -1,9 +1,7 @@
-// src/components/Card/GameCard.js
-
-import React from "react";
+import React from 'react';
 
 export default function GameCard({ game = [] }) {
-  console.log("(GameCard) games", game);
+  console.log('(GameCard) games', game);
 
   return (
     <div key={game.id} className="gamecard">
@@ -20,6 +18,6 @@ export default function GameCard({ game = [] }) {
           </div> */}
         </div>
       </div>
-      </div>
+    </div>
   );
 }
