@@ -1,7 +1,7 @@
 import React from 'react';
-import UserInfo from '../../components/UserInfo';
-import RecentlyPlayedGames from '../../components/RecentlyPlayedGames';
-import FriendInfo from '../../components/FriendInfo';
+import UserInfo from './userInfo';
+import RecentlyPlayedGames from './recentlyPlayedGames';
+import FriendInfo from './friendInfo';
 
 const UserInformation = () => {
   return (
