@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react';
 
-const MostPlayedGames = () => {
-  const [detailedGames, setDetailedGames] = useState([]);
+const TrendingGames = () => {
+  const [trendingGames, setTrendingGames] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('/api/most-played-games')
+    fetch('/api/trending-games')
       .then((res) => res.json())
       .then((data) => {
         if (data.error) {
           throw new Error(data.error);
         }
-        setDetailedGames(data.mostPlayedGames);
+        setTrendingGames(data.trendingGames);
       })
       .catch((err) => setError(err.message));
   }, []);
@@ -20,7 +20,7 @@ const MostPlayedGames = () => {
 
   return (
     <div className="game-list">
-      {detailedGames.map((game, index) => (
+      {trendingGames.map((game, index) => (
         <div key={index} className="game">
           <h2>{game.name}</h2>
           <img src={game.photo} alt={game.name} />
@@ -34,4 +34,4 @@ const MostPlayedGames = () => {
   );
 };
 
-export default MostPlayedGames;
+export default TrendingGames;

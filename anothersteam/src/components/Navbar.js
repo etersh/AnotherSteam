@@ -17,8 +17,8 @@ export default function Navbar() {
         <NavButton name="Most Played Games" />
       </Link>
 
-      <Link href="/" passHref className="">
-        <NavButton name="Trending" />
+      <Link href="/games/TrendingGames" passHref className="">
+        <NavButton name="Trending Games" />
       </Link>
 
       <Link href="/user/UserInformation" passHref className="">
