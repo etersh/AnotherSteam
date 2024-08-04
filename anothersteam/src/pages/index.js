@@ -1,6 +1,6 @@
 import React from 'react';
 import SlickMultiple from '@/components/GameSlick';
-import { setCachedData } from '@/utils/cache';
+import { getCachedData, setCachedData } from '@/utils/cache';
 
 export default function Home({ mostPlayedGames, trendingGames, error }) {
   return (
