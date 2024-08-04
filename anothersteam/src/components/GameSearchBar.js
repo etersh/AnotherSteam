@@ -16,7 +16,7 @@ export default function GameSearch() {
   const validateForm = (inputData) => {
     const trimmedInput = inputData.gameid.trim(); // Trim leading / trailing spaces
     if (trimmedInput === "") {
-      setErrorMessage("Please enter a valid game id.");
+      // setErrorMessage("Please enter a valid game id.");
       return;
     }
     const formattedInput = trimmedInput

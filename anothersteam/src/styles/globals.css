@@ -86,14 +86,14 @@ a:hover {
 
 /* Search bar styling */
 .search-bar {
-  background-color: var(--bg-tertiary);
-  font-family: "Motiva Sans", sans-serif;
-  color: var(--color-secondary);
   border: none;
   outline: none;
   padding: 5px;
   width: 100%;
-  font-size: 16px; /* Adjust font size as needed */
+  font-family: "Motiva Sans", sans-serif;
+  font-size: 14px; 
+  color: var(--text-main);
+  background-color: var(--bg-tertiary);
   border-radius: 5px 0 0 5px; /* Rounded corners for left side */
 }
 
@@ -101,12 +101,22 @@ a:hover {
 .search-bar::placeholder {
   color: var(--color-secondary);
   font-size: smaller;
-  opacity: 0.7; /* Adjust opacity for placeholder */
+  opacity: 0.9;
+}
+.search-button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none; 
+  /* outline: none; */
+  cursor: pointer;
+  background-color: transparent; 
 }
 
 .search-button img {
   height: 20px; /* Adjust icon size as needed */
   width: 20px;
+  cursor: pointer;
 }
 
 /* HEADER */
