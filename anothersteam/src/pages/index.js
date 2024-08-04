@@ -7,8 +7,8 @@ export default function Home({ mostPlayedGames, trendingGames, error }) {
       <div className="home">
         <img
           // src="/steam/home-banner.png" // Summer Sale
-          src="https://i.redd.it/id7chkilm62c1.gif" // Autumn Sale1
-          // src="https://i.redd.it/decqildnm62c1.gif"  // Autumn Sale2
+          // src="https://i.redd.it/id7chkilm62c1.gif" // Autumn Sale1
+          src="https://i.redd.it/4xyeokdnm62c1.gif"  // Autumn Sale2
           // src="https://i.redd.it/u73pmphmm62c1.gif"  // Autumn Sale3
           // src="/steam/home-super-banner.png"            // Autumn
           alt="HomeBanner"
@@ -23,12 +23,21 @@ export default function Home({ mostPlayedGames, trendingGames, error }) {
         </div>
       </div>
 
-      <div className="slick-container">
+      {/* <div className="slick-container">
         <h4>Trending Games</h4>
         <div className="card-container">
-          <SlickMultiple games={mostPlayedGames} />
+          <SlickMultiple games={trendingGames} />
+        </div>
+      </div> */}
+
+
+      <div className="slick-container">
+        <h4>Most Played Games</h4>
+        <div className="card-container">
+          <SlickMultiple games={trendingGames} />
         </div>
       </div>
+
     </>
   );
 }
