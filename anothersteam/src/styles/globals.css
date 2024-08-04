@@ -120,6 +120,10 @@ body {
   display: flex;
 }
 
+.flex-col{
+flex-direction: column;
+}
+
 .align-vertical-center {
   align-items: center;
 }
