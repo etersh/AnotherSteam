@@ -21,7 +21,7 @@ export default function GameSearch() {
 			.replace(/\s*,\s*/g, ",") // Remove spaces around commas ("   ,  ")
 			.replace(/\s+/g, " "); // Replace multiple spaces with a single space
 		// setQuery(formattedInput);
-		router.push(`/game/SearchResult?app=${encodeURIComponent(formattedInput)}`);
+		router.push(`/game/searchresult?app=${encodeURIComponent(formattedInput)}`);
 	};
 
 	return (

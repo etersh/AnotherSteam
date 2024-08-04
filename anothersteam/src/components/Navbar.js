@@ -12,11 +12,11 @@ export default function Navbar() {
 					<HomeButton />
 				</Link>
 
-				<Link href="/games/MostPlayedGames" passHref>
+				<Link href="/games/mostPlayedGames" passHref>
 					<NavButton name="Most Played Games" />
 				</Link>
 
-				<Link href="/games/TrendingGames" passHref>
+				<Link href="/games/trendingGames" passHref>
 					<NavButton name="Trending Games" />
 				</Link>
 			</div>
