@@ -1,9 +1,9 @@
-import { getCachedData, setCachedData } from '@/utils/cache';
+// import { getCachedData, setCachedData } from '@/utils/cache';
 
 export default async function handler(req, res) {
   try {
-    const cacheKey = 'userInfo';
-    const cachedData = getCachedData(cacheKey);
+    // const cacheKey = 'userInfo';
+    // const cachedData = getCachedData(cacheKey);
 
     if (cachedData) {
       return res.status(200).json({ userData: cachedData });
@@ -33,7 +33,7 @@ export default async function handler(req, res) {
       cityID: playerData.loccityid || 'Not Available',
     };
 
-    setCachedData(cacheKey, userData);
+    // setCachedData(cacheKey, userData);
     res.status(200).json({ userData });
   } catch (err) {
     console.error('Error fetching user information', err);

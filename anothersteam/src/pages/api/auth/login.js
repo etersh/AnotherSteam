@@ -26,8 +26,15 @@ export default async function handler(req, res) {
       { expiresIn: '1d' }      // Token validity: 1 day
     );
 
+    // const userData = {
+    //   id: user.steamid,
+    //   username: user.username,
+    // };
+
     // Send the token back to the client with a 200 OK status
-    res.status(200).json({ token }); // , message: 'Connected to MongoDB successfully!' 
+    // res.status(200).json({ token }); // , 
+    res.status(200).json({ token, user});
+
   } else {
     // If the credentials are invalid, return a 401 Unauthorized status with an error message
     res.status(401).json({ message: 'Invalid credentials' });

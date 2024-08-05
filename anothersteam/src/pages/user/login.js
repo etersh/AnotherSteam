@@ -30,8 +30,10 @@ const Login = () => {
 
     if (response.ok) {
       localStorage.setItem("userJWT", result.token);
+
       setUser(result.user); // Update the user state atom
-      
+      console.log("(/user/login) userJWT: ", result.token)
+      console.log("(/user/login) User: ", user)
       console.log("Login successful");
       router.push('/user/userInformation');
     } else {

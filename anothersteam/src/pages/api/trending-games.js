@@ -1,9 +1,9 @@
-import { getCachedData, setCachedData } from '@/utils/cache';
+// import { getCachedData, setCachedData } from '@/utils/cache';
 
 export default async function handler(req, res) {
   try {
-    const cacheKey = 'trendingGames';
-    const cachedData = getCachedData(cacheKey);
+    // const cacheKey = 'trendingGames';
+    // const cachedData = getCachedData(cacheKey);
 
     if (cachedData) {
       return res.status(200).json({ trendingGames: cachedData });
@@ -75,7 +75,7 @@ export default async function handler(req, res) {
       discountUntil: 'Summer sale',
     }));
 
-    setCachedData(cacheKey, trendingGames);
+    // setCachedData(cacheKey, trendingGames);
     res.status(200).json({ trendingGames });
   } catch (error) {
     console.error('Error fetching trending games:', error);

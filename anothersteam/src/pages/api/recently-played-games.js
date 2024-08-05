@@ -1,9 +1,9 @@
-import { getCachedData, setCachedData } from '@/utils/cache';
+// import { getCachedData, setCachedData } from '@/utils/cache';
 
 export default async function handler(req, res) {
   try {
-    const cacheKey = 'recentlyPlayedGames';
-    const cachedData = getCachedData(cacheKey);
+    // const cacheKey = 'recentlyPlayedGames';
+    // const cachedData = getCachedData(cacheKey);
 
     if (cachedData) {
       return res.status(200).json({ formattedGames: cachedData });
@@ -63,7 +63,7 @@ export default async function handler(req, res) {
       playtime: (playtimeList[index] / 60).toFixed(2),
     }));
 
-    setCachedData(cacheKey, formattedGames);
+    // setCachedData(cacheKey, formattedGames);
     res.status(200).json({ formattedGames });
   } catch (err) {
     console.error('Error fetching recently played games information', err);

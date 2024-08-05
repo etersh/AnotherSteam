@@ -1,13 +1,13 @@
-import { getCachedData, setCachedData } from '@/utils/cache';
+// import { getCachedData, setCachedData } from '@/utils/cache';
 
 export default async function handler(req, res) {
   try {
-    const cacheKey = 'friendInfo';
-    const cachedData = getCachedData(cacheKey);
+    // const cacheKey = 'friendInfo';
+    // const cachedData = getCachedData(cacheKey);
 
-    if (cachedData) {
-      return res.status(200).json({ friendInfo: cachedData });
-    }
+    // if (cachedData) {
+    //   return res.status(200).json({ friendInfo: cachedData });
+    // }
 
     //fetch friend's list
     // const tempSteamID = '76561198157968527';
@@ -53,7 +53,7 @@ export default async function handler(req, res) {
         };
       })
     );
-    setCachedData(cacheKey, friendInfo);
+    // setCachedData(cacheKey, friendInfo);
     res.status(200).json({ friendInfo });
   } catch (err) {
     console.error('Error fetching friends information', err);

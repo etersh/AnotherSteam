@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { NavButton, UserButton } from "./Button";
+
+import { UserButton } from "./Button";
 import Navbar from "./Navbar";
+
+import { useAtom } from "jotai";
+import { userAtom } from "@/state/store";
 
 function Header() {
 	const [user, setUser] = useState({ name: "", profilePic: "" });
+	// const [user, setUser] = useAtom(userAtom);
 
 	useEffect(() => {
 		async function fetchUserData() {
@@ -29,17 +34,14 @@ function Header() {
 							className="header-logo"
 						></img>
 						<p className="grey">WEB API</p>
-						{/* <p className="grey">
-              STEAM-API
-              <span className="trademark">&reg;</span>
-            </p> */}
 					</div>
 				</Link>
 
-				<Link href="/user/userInformation" passHref className="right">
+				{/* <Link href="/user/userInformation" passHref className="right">
 					<UserButton name={user.name} profilePic={user.profilePic} />
-				</Link>
+				</Link> */}
 
+				{/* User functions */}
 				<Link href="/user/login" passHref className="">
 					<button>Login</button>
 				</Link>
