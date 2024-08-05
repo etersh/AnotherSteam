@@ -1,9 +1,9 @@
-// import { getCachedData, setCachedData } from '../../utils/cache';
+import { getCachedData, setCachedData } from '../../utils/cache';
 
 export default async function handler(req, res) {
   try {
-    // const cacheKey = 'mostPlayedGames';
-    // const cachedData = getCachedData(cacheKey);
+    const cacheKey = 'mostPlayedGames';
+    const cachedData = getCachedData(cacheKey);
 
     if (cachedData) {
       return res.status(200).json({ mostPlayedGames: cachedData });
@@ -49,7 +49,7 @@ export default async function handler(req, res) {
       peak: game.peak,
     }));
 
-    // setCachedData(cacheKey, mostPlayedGames);
+    setCachedData(cacheKey, mostPlayedGames);
     res.status(200).json({ mostPlayedGames });
   } catch (error) {
     console.error('Error fetching top games:', error);
