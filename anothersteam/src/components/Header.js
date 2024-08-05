@@ -16,7 +16,6 @@ function Header() {
 				console.error("Error fetching user data:", error);
 			}
 		}
-
 		fetchUserData();
 	}, []);
 
@@ -39,6 +38,14 @@ function Header() {
 
 				<Link href="/user/userInformation" passHref className="right">
 					<UserButton name={user.name} profilePic={user.profilePic} />
+				</Link>
+
+				<Link href="/user/login" passHref className="">
+					<button>Login</button>
+				</Link>
+
+				<Link href="/user/register" passHref className="">
+					<button>Register</button>
 				</Link>
 			</header>
 
