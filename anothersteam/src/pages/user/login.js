@@ -1,33 +1,57 @@
-// src/pages/user/login.js
-
-// LOGIN PAGE: get user credentials
-
-import React, { useState } from 'react';
+// src/components/Login.js or src/pages/login.js
+// import React, { useState } from 'react';
+import React from "react";
+import { useForm } from "react-hook-form";
 
 const Login = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    const response = await fetch('/api/auth/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username, password })
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+
+  const onSubmit = async (data) => {
+    const { username, password } = data;
+    const response = await fetch("/api/auth/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password }),
     });
-    const data = await response.json();
+    const result = await response.json();
     if (response.ok) {
-      localStorage.setItem('jwt', data.token);
-      console.log('Login successful');
+      localStorage.setItem("jwt", result.token);
+      
+      console.log("Login successful");
     } else {
-      console.error('Login failed');
+      console.error("Login failed");
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input type="text" value={username} onChange={e => setUsername(e.target.value)} placeholder="Username" />
-      <input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Password" />
+
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <input
+        {...register("username", { required: "Username is required" })}
+        placeholder="Username"
+        type="text"
+      />
+      {errors.username && <p>{errors.username.message}</p>}
+
+      <input
+        {...register("password", {
+          required: "Password is required",
+          minLength: {
+            value: 8,
+            message: "Password must be at least 8 characters long",
+          },
+        })}
+        placeholder="Password"
+        type="password"
+      />
+      {errors.password && <p>{errors.password.message}</p>}
+
       <button type="submit">Login</button>
     </form>
   );
