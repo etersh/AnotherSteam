@@ -75,19 +75,19 @@ a:hover {
 }
 
 .user-button {
-  background-color: #333;
+  background-color: var(--bg-hover);
   color: #fff;
   border: none;
-  padding: 10px;
+  padding: 0.3rem 0.6rem;
   border-radius: 5px;
   cursor: pointer;
 }
 
 .user-profile-pic {
-  width: 32px; /* Adjust size as needed */
-  height: 32px; /* Adjust size as needed */
+  width: 26px; /* Adjust size as needed */
+  height: 26px; /* Adjust size as needed */
   border-radius: 8%;
-  margin-right: 8px;
+  margin-right: 0.3rem;
 }
 
 /* SEARCH BAR */

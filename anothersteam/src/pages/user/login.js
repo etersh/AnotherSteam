@@ -2,8 +2,10 @@
 // import React, { useState } from 'react';
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-
 import { useRouter } from 'next/router';
+
+import { useAtom } from 'jotai';
+import { userAtom } from '@/state/store';
 
 const Login = () => {
 
@@ -13,6 +15,7 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
+  const [user, setUser] = useAtom(userAtom);
   const router = useRouter();
 
   const onSubmit = async (data) => {
@@ -22,9 +25,13 @@ const Login = () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, password }),
     });
+
     const result = await response.json();
+
     if (response.ok) {
-      localStorage.setItem("jwt", result.token);
+      localStorage.setItem("userJWT", result.token);
+      setUser(result.user); // Update the user state atom
+      
       console.log("Login successful");
       router.push('/user/userInformation');
     } else {
