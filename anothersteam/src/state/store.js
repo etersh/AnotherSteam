@@ -1,3 +1,4 @@
 import {atom} from 'jotai'
 
-export const mostPlayedGamesAtom = atom([]);    // data of Most Played Games
+export const favouriteAtom = atom([]);  
+export const historyAtom = atom([]);  

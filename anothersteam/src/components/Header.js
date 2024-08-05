@@ -47,6 +47,10 @@ function Header() {
 				<Link href="/user/register" passHref className="">
 					<button>Register</button>
 				</Link>
+
+				<Link href="/user/logout" passHref className="">
+					<button>Logout</button>
+				</Link>
 			</header>
 
 			<Navbar />

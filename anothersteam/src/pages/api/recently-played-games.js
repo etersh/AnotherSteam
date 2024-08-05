@@ -9,7 +9,8 @@ export default async function handler(req, res) {
       return res.status(200).json({ formattedGames: cachedData });
     }
 
-    const tempSteamID = '76561198157968527';
+    // const tempSteamID = '76561198157968527';
+    const tempSteamID = '76561198119596896';
 
     // Fetch recently played games list
     const response = await fetch(

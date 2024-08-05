@@ -10,7 +10,8 @@ export default async function handler(req, res) {
     }
 
     //fetch friend's list
-    const tempSteamID = '76561198157968527';
+    // const tempSteamID = '76561198157968527';
+    const tempSteamID = '76561198119596896';
 
     const response = await fetch(
       `http://api.steampowered.com/ISteamUser/GetFriendList/v0001/?key=${process.env.NEXT_PUBLIC_STEAM_API_ACCESS_TOKEN}&steamid=${tempSteamID}&relationship=friend`

@@ -10,7 +10,8 @@ export default async function handler(req, res) {
     }
 
     // Fetch user information
-    const tempSteamID = '76561198157968527';
+    // const tempSteamID = '76561198157968527';
+    const tempSteamID = '76561198119596896';
 
     const response = await fetch(
       `http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=${process.env.NEXT_PUBLIC_STEAM_API_ACCESS_TOKEN}&steamids=${tempSteamID}`
