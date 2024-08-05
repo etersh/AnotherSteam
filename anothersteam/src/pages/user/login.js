@@ -1,7 +1,9 @@
 // src/components/Login.js or src/pages/login.js
 // import React, { useState } from 'react';
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+
+import { useRouter } from 'next/router';
 
 const Login = () => {
 
@@ -11,6 +13,7 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
+  const router = useRouter();
 
   const onSubmit = async (data) => {
     const { username, password } = data;
@@ -22,8 +25,8 @@ const Login = () => {
     const result = await response.json();
     if (response.ok) {
       localStorage.setItem("jwt", result.token);
-      
       console.log("Login successful");
+      router.push('/user/userInformation');
     } else {
       console.error("Login failed");
     }
