@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from "react";
+import { useRouter } from 'next/router';
 
 const FriendInfo = () => {
 	const [friends, setFriends] = useState([]);
 	const [error, setError] = useState(null);
 
+	const router = useRouter();
+	const { steamid } = router.query;
+
 	useEffect(() => {
-		fetch("/api/friend-info")
+		if (steamid) {
+			fetch(`/api/friend-info?steamid=${steamid}`)
+		// fetch("/api/friend-info")
 			.then((res) => res.json())
 			.then((data) => {
 				if (data.err) {
@@ -14,7 +20,8 @@ const FriendInfo = () => {
 				setFriends(data.friendInfo);
 			})
 			.catch((err) => setError(err.message));
-	}, []);
+		}
+	}, [steamid]);
 
 	if (error) return <div>Error: {error}</div>;
 

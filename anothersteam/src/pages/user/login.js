@@ -1,14 +1,13 @@
-// src/components/Login.js or src/pages/login.js
-// import React, { useState } from 'react';
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
-import { useRouter } from 'next/router';
+// src/pages/user/login.js
 
-import { useAtom } from 'jotai';
-import { userAtom } from '@/state/store';
+import React, { useEffect } from "react"; //, { useState }
+import { useForm } from "react-hook-form";
+import { useRouter } from "next/router";
+
+import { useAtom } from "jotai";
+import { userAtom } from "@/state/store";
 
 const Login = () => {
-
   const {
     register,
     handleSubmit,
@@ -17,6 +16,13 @@ const Login = () => {
 
   const [user, setUser] = useAtom(userAtom);
   const router = useRouter();
+
+  useEffect(() => {
+    console.log("(/user/login) User state updated:", user);
+    if (user) {
+      router.push(`/user/${user.steamid}`);
+    }
+  }, [user]);
 
   const onSubmit = async (data) => {
     const { username, password } = data;
@@ -30,19 +36,19 @@ const Login = () => {
 
     if (response.ok) {
       localStorage.setItem("userJWT", result.token);
-
       setUser(result.user); // Update the user state atom
-      console.log("(/user/login) userJWT: ", result.token)
-      console.log("(/user/login) User: ", user)
-      console.log("Login successful");
-      router.push('/user/userInformation');
+
+      console.log("(/user/login) userJWT: ", result.token);
+      console.log("(/user/login) User: ", user);
+      console.log("(/user/login) Login successful");
+
+      // router.push(`/user/${user.steamid}`);
     } else {
       console.error("Login failed");
     }
   };
 
   return (
-
     <form onSubmit={handleSubmit(onSubmit)}>
       <input
         {...register("username", { required: "Username is required" })}

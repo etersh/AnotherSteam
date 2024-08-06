@@ -1,6 +1,18 @@
 // import { getCachedData, setCachedData } from '@/utils/cache';
-
+// import { useAtom } from "jotai";
+// import { userAtom } from "@/state/store";
 export default async function handler(req, res) {
+  // const [user] = useAtom(userAtom);
+
+  // Example: Get userId from request headers or query params
+  // const steamId = req.query.userId;
+  const steamid = req.query.steamid;
+
+  // Ensure userId is available
+  if (!steamid) {
+    return res.status(400).json({ error: 'User ID is required' });
+  }
+
   try {
     // const cacheKey = 'friendInfo';
     // const cachedData = getCachedData(cacheKey);
@@ -11,10 +23,10 @@ export default async function handler(req, res) {
 
     //fetch friend's list
     // const tempSteamID = '76561198157968527';
-    const tempSteamID = '76561198119596896';
+    // const tempSteamID = '76561198119596896';
 
     const response = await fetch(
-      `http://api.steampowered.com/ISteamUser/GetFriendList/v0001/?key=${process.env.NEXT_PUBLIC_STEAM_API_ACCESS_TOKEN}&steamid=${tempSteamID}&relationship=friend`
+      `http://api.steampowered.com/ISteamUser/GetFriendList/v0001/?key=${process.env.NEXT_PUBLIC_STEAM_API_ACCESS_TOKEN}&steamid=${steamid}&relationship=friend`
     );
 
     if (!response.ok) {

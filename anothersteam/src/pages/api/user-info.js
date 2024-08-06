@@ -1,20 +1,33 @@
 // import { getCachedData, setCachedData } from '@/utils/cache';
 
+// import { useAtom } from "jotai";
+// import { userAtom } from "@/state/store";
+
 export default async function handler(req, res) {
+  // const [user] = useAtom(userAtom);
+
+   // Example: Get userId from request headers or query params
+   const steamid = req.query.steamid;
+
+   // Ensure userId is available
+   if (!steamid) {
+     return res.status(400).json({ error: 'User ID is required' });
+   }
+
   try {
     // const cacheKey = 'userInfo';
     // const cachedData = getCachedData(cacheKey);
 
-    if (cachedData) {
-      return res.status(200).json({ userData: cachedData });
-    }
+    // if (cachedData) {
+    //   return res.status(200).json({ userData: cachedData });
+    // }
 
     // Fetch user information
     // const tempSteamID = '76561198157968527';
-    const tempSteamID = '76561198119596896';
+    // const tempSteamID = '76561198119596896';
 
     const response = await fetch(
-      `http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=${process.env.NEXT_PUBLIC_STEAM_API_ACCESS_TOKEN}&steamids=${tempSteamID}`
+      `http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=${process.env.NEXT_PUBLIC_STEAM_API_ACCESS_TOKEN}&steamids=${steamid}`
     );
 
     if (!response.ok) {

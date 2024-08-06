@@ -15,9 +15,10 @@ const Logout = () => {
       localStorage.removeItem("userJWT");
       setUser(null); // Reset the user state atom
 
+      console.log("(/user/logout) Logout successful!");
+      console.log("(/user/logout) User: ", user);
       // Redirect to login page
       router.push("/");
-      console.log("Logged out");
     }
   }, [router, user]);
 

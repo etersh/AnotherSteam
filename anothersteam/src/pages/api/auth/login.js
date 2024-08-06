@@ -9,7 +9,7 @@ import User from '@/models/User';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
-// Define an asynchronous default export function for the API route
+
 export default async function handler(req, res) {
   await dbConnect(); // Ensure the database is connected before proceeding
 
@@ -26,13 +26,6 @@ export default async function handler(req, res) {
       { expiresIn: '1d' }      // Token validity: 1 day
     );
 
-    // const userData = {
-    //   id: user.steamid,
-    //   username: user.username,
-    // };
-
-    // Send the token back to the client with a 200 OK status
-    // res.status(200).json({ token }); // , 
     res.status(200).json({ token, user});
 
   } else {

@@ -1,20 +1,34 @@
 // import { getCachedData, setCachedData } from '@/utils/cache';
-
+// import { useAtom } from "jotai";
+// import { userAtom } from "@/state/store";
 export default async function handler(req, res) {
+  // const [user] = useAtom(userAtom);
+  // console.log(user.id)
+
+   // Example: Get userId from request headers or query params
+  //  const steamId = req.query.userId;
+  const steamid = req.query.steamid;
+
+   // Ensure userId is available
+   if (!steamid) {
+     return res.status(400).json({ error: 'User ID is required' });
+   }
+
+  
   try {
     // const cacheKey = 'recentlyPlayedGames';
     // const cachedData = getCachedData(cacheKey);
 
-    if (cachedData) {
-      return res.status(200).json({ formattedGames: cachedData });
-    }
+    // if (cachedData) {
+    //   return res.status(200).json({ formattedGames: cachedData });
+    // }
 
     // const tempSteamID = '76561198157968527';
-    const tempSteamID = '76561198119596896';
+    // const tempSteamID = '76561198119596896';
 
     // Fetch recently played games list
     const response = await fetch(
-      `http://api.steampowered.com/IPlayerService/GetRecentlyPlayedGames/v0001/?key=${process.env.NEXT_PUBLIC_STEAM_API_ACCESS_TOKEN}&steamid=${tempSteamID}&format=json`
+      `http://api.steampowered.com/IPlayerService/GetRecentlyPlayedGames/v0001/?key=${process.env.NEXT_PUBLIC_STEAM_API_ACCESS_TOKEN}&steamid=${steamid}&format=json`
     );
 
     if (!response.ok) {

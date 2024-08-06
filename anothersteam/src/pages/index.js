@@ -5,23 +5,11 @@ export default function Home({ mostPlayedGames, trendingGames, error }) {
   return (
     <>
       <div className="home">
-        {/* <img
-          // src="/steam/home-banner.png" // Summer Sale
-          // src="https://i.redd.it/id7chkilm62c1.gif" // Autumn Sale1
-          // src="https://i.redd.it/4xyeokdnm62c1.gif"  // Autumn Sale2
-          // src="https://i.redd.it/u73pmphmm62c1.gif"  // Autumn Sale3
-          // src="/steam/home-super-banner.png"            // Autumn
-
-          alt="HomeBanner"
-          className="homeBanner"
-        ></img> */}
         <video className="homeBanner" autoPlay muted loop playsInline>
           <source
             src="https://cdn.donmai.us/original/e1/60/__steam_delivery_girl_atlas_and_p_body_portal_and_4_more_drawn_by_nemupan__e16074d688bee3764db908243a9b3e67.webm"
             type="video/webm"
           />
-
-          {/* <source src="https://preview.redd.it/f6wxdatim6oa1.gif?width=2316&format=mp4&s=d0d7d71075cf409f827874ba5d2d953381f4521a" type="video/webm" /> */}
         </video>
       </div>
 
@@ -170,3 +158,15 @@ export async function getServerSideProps() {
     };
   }
 }
+
+/* <img
+// src="/steam/home-banner.png" // Summer Sale
+// src="https://i.redd.it/id7chkilm62c1.gif" // Autumn Sale1
+// src="https://i.redd.it/4xyeokdnm62c1.gif"  // Autumn Sale2
+// src="https://i.redd.it/u73pmphmm62c1.gif"  // Autumn Sale3
+// src="/steam/home-super-banner.png"            // Autumn
+
+alt="HomeBanner"
+className="homeBanner"
+></img> 
+*/
