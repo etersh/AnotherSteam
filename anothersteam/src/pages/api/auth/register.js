@@ -1,7 +1,6 @@
 // pages/api/auth/register.js
 import dbConnect from '@/lib/mongodb';
 import User from '@/models/User';
-// import bcrypt from 'bcryptjs';
 
 export default async function handler(req, res) {
     if (req.method !== 'POST') {

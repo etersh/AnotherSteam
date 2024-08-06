@@ -26,18 +26,3 @@ const Logout = () => {
 };
 
 export default Logout;
-
-// import { useRouter } from 'next/router';
-
-// const Logout = () => {
-//     const Router = useRouter()
-
-//     // remove user from local storage, publish null to user subscribers and redirect to login page
-//     localStorage.removeItem('userJWT');
-//     userSubject.next(null);
-//     Router.push('/login');
-//     console.log("Logged out")
-//   return
-// };
-
-// export default Logout;

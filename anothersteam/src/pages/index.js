@@ -1,16 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import SlickMultiple from "@/components/GameSlick";
 
 export default function Home({ mostPlayedGames, trendingGames, error }) {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true); // Set to true after the component mounts
+  }, []);
+
   return (
     <>
       <div className="home">
-        <video className="homeBanner" autoPlay muted loop playsInline>
-          <source
-            src="https://cdn.donmai.us/original/e1/60/__steam_delivery_girl_atlas_and_p_body_portal_and_4_more_drawn_by_nemupan__e16074d688bee3764db908243a9b3e67.webm"
-            type="video/webm"
-          />
-        </video>
+        {isClient && (
+          <video className="homeBanner" autoPlay muted loop playsInline>
+            <source
+              src="https://cdn.donmai.us/original/e1/60/__steam_delivery_girl_atlas_and_p_body_portal_and_4_more_drawn_by_nemupan__e16074d688bee3764db908243a9b3e67.webm"
+              type="video/webm"
+            />
+          </video>
+        )}
       </div>
 
       <div className="slick-container">
@@ -19,13 +27,6 @@ export default function Home({ mostPlayedGames, trendingGames, error }) {
           <SlickMultiple games={mostPlayedGames} />
         </div>
       </div>
-
-      {/* <div className="slick-container">
-        <h4>Trending Games</h4>
-        <div className="gamecard-container">
-          <SlickMultiple games={trendingGames} />
-        </div>
-      </div> */}
 
       <div className="slick-container">
         <h4>Trending Games</h4>
