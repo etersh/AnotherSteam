@@ -1,28 +1,25 @@
-import React, { useEffect, useState } from "react";
-import Link from "next/link";
-
-import { UserButton } from "./Button";
-import Navbar from "./Navbar";
-
-import { useAtom } from "jotai";
-import { userAtom } from "@/state/store";
+import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
+import { UserButton } from './Button';
+import Navbar from './Navbar';
+import { useAtom } from 'jotai';
+import { userAtom } from '@/state/store';
 
 function Header() {
-  // const [user, setUser] = useState({ name: "", profilePic: "" });
   const [user, setUser] = useAtom(userAtom);
 
-  // useEffect(() => {
-  // 	async function fetchUserData() {
-  // 		try {
-  // 			const res = await fetch("/api/user-info");
-  // 			const data = await res.json();
-  // 			setUser(data.userData);
-  // 		} catch (error) {
-  // 			console.error("Error fetching user data:", error);
-  // 		}
-  // 	}
-  // 	fetchUserData();
-  // }, []);
+  useEffect(() => {
+    async function fetchUserData() {
+      try {
+        const res = await fetch('/api/user-info');
+        const data = await res.json();
+        setUser(data.userData);
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    }
+    fetchUserData();
+  }, []);
 
   return (
     <>
@@ -41,8 +38,8 @@ function Header() {
         {user ? (
           <>
             <Link href="/user/userInformation" passHref className="right">
-              <UserButton name={user.username} />
-			  {/* <UserButton name={steamuser.name} profilePic={steamuser.profilePic} /> */}
+              <UserButton name={user.name} profilePic={user.profilePic} />
+              {/* <UserButton name={steamuser.name} profilePic={steamuser.profilePic} /> */}
             </Link>
             <Link href="/user/logout" passHref>
               <button>Logout</button>
