@@ -158,15 +158,3 @@ export async function getServerSideProps() {
     };
   }
 }
-
-/* <img
-// src="/steam/home-banner.png" // Summer Sale
-// src="https://i.redd.it/id7chkilm62c1.gif" // Autumn Sale1
-// src="https://i.redd.it/4xyeokdnm62c1.gif"  // Autumn Sale2
-// src="https://i.redd.it/u73pmphmm62c1.gif"  // Autumn Sale3
-// src="/steam/home-super-banner.png"            // Autumn
-
-alt="HomeBanner"
-className="homeBanner"
-></img> 
-*/
