@@ -1,4 +1,4 @@
-// pages/api/auth/login.js
+// src/pages/api/auth/login.js
 
 // PURPOSE: Get user if credentials match
 

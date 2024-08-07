@@ -1,3 +1,5 @@
+// src/pages/games/mostPlayedGames.js
+
 import React, { useEffect, useState } from 'react';
 
 const MostPlayedGames = () => {

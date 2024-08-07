@@ -1,3 +1,5 @@
+// src/pages/games/trending.js
+
 import React, { useEffect, useState } from 'react';
 
 const TrendingGames = () => {

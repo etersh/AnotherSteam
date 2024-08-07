@@ -1,3 +1,5 @@
+// src/pages/index.js
+
 import React, { useEffect, useState } from "react";
 import SlickMultiple from "@/components/GameSlick";
 
@@ -42,99 +44,38 @@ export async function getServerSideProps() {
   // const [mostPlayedGames, setMostPlayedGames] = useAtom(mostPlayedGamesAtom);
 
   try {
-    //1. Most Played Games
+    // Most Played Games
     const res = await fetch(
-      `https://api.steampowered.com/ISteamChartsService/GetMostPlayedGames/v1/`
+      `${process.env.NEXT_PUBLIC_API_URL}/api/most-played-games` // fetch games using api. NEXT_PUBLIC_API_URL: http://localhost:3000 need to change when deployed
     );
-
     if (!res.ok) {
       throw new Error("Failed to fetch most played games");
     }
+    const { mostPlayedGames } = await res.json();
 
-    const data = await res.json();
-
-    const topGameIds = data.response.ranks
-      .slice(0, 15)
-      .map((game) => game.appid);
-
-    const gameDetails = await Promise.all(
-      topGameIds.map(async (id) => {
-        const res = await fetch(
-          `https://store.steampowered.com/api/appdetails?appids=${id}`
-        );
-
-        if (!res.ok) {
-          throw new Error(`Failed to fetch details for game id: ${id}`);
-        }
-
-        const data = await res.json();
-        return data[id].data;
-      })
-    );
-
-    const mostPlayedGames = gameDetails.map((game) => ({
+    mostPlayedGames.map((game) => ({
       name: game.name,
       photo: game.header_image,
-      discountRate: game.price_overview?.discount_percent || 0,
-      discountPrice: game.price_overview?.final_formatted || "Not Available",
-      originalPrice: game.price_overview?.initial_formatted || "Not Available",
-      discountUntil: "Not Available",
+      discountRate: game.discountRate,
+      discountPrice: game.discountPrice,
+      originalPrice: game.originalPrice,
+      discountUntil: game.discountUntil,
+      platforms: {
+        windows: game.platforms.windows,
+        mac: game.platforms.max,
+        linux: game.platforms.linux,
+      },
     }));
 
-    //2. Trending Games
+    // Trending Games
     const res2 = await fetch(
-      `https://api.steampowered.com/ISteamChartsService/GetTopReleasesPages/v1/?access_token=${process.env.NEXT_PUBLIC_XPAW_API_ACCESS_TOKEN}`
+      `${process.env.NEXT_PUBLIC_API_URL}/api/trending-games`
     );
-
     if (!res2.ok) {
       throw new Error("Failed to fetch trending games");
     }
-
-    const data2 = await res2.json();
-    const mostRecentMonthPage = data2.response.pages[0];
-    const appIds = mostRecentMonthPage.item_ids
-      .slice(0, 15)
-      .map((game) => game.appid);
-
-    const gameDetails2 = await Promise.all(
-      appIds.map(async (id) => {
-        try {
-          const res = await fetch(
-            `https://store.steampowered.com/api/appdetails?appids=${id}`
-          );
-
-          if (res.status === 403) {
-            console.warn(
-              `Access forbidden for game id: ${id} with status ${res.status}`
-            );
-            return null;
-          }
-          if (!res.ok) {
-            console.warn(
-              `Failed to fetch details for game id: ${id} with status ${res.status}`
-            );
-            return null;
-          }
-          const details = await res.json();
-          if (!details[id] || !details[id].data) {
-            console.warn(`No data found for game id: ${id}`);
-            return null;
-          }
-          return details[id].data;
-        } catch (error) {
-          console.warn(
-            `Error fetching details for game id: ${id} - ${error.message}`
-          );
-          return null;
-        }
-      })
-    );
-
-    //filter out null values
-    const validGameDetails = gameDetails2.filter((game) => game !== null);
-
-    const trendingGames = validGameDetails.map((game) => ({
-      //id: game.steam_appid,
+    const { trendingGames } = await res2.json();
+    trendingGames.map((game) => ({
       name: game.name,
       photo: game.header_image,
       discountRate: game.price_overview?.discount_percent || 0,
