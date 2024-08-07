@@ -1,6 +1,7 @@
 // src/pages/games/trending.js
 
 import React, { useEffect, useState } from 'react';
+import { CommonButton } from "@/components/Button";
 
 const TrendingGames = () => {
   const [detailedGames, setDetailedGames] = useState(null);
@@ -34,23 +35,25 @@ const TrendingGames = () => {
 
   console.log('(TrendingGames) detailedGames: ', detailedGames);
   return (
-    <div>
-      <h1>Trending Games (Release Date: {detailedGames.topReleaseDate})</h1>
-      <div className="game-list">
-        {detailedGames.games.map((game, index) => (
-          <div key={index} className="game">
-            <h2>{game.name}</h2>
-            <img src={game.photo} alt={game.name} />
+    <div className="longcard-container">
+      <h3>Trending Games</h3>
 
-            <div>
-              <p>Discount Rate: {game.discountRate}%</p>
-              <p>Discount Price: {game.discountPrice}</p>
-              <p>Original Price: {game.originalPrice}</p>
-              <p>Discount Until: {game.discountUntil}</p>
-            </div>
+      {detailedGames.games.map((game, index) => (
+        <div key={index} className="longcard">
+          <div className="longcard-tag">
+            <p className="text-dim text-smaller align-self-center">{index+1}</p>
+            <img src={game.photo} alt={game.name} />
+            <h4>{game.name}</h4>
           </div>
-        ))}
-      </div>
+          <div className="flex gap-l">
+            <div className="flex flex-col gap-xs align-self-center">
+              <p className="text-dim text-smaller">24H PEAK</p>
+              <p className="text-smaller">{game.peak}</p>
+            </div>
+            <CommonButton name="Browse"/>
+          </div>
+        </div>
+      ))}
     </div>
   );
 };

@@ -40,6 +40,10 @@ const MostPlayedGames = () => {
             <h4>{game.name}</h4>
           </div>
           <div className="flex gap-l">
+          <div className="flex flex-col gap-xs align-self-center">
+              <p className="text-dim text-smaller">PLAYERS NOW</p>
+              <p className="text-smaller">{game.currentPlayers}</p>
+            </div>
             <div className="flex flex-col gap-xs align-self-center">
               <p className="text-dim text-smaller">24H PEAK</p>
               <p className="text-smaller">{game.peak}</p>

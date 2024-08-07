@@ -23,21 +23,37 @@ export default async function handler(req, res) {
 
     const gameDetails = await Promise.all(
       topGames.map(async (game) => {
-        const res = await fetch(
-          `https://store.steampowered.com/api/appdetails?appids=${game.appid}`
-        );
-        if (!res.ok) {
-          throw new Error(`Failed to fetch details for game id: ${game.appid}`);
+        try {
+          // First API call to get game details
+          const detailsRes = await fetch(
+            `https://store.steampowered.com/api/appdetails?appids=${game.appid}`
+          );
+          if (!detailsRes.ok) {
+            throw new Error(`Failed to fetch details for game id: ${game.appid}`);
+          }
+          const detailsData = await detailsRes.json();
+    
+          // Second API call to get current number of players
+          const playersRes = await fetch(
+            `https://api.steampowered.com/ISteamUserStats/GetNumberOfCurrentPlayers/v1?appid=${game.appid}`
+          );
+          if (!playersRes.ok) {
+            throw new Error(`Failed to fetch player count for game id: ${game.appid}`);
+          }
+          const playersData = await playersRes.json();
+    
+          return {
+            ...detailsData[game.appid].data,
+            rank: game.rank,
+            peak: game.peak_in_game,
+            currentPlayers: playersData.response.player_count,
+          };
+        } catch (error) {
+          console.error(`Error fetching data for game id: ${game.appid}`, error);
+          return null;
         }
-        const data = await res.json();
-        return {
-          ...data[game.appid].data,
-          rank: game.rank,
-          peak: game.peak_in_game,
-        };
       })
     );
-
     // Filter out any null values from the gameDetails array
     const validGameDetails = gameDetails.filter((game) => game !== null);
 
@@ -52,6 +68,7 @@ export default async function handler(req, res) {
       discountUntil: "Summer sale",
       rank: game.rank,
       peak: game.peak.toLocaleString('en-US'),
+      currentPlayers: game.currentPlayers.toLocaleString('en-US'),
       platforms: {
         windows: game.platforms.windows,
         mac: game.platforms.max,
