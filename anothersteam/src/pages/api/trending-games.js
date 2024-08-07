@@ -56,7 +56,27 @@ export default async function handler(req, res) {
             console.warn(`No data found for game id: ${id}`);
             return null;
           }
-          return details[id].data;
+
+          // Second API call to get current number of players
+          const playersRes = await fetch(
+            `https://api.steampowered.com/ISteamUserStats/GetNumberOfCurrentPlayers/v1?appid=${id}`
+          );
+          if (!playersRes.ok) {
+            console.warn(`Failed to fetch player count for game id: ${id}`);
+            return {
+              ...details[id].data,
+              currentPlayers: 'Not Available',
+            };
+          }
+          const playersData = await playersRes.json();
+          const currentPlayers = playersData.response?.player_count || 'Not Available';
+
+
+          return {
+            ...details[id].data,
+            currentPlayers
+          };
+
         } catch (error) {
           console.warn(
             `Error fetching details for game id: ${id} - ${error.message}`
@@ -79,6 +99,7 @@ export default async function handler(req, res) {
         discountPrice: game.price_overview?.final_formatted || 'Not Available',
         originalPrice: game.price_overview?.initial_formatted || 'Not Available',
         discountUntil: 'Summer sale',
+        currentPlayers: game.currentPlayers.toLocaleString('en-US'),
       })),
     };
 

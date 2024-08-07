@@ -244,12 +244,15 @@ a:hover {
 
 .slick-prev:before {
   color: var(--bg-tertiary) !important;
-  /* background-color: #eee; */
 }
 .slick-next:before {
   color: var(--bg-tertiary) !important;
-  /* background-color: #eee; */
 }
+
+.slick-prev:hover:before, .slick-next:hover:before {
+  color: var(--accent-green) !important;
+}
+
 
 /********/
 /* CARD */
@@ -285,6 +288,11 @@ a:hover {
   align-self: center;
   height: auto;
   border-radius: 3px;
+  opacity: 0.8;
+}
+
+.gamecard img:hover {
+  opacity: 1;
 }
 
 /* LONG CARD (mostPlayedGames / TrendingGames page) */
@@ -394,6 +402,15 @@ a:hover {
 
 .hidden {
   display: none;
+}
+
+/* LINK */
+.link-none{
+  text-decoration: none;
+  color: inherit;
+}
+.link-none:hover{
+  color: var(--accent-green);
 }
 
 /* text */

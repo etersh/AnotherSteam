@@ -2,6 +2,8 @@
 
 import React, { useEffect, useState } from "react";
 import { CommonButton } from "@/components/Button";
+import Link from "next/link";
+
 
 const MostPlayedGames = () => {
   const [detailedGames, setDetailedGames] = useState([]);
@@ -48,7 +50,9 @@ const MostPlayedGames = () => {
               <p className="text-dim text-smaller">24H PEAK</p>
               <p className="text-smaller">{game.peak}</p>
             </div>
-            <CommonButton name="Browse"/>
+            <Link href={`/game/${game.id}`} className="align-self-center">
+              <CommonButton name="Browse" />
+            </Link>
           </div>
         </div>
       ))}
