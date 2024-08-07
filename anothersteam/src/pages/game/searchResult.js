@@ -82,7 +82,7 @@ export async function getServerSideProps(context) {
             game.name && game.name.toLowerCase().includes(app.toLowerCase())
         );
 
-    console.log('Filtered data: ', data);
+    console.log('(searchResult) game: ', data);
   } catch (err) {
     console.error('(SearchResult) Error searching for game:', err);
     errorMessage = 'Error fetching data';

@@ -68,6 +68,7 @@ export async function getServerSideProps() {
     }));
 
     // Trending Games
+    // trendingGames.games, trendingGames.topReleaseDate
     const res2 = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/api/trending-games`
     );
@@ -75,7 +76,7 @@ export async function getServerSideProps() {
       throw new Error("Failed to fetch trending games");
     }
     const { trendingGames } = await res2.json();
-    trendingGames.map((game) => ({
+    trendingGames.games.map((game) => ({
       name: game.name,
       photo: game.header_image,
       discountRate: game.price_overview?.discount_percent || 0,
@@ -87,7 +88,7 @@ export async function getServerSideProps() {
     return {
       props: {
         mostPlayedGames: mostPlayedGames,
-        trendingGames: trendingGames,
+        trendingGames: trendingGames.games,
       },
     };
   } catch (err) {

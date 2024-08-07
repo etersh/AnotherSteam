@@ -1,3 +1,5 @@
+// src/pages/api/trending-games.js
+
 import { getCachedData, setCachedData } from '@/utils/cache';
 
 export default async function handler(req, res) {
@@ -10,7 +12,7 @@ export default async function handler(req, res) {
     }
 
     const response = await fetch(
-      `https://api.steampowered.com/ISteamChartsService/GetTopReleasesPages/v1/?access_token=${process.env.NEXT_PUBLIC_XPAW_API_ACCESS_TOKEN}`
+      `https://api.steampowered.com/ISteamChartsService/GetTopReleasesPages/v1/`
     );
     if (!response.ok) {
       throw new Error('Failed to fetch trending games');
@@ -23,7 +25,9 @@ export default async function handler(req, res) {
     //ex. items_ids : {appid: 1492070}, {appid: 2446550} ...
 
     const data = await response.json();
-    //display the most recent month only
+
+    const topReleaseDate = data.response.pages[0].name;
+
     const mostRecentMonthPage = data.response.pages[0];
     const appIds = mostRecentMonthPage.item_ids
       .slice(0, 10)
@@ -65,15 +69,18 @@ export default async function handler(req, res) {
     //filter out null values
     const validGameDetails = gameDetails.filter((game) => game !== null);
 
-    const trendingGames = validGameDetails.map((game) => ({
-      id: game.steam_appid,
-      name: game.name,
-      photo: game.header_image,
-      discountRate: game.price_overview?.discount_percent || 0,
-      discountPrice: game.price_overview?.final_formatted || 'Not Available',
-      originalPrice: game.price_overview?.initial_formatted || 'Not Available',
-      discountUntil: 'Summer sale',
-    }));
+    const trendingGames = {
+      topReleaseDate: topReleaseDate,
+      games: validGameDetails.map((game) => ({
+        id: game.steam_appid,
+        name: game.name,
+        photo: game.header_image,
+        discountRate: game.price_overview?.discount_percent || 0,
+        discountPrice: game.price_overview?.final_formatted || 'Not Available',
+        originalPrice: game.price_overview?.initial_formatted || 'Not Available',
+        discountUntil: 'Summer sale',
+      })),
+    };
 
     setCachedData(cacheKey, trendingGames);
     res.status(200).json({ trendingGames });
