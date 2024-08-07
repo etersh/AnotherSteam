@@ -112,6 +112,10 @@ export default function Navbar() {
         <Link href="/games/trendingGames" passHref>
           <NavButton name="Trending Games" />
         </Link>
+
+        <Link href="/game/1091500" passHref>
+          <NavButton name="R" />
+        </Link>
       </div>
       <div>
         <GameSearchBar />
