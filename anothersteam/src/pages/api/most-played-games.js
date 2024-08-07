@@ -19,7 +19,7 @@ export default async function handler(req, res) {
     }
 
     const data = await response.json();
-    const topGames = data.response.ranks.slice(0, 16);
+    const topGames = data.response.ranks.slice(0, 10);
 
     const gameDetails = await Promise.all(
       topGames.map(async (game) => {
@@ -38,7 +38,10 @@ export default async function handler(req, res) {
       })
     );
 
-    const mostPlayedGames = gameDetails.map((game) => ({
+    // Filter out any null values from the gameDetails array
+    const validGameDetails = gameDetails.filter((game) => game !== null);
+
+    const mostPlayedGames = validGameDetails.map((game) => ({
       id: game.steam_appid,
       name: game.name,
       photo: game.header_image,
@@ -48,7 +51,7 @@ export default async function handler(req, res) {
       isFree: game.is_free,
       discountUntil: "Summer sale",
       rank: game.rank,
-      peak: game.peak,
+      peak: game.peak.toLocaleString('en-US'),
       platforms: {
         windows: game.platforms.windows,
         mac: game.platforms.max,
