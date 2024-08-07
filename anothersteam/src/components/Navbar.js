@@ -1,8 +1,9 @@
+// src/components/Navbar.js
+
 import React, { useEffect } from "react";
 import Link from "next/link";
 import { HomeButton, NavButton } from "./Button";
 import GameSearchBar from "./GameSearchBar";
-// import Select from "react-select";
 import SelectView from "@/components/SelectView";
 import { useAtom } from "jotai";
 import { viewedAtom, recentlyViewedAtom } from "@/state/store";
@@ -43,9 +44,12 @@ export default function Navbar() {
     value: game.id,
     label: (
       <div className="flex justify-space-between">
-        <Link href={`/game/${game.id}`} className="text-decor-none">{game.name}</Link>
+        <Link href={`/game/${game.id}`} className="view-option">{game.name}</Link>
         <button
-          onClick={() => deleteGameFromHistory(game.id)}
+          onClick={(e) => {
+            e.stopPropagation(); // Prevent navigation
+            deleteGameFromHistory(game.id);
+          }}
           className="delete-view"
         >
           X
@@ -61,7 +65,7 @@ export default function Navbar() {
         <button
           className="clear-history"
           onClick={(e) => {
-            e.stopPropagation();
+            e.stopPropagation(); // Prevent navigation
             clearData();
           }}
         >

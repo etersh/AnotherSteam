@@ -1,6 +1,19 @@
-// MyComponent.js
-import React, {useState} from "react";
-import Select from "react-select";
+import React, { useState } from "react";
+import Select, { components } from "react-select";
+
+const ClearIndicator = (props) => {
+  return (
+    <div
+      {...props.innerProps}
+      onClick={(e) => {
+        e.stopPropagation(); // Prevent click event from propagating
+        props.clearValue(); // Clear the selected value
+      }}
+    >
+      X
+    </div>
+  );
+};
 
 const customStyles = {
   control: (provided, state) => ({
@@ -14,7 +27,6 @@ const customStyles = {
   }),
   option: (provided, state) => ({
     ...provided,
-    // justifyContent: data.isClearHistory ? 'center' : 'space-between',
     backgroundColor: state.isSelected
       ? "var(--color-primary)"
       : "var(--bg-main)",
@@ -22,7 +34,6 @@ const customStyles = {
     "&:hover": {
       backgroundColor: "var(--bg-highlight)",
     },
-
   }),
   placeholder: (provided) => ({
     ...provided,
@@ -36,9 +47,9 @@ const customStyles = {
   }),
   menu: (provided) => ({
     ...provided,
-    width: 'auto', // Ensure menu width can auto-adjust
-    minWidth: '300px', // Set a minimum width
-    zIndex: 1, // Ensure the dropdown is on top of other content
+    width: 'auto',
+    minWidth: '300px',
+    zIndex: 1,
   }),
   menuList: (provided) => ({
     ...provided,
@@ -51,10 +62,9 @@ const customStyles = {
       color: "var(--color-primary)",
     },
   }),
-  // To completely remove the separator, we would override the component itself
   indicatorSeparator: (provided) => ({
     ...provided,
-    display: "none", // Hides the separator
+    display: "none",
   }),
 };
 
@@ -67,6 +77,7 @@ function SelectView({ options }) {
       placeholder="View"
       isClearable
       styles={customStyles}
+      components={{ ClearIndicator }} // Use the custom ClearIndicator component
       value={selectedOption ? null : selectedOption}
       onChange={(option, { action }) => {
         if (action === 'clear') {
