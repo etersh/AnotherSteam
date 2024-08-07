@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
-import Link from 'next/link';
-import { HomeButton, NavButton } from './Button';
-import GameSearchBar from './GameSearchBar';
-import Select from 'react-select';
-import { useAtom } from 'jotai';
-import { viewedAtom, recentlyViewedAtom } from '@/state/store';
+import React, { useEffect } from "react";
+import Link from "next/link";
+import { HomeButton, NavButton } from "./Button";
+import GameSearchBar from "./GameSearchBar";
+import Select from "react-select";
+import { useAtom } from "jotai";
+import { viewedAtom, recentlyViewedAtom } from "@/state/store";
 
 export default function Navbar() {
   const [allViewedGames, setAllViewedGames] = useAtom(viewedAtom);
@@ -12,10 +12,10 @@ export default function Navbar() {
 
   useEffect(() => {
     const loadData = () => {
-      const storedGames = localStorage.getItem('viewedGames');
+      const storedGames = localStorage.getItem("viewedGames");
       if (storedGames) {
         const games = JSON.parse(storedGames);
-        console.log('Games loaded from local storage:', games);
+        console.log("Games loaded from local storage:", games);
         setAllViewedGames(games);
       }
     };
@@ -29,29 +29,29 @@ export default function Navbar() {
 
   const clearData = () => {
     setAllViewedGames([]);
-    localStorage.removeItem('viewedGames');
+    localStorage.removeItem("viewedGames");
   };
 
   const deleteGameFromHistory = (gameId) => {
     const updatedGames = allViewedGames.filter((game) => game.id !== gameId);
     setAllViewedGames(updatedGames);
-    localStorage.setItem('viewedGames', JSON.stringify(updatedGames));
+    localStorage.setItem("viewedGames", JSON.stringify(updatedGames));
   };
 
   const options = recentlyViewed.map((game) => ({
     value: game.id,
     label: (
-      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
         <Link href={`/game/${game.id}`}>{game.name}</Link>
         <button
           onClick={() => deleteGameFromHistory(game.id)}
           style={{
-            background: 'white',
-            color: 'black',
-            border: 'none',
-            borderRadius: '4px',
-            cursor: 'pointer',
-            marginLeft: '10px',
+            background: "white",
+            color: "black",
+            border: "none",
+            borderRadius: "4px",
+            cursor: "pointer",
+            marginLeft: "10px",
           }}
         >
           ❌
@@ -61,21 +61,21 @@ export default function Navbar() {
   }));
 
   options.push({
-    value: 'clear-history',
+    value: "clear-history",
     label: (
-      <div style={{ textAlign: 'center' }}>
+      <div style={{ textAlign: "center" }}>
         <button
           onClick={(e) => {
             e.stopPropagation();
             clearData();
           }}
           style={{
-            background: 'red',
-            color: 'white',
-            border: 'none',
-            borderRadius: '4px',
-            cursor: 'pointer',
-            padding: '5px 10px',
+            background: "red",
+            color: "white",
+            border: "none",
+            borderRadius: "4px",
+            cursor: "pointer",
+            padding: "5px 10px",
           }}
         >
           Clear History
@@ -88,13 +88,13 @@ export default function Navbar() {
   const customStyles = {
     menu: (provided) => ({
       ...provided,
-      width: '300px', // Adjust this width as needed
+      width: "300px", // Adjust this width as needed
     }),
     option: (provided, { data }) => ({
       ...provided,
-      display: 'flex',
-      justifyContent: data.isClearHistory ? 'center' : 'space-between',
-      whiteSpace: 'normal', // Allow text to wrap
+      display: "flex",
+      justifyContent: data.isClearHistory ? "center" : "space-between",
+      whiteSpace: "normal", // Allow text to wrap
     }),
   };
 
@@ -112,29 +112,31 @@ export default function Navbar() {
         <Link href="/games/trendingGames" passHref>
           <NavButton name="Trending Games" />
         </Link>
-        
       </div>
-      <div>
-        <GameSearchBar />
-      </div>
-      <div>
+
+      <div className="flex right">
         <Select
           options={options}
           placeholder="View"
           isClearable
           styles={customStyles}
           onChange={(selectedOption) => {
-            if (selectedOption && selectedOption.value !== 'clear-history') {
+            if (selectedOption && selectedOption.value !== "clear-history") {
               window.location.href = `/game/${selectedOption.value}`;
             }
           }}
           onInputChange={(inputValue, { action }) => {
-            if (action === 'input-blur') {
+            if (action === "input-blur") {
               return;
             }
           }}
         />
+
+      <div>
+        <GameSearchBar />
       </div>
+      </div>
+      
     </div>
   );
 }
