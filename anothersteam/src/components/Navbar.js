@@ -3,7 +3,7 @@ import Link from "next/link";
 import { HomeButton, NavButton } from "./Button";
 import GameSearchBar from "./GameSearchBar";
 // import Select from "react-select";
-import SelectView from "@/components/SelectView"
+import SelectView from "@/components/SelectView";
 import { useAtom } from "jotai";
 import { viewedAtom, recentlyViewedAtom } from "@/state/store";
 
@@ -44,18 +44,9 @@ export default function Navbar() {
     label: (
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <Link href={`/game/${game.id}`}>{game.name}</Link>
-        <button
-          onClick={() => deleteGameFromHistory(game.id)}
-          style={{
-            background: "white",
-            color: "black",
-            border: "none",
-            borderRadius: "4px",
-            cursor: "pointer",
-            marginLeft: "10px",
-          }}
-        >
-          ❌
+        <button onClick={() => deleteGameFromHistory(game.id)}>
+          X
+          {/* <img src="https://img.icons8.com/?size=100&id=85081&format=png&color=000000" className="view-delete-btn"/> */}
         </button>
       </div>
     ),
@@ -70,14 +61,6 @@ export default function Navbar() {
             e.stopPropagation();
             clearData();
           }}
-          style={{
-            background: "red",
-            color: "white",
-            border: "none",
-            borderRadius: "4px",
-            cursor: "pointer",
-            padding: "5px 10px",
-          }}
         >
           Clear History
         </button>
@@ -85,19 +68,6 @@ export default function Navbar() {
     ),
     isClearHistory: true,
   });
-
-  const customStyles = {
-    menu: (provided) => ({
-      ...provided,
-      width: "300px", // Adjust this width as needed
-    }),
-    option: (provided, { data }) => ({
-      ...provided,
-      display: "flex",
-      justifyContent: data.isClearHistory ? "center" : "space-between",
-      whiteSpace: "normal", // Allow text to wrap
-    }),
-  };
 
   return (
     <div className="navbar">
@@ -116,14 +86,12 @@ export default function Navbar() {
       </div>
 
       <div className="flex gap-s right">
+        <SelectView options={options} />
 
-        <SelectView options={options}/>
-
-      <div>
-        <GameSearchBar />
+        <div>
+          <GameSearchBar />
+        </div>
       </div>
-      </div>
-      
     </div>
   );
 }

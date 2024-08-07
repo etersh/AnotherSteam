@@ -83,7 +83,10 @@ a:hover {
   background-color: var(--bg-highlight);
 }
 
-
+.view-delete-btn{
+  width: 20px;
+  height: 20px;
+}
 
 .user-button {
   background-color: var(--bg-hover);
