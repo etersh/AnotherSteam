@@ -26,7 +26,7 @@ export default async function handler(req, res) {
     //display the most recent month only
     const mostRecentMonthPage = data.response.pages[0];
     const appIds = mostRecentMonthPage.item_ids
-      .slice(0, 15)
+      .slice(0, 10)
       .map((item) => item.appid);
 
     const gameDetails = await Promise.all(

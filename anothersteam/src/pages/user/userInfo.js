@@ -15,14 +15,14 @@ const UserInfo = () => {
       fetch(`/api/user-info?steamid=${steamid}`)
         .then((res) => res.json())
         .then((data) => {
-          if (data.error) {
+          if (data.error) { 
             throw new Error(data.error);
           }
           setUser(data.userData);
         })
         .catch((err) => setError(err.message));
     }
-  }, [steamid]);
+  }, [user]); // steamid
 
   if (error) return <div>Error: {error}</div>;
 

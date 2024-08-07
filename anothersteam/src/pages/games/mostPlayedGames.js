@@ -1,16 +1,17 @@
 // src/pages/games/mostPlayedGames.js
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
+import { CommonButton } from "@/components/Button";
 
 const MostPlayedGames = () => {
   const [detailedGames, setDetailedGames] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('/api/most-played-games')
+    fetch("/api/most-played-games")
       .then((res) => {
         if (res.status === 304) {
-          console.log('Using cached data for most played games');
+          console.log("Using cached data for most played games");
           return res.json();
         }
         return res.json();
@@ -26,31 +27,27 @@ const MostPlayedGames = () => {
 
   if (error) return <div>Error: {error}</div>;
 
-  console.log('(MostPlayedGames) detailedGames: ', detailedGames);
+  console.log("(MostPlayedGames) detailedGames: ", detailedGames);
   return (
-    <div>
-      <div className="game-list">
-        {detailedGames.map((game, index) => (
-          <div key={index} className="game">
-            <h2>{game.name}</h2>
+    <div className="longcard-container">
+      <h3>Most Played Games</h3>
+
+      {detailedGames.map((game, index) => (
+        <div key={index} className="longcard">
+          <div className="longcard-tag">
+            <p className="text-dim text-smaller align-self-center">{game.rank}</p>
             <img src={game.photo} alt={game.name} />
-            <p>Rank: {game.rank}</p>
-            <p>Peak Players: {game.peak}</p>
-            <div>
-              {game.isFree ? (
-                <p>FREE</p>
-              ) : (
-                <>
-                  <p>Discount Rate: {game.discountRate}%</p>
-                  <p>Discount Price: {game.discountPrice}</p>
-                  <p>Original Price: {game.originalPrice}</p>
-                  <p>Discount Until: {game.discountUntil}</p>
-                </>
-              )}
-            </div>
+            <h4>{game.name}</h4>
           </div>
-        ))}
-      </div>
+          <div className="flex gap-l">
+            <div className="flex flex-col gap-xs align-self-center">
+              <p className="text-dim text-smaller">24H PEAK</p>
+              <p className="text-smaller">{game.peak}</p>
+            </div>
+            <CommonButton name="Browse"/>
+          </div>
+        </div>
+      ))}
     </div>
   );
 };
