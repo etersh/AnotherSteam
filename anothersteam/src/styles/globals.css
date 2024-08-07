@@ -74,6 +74,17 @@ a:hover {
   background-color: var(--bg-hover);
 }
 
+.common-button {
+  width: 126px;
+  height: 46px;
+  background-color: var(--bg-hover);
+}
+.common-button:hover {
+  background-color: var(--bg-highlight);
+}
+
+
+
 .user-button {
   background-color: var(--bg-hover);
   color: #fff;
@@ -181,7 +192,6 @@ a:hover {
   max-width: 1100px;
   margin: auto;
   margin-top: 3rem;
-
 }
 
 .slider {
@@ -195,14 +205,14 @@ a:hover {
 }
 
 .slick-dots {
-  position:relative;
+  position: relative;
   top: 280px;
   margin-top: 2rem;
-  /* background-color: white; */  /* debug use */
+  /* background-color: white; */ /* debug use */
 }
 
-.slick-dots li.slick-active button:before  {
-  color:var(--accent-green) !important;
+.slick-dots li.slick-active button:before {
+  color: var(--accent-green) !important;
 }
 
 .slick-prev:before {
@@ -217,17 +227,18 @@ a:hover {
 /********/
 /* CARD */
 /********/
+
+/* GAME CARD (Home page) */
 .gamecard-container {
   padding: 1rem 2.6rem;
   background: linear-gradient(
     to bottom,
-    rgba(0, 0, 0, 0.2), /* More opaque color */ 
-    rgba(0, 0, 0, 0.1) /* Less opaque color */
+    rgba(0, 0, 0, 0.2),
+    /* More opaque color */ rgba(0, 0, 0, 0.1) /* Less opaque color */
   );
   border-radius: 3px;
 }
 
-/* GAME CARD */
 .gamecard {
   display: flex;
   flex-direction: column;
@@ -249,12 +260,40 @@ a:hover {
   border-radius: 3px;
 }
 
+/* LONG CARD (mostPlayedGames / TrendingGames page) */
+.longcard-container {
+  width: 70%;
+  padding: 1rem 2.6rem;
+  margin: auto;
+}
+
 .longcard {
   display: flex;
-  width: 600px;
-  height: auto;
-  background-color: rgb(221, 255, 190);
-  border: solid 2px #2b2b2b;
+  background-color: var(--bg-main);
+  /* align-items: flex-start; */
+  color: var(--text-main);
+  margin: 1rem 0;
+  padding: 1rem 1rem;
+  border-radius: 2px;
+  justify-content: space-between;
+}
+
+.longcard-tag {
+  display: flex;
+  gap: 1rem;
+  border-radius: 2px;
+}
+
+.longcard-tag img {
+  width: 240px;
+  height: 100px;
+  border-radius: 6px;
+}
+
+.longcard h4,
+.longcard p {
+  padding: 0;
+  margin: 0;
 }
 
 /* HOME PAGE */
@@ -294,24 +333,47 @@ a:hover {
   justify-content: center;
 }
 
+.align-self-start {
+  align-self: flex-start;
+}
+
+.align-self-center {
+  align-self: center;
+}
+
 .text-decro-none {
   text-decoration: none;
 }
 
 .gap-xs {
-  gap: 5px;
+  gap: 0.3rem;
+}
+
+.gap-s {
+  gap: 0.6rem;
+}
+
+.gap-m {
+  gap: 1rem;
+}
+
+.gap-l {
+  gap: 2rem;
 }
 
 .hidden {
   display: none;
 }
 
-/* STEAM COLOR */
 /* text */
-.darkgrey {
-  color: #0e141b;
+.text-dark {
+  color: var(--bg-highlight)
 }
 
-.grey {
-  color: #c5c3c0;
+.text-dim {
+  color: var(--text-dim)
+}
+
+.text-smaller{
+  font-size: smaller;
 }
