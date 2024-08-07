@@ -2,7 +2,8 @@ import React, { useEffect } from "react";
 import Link from "next/link";
 import { HomeButton, NavButton } from "./Button";
 import GameSearchBar from "./GameSearchBar";
-import Select from "react-select";
+// import Select from "react-select";
+import SelectView from "@/components/SelectView"
 import { useAtom } from "jotai";
 import { viewedAtom, recentlyViewedAtom } from "@/state/store";
 
@@ -114,23 +115,9 @@ export default function Navbar() {
         </Link>
       </div>
 
-      <div className="flex right">
-        <Select
-          options={options}
-          placeholder="View"
-          isClearable
-          styles={customStyles}
-          onChange={(selectedOption) => {
-            if (selectedOption && selectedOption.value !== "clear-history") {
-              window.location.href = `/game/${selectedOption.value}`;
-            }
-          }}
-          onInputChange={(inputValue, { action }) => {
-            if (action === "input-blur") {
-              return;
-            }
-          }}
-        />
+      <div className="flex gap-s right">
+
+        <SelectView options={options}/>
 
       <div>
         <GameSearchBar />

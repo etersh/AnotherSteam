@@ -30,7 +30,7 @@ function Header() {
               src="/steam/logo/steam_Logo_with_name_header.png"
               className="header-logo"
             ></img>
-            <p className="grey">WEB API</p>
+            <p className="text-primary">WEB API</p>
           </div>
         </Link>
 
