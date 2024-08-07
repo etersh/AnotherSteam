@@ -1,5 +1,5 @@
 // MyComponent.js
-import React from "react";
+import React, {useState} from "react";
 import Select from "react-select";
 
 const customStyles = {
@@ -22,13 +22,16 @@ const customStyles = {
     "&:hover": {
       backgroundColor: "var(--bg-highlight)",
     },
+
   }),
   placeholder: (provided) => ({
     ...provided,
     color: "var(--text-dim)",
+    fontSize: 'smaller'
   }),
   singleValue: (provided) => ({
     ...provided,
+    display: 'none', // Hides the selected value
     color: "var(--text-main)",
   }),
   menu: (provided) => ({
@@ -46,7 +49,6 @@ const customStyles = {
     color: "var(--text-dim)",
     "&:hover": {
       color: "var(--color-primary)",
-    // backgroundColor: "transparent"
     },
   }),
   // To completely remove the separator, we would override the component itself
@@ -57,15 +59,23 @@ const customStyles = {
 };
 
 function SelectView({ options }) {
+  const [selectedOption, setSelectedOption] = useState(null);
+
   return (
     <Select
       options={options}
       placeholder="View"
       isClearable
       styles={customStyles}
-      onChange={(selectedOption) => {
-        if (selectedOption && selectedOption.value !== "clear-history") {
-          window.location.href = `/game/${selectedOption.value}`;
+      value={selectedOption ? null : selectedOption}
+      onChange={(option, { action }) => {
+        if (action === 'clear') {
+          setSelectedOption(null);
+          return;
+        }
+        setSelectedOption(option);
+        if (option && option.value !== "clear-history") {
+          window.location.href = `/game/${option.value}`;
         }
       }}
       onInputChange={(inputValue, { action }) => {

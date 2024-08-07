@@ -83,9 +83,23 @@ a:hover {
   background-color: var(--bg-highlight);
 }
 
-.view-delete-btn{
+.delete-view{
+  background-color: transparent;
   width: 20px;
   height: 20px;
+  align-self: center;
+  border: none;
+  color: var(--accent-red);
+}
+
+.clear-history{
+  background-color: transparent;
+  border: none;
+  color: var(--accent-red);
+}
+
+.delete-view:hover, .clear-history:hover{
+  color: red;
 }
 
 .user-button {
@@ -336,6 +350,10 @@ a:hover {
   justify-content: center;
 }
 
+.justify-space-between {
+  justify-content:space-between;
+}
+
 .align-self-start {
   align-self: flex-start;
 }
@@ -383,4 +401,12 @@ a:hover {
 
 .text-smaller{
   font-size: smaller;
+}
+
+.text-center{
+  text-align: center;
+}
+
+.text-decor-none{
+  text-decoration: none;
 }

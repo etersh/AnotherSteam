@@ -42,11 +42,13 @@ export default function Navbar() {
   const options = recentlyViewed.map((game) => ({
     value: game.id,
     label: (
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <Link href={`/game/${game.id}`}>{game.name}</Link>
-        <button onClick={() => deleteGameFromHistory(game.id)}>
+      <div className="flex justify-space-between">
+        <Link href={`/game/${game.id}`} className="text-decor-none">{game.name}</Link>
+        <button
+          onClick={() => deleteGameFromHistory(game.id)}
+          className="delete-view"
+        >
           X
-          {/* <img src="https://img.icons8.com/?size=100&id=85081&format=png&color=000000" className="view-delete-btn"/> */}
         </button>
       </div>
     ),
@@ -55,8 +57,9 @@ export default function Navbar() {
   options.push({
     value: "clear-history",
     label: (
-      <div style={{ textAlign: "center" }}>
+      <div className="text-center">
         <button
+          className="clear-history"
           onClick={(e) => {
             e.stopPropagation();
             clearData();
