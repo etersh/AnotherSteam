@@ -60,6 +60,11 @@ export default function Navbar() {
         <Link href="/games/trendingGames" passHref>
           <NavButton name="Trending Games" />
         </Link>
+
+        <Link href="#" passHref>
+          <NavButton name="CONFLICT" />
+        </Link>
+
       </div>
       <div>
         <GameSearchBar />
