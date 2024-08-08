@@ -22,7 +22,7 @@ const UserInfo = () => {
         })
         .catch((err) => setError(err.message));
     }
-  }, [user]); // steamid
+  }, [steamid]); // steamid
 
   if (error) return <div>Error: {error}</div>;
 
@@ -40,7 +40,7 @@ const UserInfo = () => {
           <div className="user-info">
             <h2>
               <img
-                src={user.profilePic}
+                src={user.steamPropic}
                 style={{
                   marginLeft: "8px",
                   marginRight: "10px",
@@ -48,10 +48,10 @@ const UserInfo = () => {
                 }}
                 alt="Profile"
               />
-              {user.name}
+              {user.steamName}
             </h2>
             <p>Name: {user.realName}</p>
-            <p>Steam ID: {user.steamID}</p>
+            <p>Steam ID: {user.steamid}</p>
             <p>
               Country:{" "}
               {user.countryCode !== "Not Available" ? (
@@ -64,7 +64,7 @@ const UserInfo = () => {
                 "Not Available"
               )}
             </p>
-            <p>City: {user.cityID}</p>
+            <p>City: {user.cityid}</p>
           </div>
         </div>
       ) : (

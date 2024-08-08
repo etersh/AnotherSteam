@@ -1,3 +1,5 @@
+// src/pages/api/recently-played-games.js
+
 // import { getCachedData, setCachedData } from '@/utils/cache';
 
 export default async function handler(req, res) {

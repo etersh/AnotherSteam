@@ -1,8 +1,10 @@
+// src/pages/api/user-info.js
+
 // import { getCachedData, setCachedData } from '@/utils/cache';
 
 export default async function handler(req, res) {
    const steamid = req.query.steamid;
-
+    
    // Ensure userId is available
    if (!steamid) {
      return res.status(400).json({ error: 'User ID is required' });
@@ -28,12 +30,12 @@ export default async function handler(req, res) {
     const playerData = data.response.players[0];
 
     const userData = {
-      name: playerData.personaname || 'Not Available',
-      profilePic: playerData.avatar || 'Not Available',
+      steamName: playerData.personaname || 'Not Available',
+      steamPropic: playerData.avatar || 'Not Available',
       realName: playerData.realname || 'Not Available',
-      steamID: playerData.steamid || 'Not Available',
+      steamid: playerData.steamid || 'Not Available',
       countryCode: playerData.loccountrycode || 'Not Available',
-      cityID: playerData.loccityid || 'Not Available',
+      cityid: playerData.loccityid || 'Not Available',
     };
 
     // setCachedData(cacheKey, userData);
