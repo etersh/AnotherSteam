@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default function GameCard({ game = [] }) {
-  console.log('(GameCard) games', game);
+  // console.log('(GameCard) games', game);
 
   return (
     <div key={game.id} className="gamecard">
