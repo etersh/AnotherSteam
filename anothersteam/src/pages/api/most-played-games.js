@@ -70,7 +70,7 @@ export default async function handler(req, res) {
       peak: game.peak.toLocaleString('en-US'),
       currentPlayers: game.currentPlayers.toLocaleString('en-US'),
       platforms: {
-        windows: game.platforms.windows,
+        windows: game.platforms.windows || False,
         mac: game.platforms.max,
         linux: game.platforms.linux,
       },

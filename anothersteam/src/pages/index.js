@@ -84,6 +84,7 @@ export async function getServerSideProps() {
       originalPrice: game.price_overview?.initial_formatted || "Not Available",
       discountUntil: "Not Available",
     }));
+    console.log("TRENDING GAMES: ", trendingGames.games)
 
     return {
       props: {
