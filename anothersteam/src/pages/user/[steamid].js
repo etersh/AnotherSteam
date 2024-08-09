@@ -8,23 +8,24 @@ import UserInfo from "./userInfo";
 import RecentlyPlayedGames from "./recentlyPlayedGames";
 import FriendInfo from "./friendInfo";
 
+import ProtectedRoute from "@/components/ProtectedRoute";
+
 export default function User() {
   const router = useRouter();
   const { steamid } = router.query;
 
   if (!steamid) {
-    return(
-      <p>Loading...</p>
-  )}
+    return <p>Loading...</p>;
+  }
 
   return (
-    <>
+    <ProtectedRoute>
       <h1>User steam ID: {steamid}</h1>
       <div>
         <UserInfo />
         <RecentlyPlayedGames />
         <FriendInfo />
       </div>
-    </>
+    </ProtectedRoute>
   );
 }
