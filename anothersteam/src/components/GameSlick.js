@@ -14,10 +14,11 @@ export default function SlickMultiple({ games = [] }) {
     slidesToShow: 3,
     slidesToScroll: 3,
   };
+
   return (
     <Slider {...settings}>
       {games.map((game) => (
-        <Link href={`/game/${game.id}`} className="link-none">
+        <Link href={`/game/${game.id}`} className="link-none" key={game.id}>
           <GameCard game={game} />
         </Link>
       ))}
