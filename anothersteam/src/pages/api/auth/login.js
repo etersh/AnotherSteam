@@ -4,7 +4,7 @@
 
 // npm install mongoose jsonwebtoken bcryptjs
 
-import dbConnect from "@/lib/mongodb";
+import dbConnect from "@/utils/mongodb";
 import User from "@/models/User";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
