@@ -9,3 +9,4 @@ export const favouriteAtom = atom([]);
 
 // USER
 export const userAtom = atom([]);
+export const isAuthenticatedAtom = atom((get) => !!get(userAtom));

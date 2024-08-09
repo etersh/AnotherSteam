@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import { CommonButton } from "@/components/Button";
 import Link from "next/link";
 
-
 const MostPlayedGames = () => {
   const [detailedGames, setDetailedGames] = useState([]);
   const [error, setError] = useState(null);
