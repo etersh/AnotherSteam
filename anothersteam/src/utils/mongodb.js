@@ -1,4 +1,4 @@
-// src/lib/mongodb.js
+// src/utils/mongodb.js
 
 // Purpose: connect to mongoDB
 
