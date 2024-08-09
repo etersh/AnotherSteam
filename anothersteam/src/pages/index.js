@@ -53,19 +53,6 @@ export async function getServerSideProps() {
     }
     const { mostPlayedGames } = await res.json();
 
-    mostPlayedGames.map((game) => ({
-      name: game.name,
-      photo: game.header_image,
-      discountRate: game.discountRate,
-      discountPrice: game.discountPrice,
-      originalPrice: game.originalPrice,
-      discountUntil: game.discountUntil,
-      platforms: {
-        windows: game.platforms.windows,
-        mac: game.platforms.max,
-        linux: game.platforms.linux,
-      },
-    }));
 
     // Trending Games
     // trendingGames.games, trendingGames.topReleaseDate
@@ -76,15 +63,7 @@ export async function getServerSideProps() {
       throw new Error("Failed to fetch trending games");
     }
     const { trendingGames } = await res2.json();
-    trendingGames.games.map((game) => ({
-      name: game.name,
-      photo: game.header_image,
-      discountRate: game.price_overview?.discount_percent || 0,
-      discountPrice: game.price_overview?.final_formatted || "Not Available",
-      originalPrice: game.price_overview?.initial_formatted || "Not Available",
-      discountUntil: "Not Available",
-    }));
-    console.log("TRENDING GAMES: ", trendingGames.games)
+
 
     return {
       props: {
