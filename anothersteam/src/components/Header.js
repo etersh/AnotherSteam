@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { UserButton } from "./Button";
+import { UserButton, LogoutButton } from "./Button"; //LogoutButton
 import Navbar from "./Navbar";
 import { useAtom } from "jotai";
 import { userAtom } from "@/state/store";
@@ -47,9 +47,10 @@ function Header() {
               <UserButton name={user.steamName} profilePic={user.steamPropic} />
               {/* <UserButton name={steamuser.name} profilePic={steamuser.profilePic} /> */}
             </Link>
-            <Link href="/user/logout" passHref>
+            {/* <Link href="/user/logout" passHref>
               <button>Logout</button>
-            </Link>
+            </Link> */}
+            <LogoutButton />
           </>
         ) : (
           <>
