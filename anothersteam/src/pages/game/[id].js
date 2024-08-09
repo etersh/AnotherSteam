@@ -43,7 +43,7 @@ export default function GameDetail() {
         })
         .catch((err) => setError(err.message));
     }
-  }, [id, allViewedGames, setAllViewedGames]);
+  }, [id, setAllViewedGames]);
 
   if (error) return <div>Error: {error}</div>;
   if (!gameInfo) return <div>Loading...</div>;
