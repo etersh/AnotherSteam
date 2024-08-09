@@ -1,5 +1,8 @@
 import React from "react";
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
+
+import { useAtom } from "jotai";
+import { userAtom } from "@/state/store";
 
 export function HomeButton() {
   return <button className="button home-button">Home</button>;
@@ -26,29 +29,23 @@ export function CommonButton({ name }) {
   );
 }
 
-
-
-export function LogoutButton(){
-  // const [user, setUser] = useAtom(userAtom);
+export function LogoutButton() {
+  const [user, setUser] = useAtom(userAtom);
   const router = useRouter();
 
   const handleLogout = () => {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       // Remove user from local storage
-      localStorage.removeItem('userJWT');
-      // setUser(null); // Reset the user state atom
+      localStorage.removeItem("userJWT");
+      setUser(null); // Reset the user state atom
 
       // console.log('(/user/logout) Logout successful!');
       // console.log('(/user/logout) User: ', user);
 
       // Redirect to login page or home page
-      router.push('/');
+      router.push("/");
     }
   };
 
-  return (
-    <button onClick={handleLogout}>
-      Logout
-    </button>
-  );
-};
+  return <button onClick={handleLogout}>Logout</button>;
+}
