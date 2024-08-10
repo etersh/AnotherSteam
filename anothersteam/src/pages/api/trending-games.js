@@ -99,11 +99,6 @@ export default async function handler(req, res) {
         discountPrice: game.price_overview?.final_formatted || "Not Available",
         originalPrice:
           game.price_overview?.initial_formatted || "Not Available",
-          platforms: {
-            windows: game.platforms.windows || false,
-            mac: game.platforms.max || false,
-            linux: game.platforms.linux || false,
-          },
           currentPlayers: game.currentPlayers.toLocaleString("en-US"),
       })),
     };

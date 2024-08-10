@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
-import { useAtom } from 'jotai';
-import { viewedAtom } from '@/state/store';
+import React, { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { useAtom } from "jotai";
+import { viewedAtom } from "@/state/store";
 
 export default function GameDetail() {
   const router = useRouter();
@@ -16,7 +16,7 @@ export default function GameDetail() {
       fetch(`/api/single-game?id=${id}`)
         .then((res) => {
           if (res.status === 304) {
-            console.log('Using cached data for game');
+            console.log("Using cached data for game");
             return res.json();
           }
           return res.json();
@@ -37,7 +37,7 @@ export default function GameDetail() {
             };
 
             const updatedViewed = [...allViewedGames, newGame];
-            localStorage.setItem('viewedGames', JSON.stringify(updatedViewed));
+            localStorage.setItem("viewedGames", JSON.stringify(updatedViewed));
             setAllViewedGames(updatedViewed);
           }
         })
@@ -50,16 +50,36 @@ export default function GameDetail() {
 
   return (
     <>
-      <h1>Game: {id}</h1>
-      <div>
-        <h2>{gameInfo.name}</h2>
-        <img src={gameInfo.header_image} alt={gameInfo.name} />
-        <p>{gameInfo.short_description}</p>
-        <p>
-          Price: {gameInfo.price_overview?.final_formatted || 'Not Available'}
-        </p>
+      <div className="id-container">
+        <h2 style={{ margin: "2rem 0 1px 0" }}>{gameInfo.name}</h2>
+        <p style={{ color: "var(--text-dim)" }}>{id}</p>
+        <div className="id-media">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            style={{ width: "600px", marginRight: "1rem" }}
+          >
+            <source src={gameInfo.movies[0].webm["480"]} type="video/webm" />
+          </video>
+          <div className="id-info">
+            <img
+              src={gameInfo.header_image}
+              alt={gameInfo.name}
+              style={{ width: "100%" }}
+            />
+            <p>{gameInfo.short_description}</p>
+            {gameInfo.is_free ? (
+               <p>FREE </p>
+            ) : (
+              <p>
+                {gameInfo.price_overview?.final_formatted}
+              </p>
+            )}
+          </div>
+        </div>
       </div>
-      
     </>
   );
 }

@@ -489,6 +489,33 @@ a:hover {
   filter: brightness(1.2);
 }
 
+/* [id] */
+.id-container{
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: 1000px;
+}
+
+.id-media{
+  display: flex;
+  background-color: var(--bg-highlight);
+  padding: 1rem 2rem;
+  border-radius: 2px;
+}
+
+.id-media p{
+  margin: 1rem 0 0 0;
+  font-size: smaller;
+}
+
+.id-info{
+  display: flex;
+  flex-direction: column;
+  width: 1000px;
+}
+
+
 /* COMMON */
 .flex {
   display: flex;
@@ -553,6 +580,10 @@ a:hover {
 }
 .mt-l {
   margin-top: 4rem;
+}
+
+.mg-auto{
+  margin: auto;
 }
 
 .hidden {
