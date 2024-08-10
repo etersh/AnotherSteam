@@ -419,7 +419,7 @@ a:hover {
   position: absolute;
   width: 100%;
   height: 100%;
-  background-image: url("https://steamuserimages-a.akamaihd.net/ugc/491274240789482793/1CEE148DBE320A9367BCDF5211AE077E695A4CFE/");
+  background-image: url("/steam/register-background.jpg");
   background-position: center;
   background-size: cover;
   opacity: 0.6;
@@ -434,7 +434,7 @@ a:hover {
   position: absolute;
   width: 100%;
   height: 100%;
-  background-image: url("https://steamuserimages-a.akamaihd.net/ugc/493519450183038420/3937AA015328046EB3F031B9F1EB0E4795565977/");
+  background-image: url("/steam/login-background.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
