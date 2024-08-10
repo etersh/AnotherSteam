@@ -331,23 +331,19 @@ a:hover {
   flex-direction: column;
   width: 300px;
   height: 240px;
-  /* margin: 2px; */
   padding: 10px;
   border-radius: 3px;
-  /* background-color: var(--bg-secondary); */
   background-color: var(--bg-main);
-  /* border: solid 1px whitesmoke; */
 }
 
 .gamecard-price {
   position: absolute; 
   bottom: 1rem; 
   right: 1rem; 
-  color: var(--text-dim); /* Price text color */
+  color: var(--text-dim); 
 }
 
 .gamecard img {
-  /* width: 96%; */
   width: 100%;
   align-self: center;
   height: auto;
