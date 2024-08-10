@@ -422,7 +422,7 @@ a:hover {
   background-image: url("https://steamuserimages-a.akamaihd.net/ugc/491274240789482793/1CEE148DBE320A9367BCDF5211AE077E695A4CFE/");
   background-position: center;
   background-size: cover;
-  opacity: 60%;
+  opacity: 0.6;
   filter: blur(2px); /* Applies the blur effect */
   z-index: -1;
 }
@@ -438,7 +438,7 @@ a:hover {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  opacity: 90%;
+  opacity: 0.9;
   filter: blur(1px); /* Applies the blur effect */
   z-index: -1;
 }
