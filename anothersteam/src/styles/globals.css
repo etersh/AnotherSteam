@@ -113,7 +113,7 @@ a:hover {
 .register-color{
   background: linear-gradient(
     to right,
-    var(--accent-yellow),var(--accent-green)
+    hsl(79, 58%, 54%, 90%),var(--accent-green)
   );
 }
 
