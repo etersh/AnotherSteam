@@ -53,7 +53,6 @@ export async function getServerSideProps() {
     }
     const { mostPlayedGames } = await res.json();
 
-
     // Trending Games
     // trendingGames.games, trendingGames.topReleaseDate
     const res2 = await fetch(
@@ -63,7 +62,6 @@ export async function getServerSideProps() {
       throw new Error("Failed to fetch trending games");
     }
     const { trendingGames } = await res2.json();
-
 
     return {
       props: {

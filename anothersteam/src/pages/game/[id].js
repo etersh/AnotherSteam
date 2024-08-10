@@ -59,6 +59,7 @@ export default function GameDetail() {
           Price: {gameInfo.price_overview?.final_formatted || 'Not Available'}
         </p>
       </div>
+      
     </>
   );
 }

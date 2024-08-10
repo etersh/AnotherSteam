@@ -26,7 +26,7 @@ export default async function handler(req, res) {
         try {
           // First API call to get game details
           const detailsRes = await fetch(
-            `https://store.steampowered.com/api/appdetails?appids=${game.appid}`
+            `https://store.steampowered.com/api/appdetails?appids=${game.appid}&cc=ca`
           );
           if (!detailsRes.ok) {
             throw new Error(`Failed to fetch details for game id: ${game.appid}`);
@@ -61,19 +61,18 @@ export default async function handler(req, res) {
       id: game.steam_appid,
       name: game.name,
       photo: game.header_image,
+      isFree: game.is_free,
       discountRate: game.price_overview?.discount_percent || 0,
       discountPrice: game.price_overview?.final_formatted || "Not available",
       originalPrice: game.price_overview?.initial_formatted || "Not available",
-      isFree: game.is_free,
-      discountUntil: "Summer sale",
+      platforms: {
+        windows: game.platforms.windows || false,
+        mac: game.platforms.max || false,
+        linux: game.platforms.linux || false,
+      },
       rank: game.rank,
       peak: game.peak.toLocaleString('en-US'),
       currentPlayers: game.currentPlayers.toLocaleString('en-US'),
-      platforms: {
-        windows: game.platforms.windows || False,
-        mac: game.platforms.max,
-        linux: game.platforms.linux,
-      },
     }));
 
     setCachedData(cacheKey, mostPlayedGames);

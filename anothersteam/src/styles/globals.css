@@ -326,6 +326,7 @@ a:hover {
 }
 
 .gamecard {
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 300px;
@@ -336,6 +337,13 @@ a:hover {
   /* background-color: var(--bg-secondary); */
   background-color: var(--bg-main);
   /* border: solid 1px whitesmoke; */
+}
+
+.gamecard-price {
+  position: absolute; 
+  bottom: 1rem; 
+  right: 1rem; 
+  color: var(--text-dim); /* Price text color */
 }
 
 .gamecard img {

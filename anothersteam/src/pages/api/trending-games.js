@@ -1,10 +1,10 @@
 // src/pages/api/trending-games.js
 
-import { getCachedData, setCachedData } from '@/utils/cache';
+import { getCachedData, setCachedData } from "@/utils/cache";
 
 export default async function handler(req, res) {
   try {
-    const cacheKey = 'trendingGames';
+    const cacheKey = "trendingGames";
     const cachedData = getCachedData(cacheKey);
 
     if (cachedData) {
@@ -15,7 +15,7 @@ export default async function handler(req, res) {
       `https://api.steampowered.com/ISteamChartsService/GetTopReleasesPages/v1/`
     );
     if (!response.ok) {
-      throw new Error('Failed to fetch trending games');
+      throw new Error("Failed to fetch trending games");
     }
 
     //1. pages (recent 3 months) array
@@ -37,7 +37,7 @@ export default async function handler(req, res) {
       appIds.map(async (id) => {
         try {
           const res = await fetch(
-            `https://store.steampowered.com/api/appdetails?appids=${id}`
+            `https://store.steampowered.com/api/appdetails?appids=${id}&cc=ca`
           );
           if (res.status === 403) {
             console.warn(
@@ -65,18 +65,17 @@ export default async function handler(req, res) {
             console.warn(`Failed to fetch player count for game id: ${id}`);
             return {
               ...details[id].data,
-              currentPlayers: 'Not Available',
+              currentPlayers: "Not Available",
             };
           }
           const playersData = await playersRes.json();
-          const currentPlayers = playersData.response?.player_count || 'Not Available';
-
+          const currentPlayers =
+            playersData.response?.player_count || "Not Available";
 
           return {
             ...details[id].data,
-            currentPlayers
+            currentPlayers,
           };
-
         } catch (error) {
           console.warn(
             `Error fetching details for game id: ${id} - ${error.message}`
@@ -95,18 +94,24 @@ export default async function handler(req, res) {
         id: game.steam_appid,
         name: game.name,
         photo: game.header_image,
+        isFree: game.is_free,
         discountRate: game.price_overview?.discount_percent || 0,
-        discountPrice: game.price_overview?.final_formatted || 'Not Available',
-        originalPrice: game.price_overview?.initial_formatted || 'Not Available',
-        discountUntil: 'Summer sale',
-        currentPlayers: game.currentPlayers.toLocaleString('en-US'),
+        discountPrice: game.price_overview?.final_formatted || "Not Available",
+        originalPrice:
+          game.price_overview?.initial_formatted || "Not Available",
+          platforms: {
+            windows: game.platforms.windows || false,
+            mac: game.platforms.max || false,
+            linux: game.platforms.linux || false,
+          },
+          currentPlayers: game.currentPlayers.toLocaleString("en-US"),
       })),
     };
 
     setCachedData(cacheKey, trendingGames);
     res.status(200).json({ trendingGames });
   } catch (error) {
-    console.error('Error fetching trending games:', error);
+    console.error("Error fetching trending games:", error);
     res.status(500).json({ error: error.message });
   }
 }
