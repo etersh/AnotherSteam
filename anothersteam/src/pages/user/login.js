@@ -23,7 +23,7 @@ const Login = () => {
     if (user) {
       router.push(`/user/${user.steamid}`);
     }
-  }, [user]);
+  }, [user, router]);
 
   const onSubmit = async (data) => {
     const { username, password } = data;
@@ -52,13 +52,13 @@ const Login = () => {
   return (
     <div className="login-background login-background-filter">
       <div className="login-container">
-        <h1 className="font-w-900 font-motiva-test" >
+        <h1 className="font-w-900 font-motiva-test">
           Sign in
         </h1>
         <form onSubmit={handleSubmit(onSubmit)} className="form-control">
           <div>
             <label
-              for="username"
+              htmlFor="username"
               className="text-highlight font-w-500 font-motiva-test text-smaller"
             >
               SIGN IN WITH ACCOUNT NAME
@@ -68,11 +68,12 @@ const Login = () => {
               placeholder=""
               type="text"
             />
+            {/* Uncomment to display errors */}
             {/* {errors.username && <p>{errors.username.message}</p>} */}
           </div>
-
+  
           <div>
-            <label for="password" className="font-motiva-test font-w-300 text-smaller">PASSWORD</label>
+            <label htmlFor="password" className="font-motiva-test font-w-300 text-smaller">PASSWORD</label>
             <input
               {...register("password", {
                 required: true,
@@ -84,18 +85,20 @@ const Login = () => {
               placeholder=""
               type="password"
             />
+            {/* Uncomment to display errors */}
             {/* {errors.password && <p>{errors.password.message}</p>} */}
           </div>
-
+  
           <button type="submit" className="signin-button signin-color">
             Sign in
           </button>
-
+  
           <Link href="/user/register" className="signup-button">Don't have an account yet?</Link>
         </form>
       </div>
     </div>
   );
+  
 };
 
 export default Login;

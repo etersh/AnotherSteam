@@ -31,10 +31,10 @@ export default async function handler(req, res) {
 
     const userData = {
       steamName: playerData.personaname || 'Not Available',
-      steamPropic: playerData.avatar || 'Not Available',
+      steamPropic: playerData.avatarfull || 'Not Available',
       realName: playerData.realname || 'Not Available',
-      steamid: playerData.steamid || 'Not Available',
-      countryCode: playerData.loccountrycode || 'Not Available',
+      steamid: playerData.steamid,
+      countryCode: playerData.loccountrycode || '--',
       cityid: playerData.loccityid || 'Not Available',
     };
 
