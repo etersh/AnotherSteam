@@ -28,7 +28,9 @@ function Footer() {
               and other countries.
               <br />
               VAT included in all prices where applicable.
+              <br />
             </p>
+              <p className="text-highlight">This is a clone project, NOT a real steam website.</p>
           </div>
         </div>
         <div className={styles.footerLinks}>
