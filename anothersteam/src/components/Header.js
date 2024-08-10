@@ -33,12 +33,12 @@ function Header() {
           </>
         ) : (
           <>
-            <Link href="/user/login" passHref>
-              <button>Login</button>
+            <Link href="/user/login" passHref className="right">
+              <button className="login-button">Login</button>
             </Link>
-            <Link href="/user/register" passHref>
+            {/* <Link href="/user/register" passHref>
               <button>Register</button>
-            </Link>
+            </Link> */}
           </>
         )}
       </header>

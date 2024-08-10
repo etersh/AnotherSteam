@@ -29,6 +29,7 @@ export function CommonButton({ name }) {
   );
 }
 
+
 export function LogoutButton() {
   const [user, setUser] = useAtom(userAtom);
   const router = useRouter();
@@ -38,10 +39,6 @@ export function LogoutButton() {
       // Remove user from local storage
       localStorage.removeItem("userJWT");
       setUser(null); // Reset the user state atom
-
-      // console.log('(/user/logout) Logout successful!');
-      // console.log('(/user/logout) User: ', user);
-
       // Redirect to login page or home page
       router.push("/");
     }

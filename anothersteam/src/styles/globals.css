@@ -1,4 +1,5 @@
 @import url("https://fonts.cdnfonts.com/css/motiva-sans");
+@import url("https://fonts.cdnfonts.com/css/motiva-sans-test"); /* font weight: 900*/
 
 :root {
   --primary-font: "Motiva Sans", sans-serif;
@@ -6,6 +7,7 @@
   /* Text Colors */
   --text-main: #f3f3f3;
   --text-dim: #76808c;
+  --text-highlight: #1999ff;
 
   /* Background Colors */
   --bg-main: #0e141b;
@@ -22,14 +24,20 @@
   --accent-green: #a1cd44;
   --accent-red: #cd5444;
   --accent-yellow: #c1b15f;
+
+  --btn-primary-blue: #06bfff;
+  --btn-second-blue: #2c76ff;
 }
 
 body {
-  font-family: "Motiva Sans", sans-serif;
   font-weight: bolder;
   margin-top: 0;
   background: linear-gradient(to bottom, var(--bg-main), var(--bg-secondary));
   color: var(--text-main);
+}
+
+* {
+  font-family: "Motiva Sans", sans-serif;
 }
 
 a {
@@ -49,7 +57,7 @@ a:hover {
 }
 
 .button {
-  font-family: "Motiva Sans", sans-serif;
+  font-family: "Motiva Sans Test", sans-serif;
   margin: 6px 0;
   padding: 10px;
   color: var(--text-main);
@@ -83,7 +91,57 @@ a:hover {
   background-color: var(--bg-highlight);
 }
 
-.delete-view{
+.signin-button, .register-button {
+  margin: 1rem;
+  width: 260px;
+  height: 50px;
+  border-radius: 2px;
+  font-size: 16px;
+  color: white;
+  cursor: pointer;
+  border: none;
+}
+
+.signin-color{
+  background: linear-gradient(
+    to right,
+    var(--btn-primary-blue),
+    var(--btn-second-blue)
+  );
+}
+
+.register-color{
+  background: linear-gradient(
+    to right,
+    var(--accent-yellow),var(--accent-green)
+  );
+}
+
+.signin-button:hover, .register-button:hover {
+  filter: brightness(1.1); /* Makes the button brighter on hover */
+}
+
+
+.signup-button {
+  margin-top: 2rem;
+  font-size: smaller;
+  font-family: "Motiva Sans Test";
+  font-weight: 100;
+  color: var(--text-dim);
+}
+.login-button {
+  border: none;
+  background-color: transparent;
+  color: var(--text-dim);
+  cursor: pointer;
+}
+
+.signup-button:hover,
+.login-button:hover {
+  color: var(--color-primary);
+}
+
+.delete-view {
   background-color: transparent;
   width: 20px;
   height: 20px;
@@ -92,23 +150,22 @@ a:hover {
   color: var(--text-dim);
 }
 
-.clear-history{
-  font-family: "Motiva Sans", sans-serif;
+.clear-history {
   background-color: transparent;
   border: none;
   color: var(--accent-red);
 }
 
-.delete-view:hover, .clear-history:hover{
+.delete-view:hover,
+.clear-history:hover {
   color: red;
 }
 
-.view-option{
-  font-family: "Motiva Sans", sans-serif;
+.view-option {
   text-decoration: none;
   color: var(--text-main);
 }
-.view-option:hover{
+.view-option:hover {
   color: var(--color-primary);
 }
 
@@ -144,7 +201,6 @@ a:hover {
   outline: none;
   padding: 5px;
   width: 100%;
-  font-family: "Motiva Sans", sans-serif;
   font-size: 14px;
   color: var(--text-main);
   background-color: var(--bg-tertiary);
@@ -249,10 +305,10 @@ a:hover {
   color: var(--bg-tertiary) !important;
 }
 
-.slick-prev:hover:before, .slick-next:hover:before {
+.slick-prev:hover:before,
+.slick-next:hover:before {
   color: var(--accent-green) !important;
 }
-
 
 /********/
 /* CARD */
@@ -347,15 +403,86 @@ a:hover {
   box-shadow: 0px 0px 6px 10px rgba(0, 0, 0, 0.025);
 }
 
-/* LOGIN */
-.login-container{
-  display: flex;
-  margin-top: 2rem;
-  justify-content: center;
+/* REGISTER */
+.register-background-filter::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url("https://steamuserimages-a.akamaihd.net/ugc/491274240789482793/1CEE148DBE320A9367BCDF5211AE077E695A4CFE/");
+  background-position: center;
+  background-size: cover;
+  opacity: 60%;
+  filter: blur(2px); /* Applies the blur effect */
+  z-index: -1;
 }
-.form-control{
+
+/* LOGIN */
+
+.login-background-filter::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url("https://steamuserimages-a.akamaihd.net/ugc/493519450183038420/3937AA015328046EB3F031B9F1EB0E4795565977/");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  opacity: 90%;
+  filter: blur(1px); /* Applies the blur effect */
+  z-index: -1;
+}
+
+.login-background,
+.register-background {
+  display: flex;
+  height: 80vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-container,
+.register-container {
+  width: 40%;
+  min-width: 300px;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-control {
   display: flex;
   flex-direction: column;
+  padding: 2.6rem;
+  background-color: var(--bg-main);
+  border-radius: 3px;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-control div {
+  width: 80%;
+}
+
+.form-control input {
+  width: 100%;
+  padding: 12px;
+  margin: 3px 0 20px 0;
+  background-color: var(--bg-hover);
+  border: 0;
+  border-radius: 2px;
+  font-size: 16px;
+  box-sizing: border-box;
+  outline: none;
+  caret-color: white;
+  color: var(--text-main);
+}
+
+.form-control p {
+  padding: 0;
+}
+
+.form-control input:hover {
+  filter: brightness(1.2);
 }
 
 /* COMMON */
@@ -380,7 +507,7 @@ a:hover {
 }
 
 .justify-space-between {
-  justify-content:space-between;
+  justify-content: space-between;
 }
 
 .align-self-start {
@@ -411,40 +538,84 @@ a:hover {
   gap: 2rem;
 }
 
+.mt-xs {
+  margin-top: 0.5rem;
+}
+.mt-s {
+  margin-top: 1rem;
+}
+.mt-m {
+  margin-top: 2rem;
+}
+.mt-l {
+  margin-top: 4rem;
+}
+
 .hidden {
   display: none;
 }
 
 /* LINK */
-.link-none{
+.link-none {
   text-decoration: none;
   color: inherit;
 }
-.link-none:hover{
+.link-none:hover {
   color: var(--accent-green);
 }
 
 /* text */
-.text-dark {
-  color: var(--bg-highlight)
+.text-main {
+  color: var(--text-main);
 }
 
 .text-dim {
-  color: var(--text-dim)
+  color: var(--text-dim);
 }
 
 .text-primary {
-  color: var(--color-primary)
+  color: var(--color-primary);
 }
 
-.text-smaller{
+.text-highlight {
+  color: var(--text-highlight);
+}
+
+.text-dark {
+  color: var(--bg-highlight);
+}
+
+.font-motiva-test {
+  font-family: "Motiva Sans Test";
+}
+
+.font-w-300 {
+  font-weight: 300;
+}
+
+.font-w-400 {
+  font-weight: 400;
+}
+
+.font-w-500 {
+  font-weight: 500;
+}
+
+.font-w-900 {
+  font-weight: 900;
+}
+
+.text-smaller {
   font-size: smaller;
 }
+.text-larger {
+  font-size: larger;
+}
 
-.text-center{
+.text-center {
   text-align: center;
 }
 
-.text-decor-none{
+.text-decor-none {
   text-decoration: none;
 }
