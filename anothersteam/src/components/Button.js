@@ -41,5 +41,5 @@ export function LogoutButton() {
     }
   };
 
-  return <button onClick={handleLogout} className="logout-button right">Logout</button>;
+  return <button onClick={handleLogout} className="logout-button">Logout</button>;
 }

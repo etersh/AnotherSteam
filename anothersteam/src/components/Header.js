@@ -23,9 +23,9 @@ function Header() {
           </div>
         </Link>
 
+        <div className="flex right align-center gap-s">
         {user ? (
           <>
-            <div className="flex right align-center gap-s">
               <Link href={`/user/${user.steamid}`} passHref>
                 <UserButton
                   name={user.steamName}
@@ -33,7 +33,6 @@ function Header() {
                 />
               </Link>
               <LogoutButton />
-            </div>
           </>
         ) : (
           <>
@@ -42,6 +41,7 @@ function Header() {
             </Link>
           </>
         )}
+        </div>
       </header>
 
       <Navbar />
