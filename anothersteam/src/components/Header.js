@@ -1,4 +1,3 @@
-
 import React from "react";
 import Link from "next/link";
 import { UserButton, LogoutButton } from "./Button";
@@ -26,19 +25,21 @@ function Header() {
 
         {user ? (
           <>
-            <Link href={`/user/${user.steamid}`} passHref className="right">
-              <UserButton name={user.steamName} profilePic={user.steamPropic} />
-            </Link>
-            <LogoutButton />
+            <div className="flex right align-center gap-s">
+              <Link href={`/user/${user.steamid}`} passHref>
+                <UserButton
+                  name={user.steamName}
+                  profilePic={user.steamPropic}
+                />
+              </Link>
+              <LogoutButton />
+            </div>
           </>
         ) : (
           <>
-            <Link href="/user/login" passHref className="right">
+            <Link href="/user/login" passHref>
               <button className="login-button">Login</button>
             </Link>
-            {/* <Link href="/user/register" passHref>
-              <button>Register</button>
-            </Link> */}
           </>
         )}
       </header>

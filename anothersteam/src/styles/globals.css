@@ -129,7 +129,7 @@ a:hover {
   font-weight: 100;
   color: var(--text-dim);
 }
-.login-button {
+.login-button, .logout-button {
   border: none;
   background-color: transparent;
   color: var(--text-dim);
@@ -137,9 +137,11 @@ a:hover {
 }
 
 .signup-button:hover,
-.login-button:hover {
+.login-button:hover,
+.logout-button:hover {
   color: var(--color-primary);
 }
+
 
 .delete-view {
   background-color: transparent;
@@ -176,6 +178,10 @@ a:hover {
   padding: 0.3rem 0.6rem;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.user-button:hover{
+  filter: brightness(1.2);
 }
 
 .user-profile-pic {
@@ -533,12 +539,15 @@ a:hover {
   align-items: center;
 }
 
-.justify-center {
-  justify-content: center;
-}
 
 .justify-space-between {
   justify-content: space-between;
+}
+.justify-center {
+  justify-content: center;
+}
+.align-center {
+  align-content: center;
 }
 
 .align-self-start {
@@ -654,3 +663,4 @@ a:hover {
 .text-decor-none {
   text-decoration: none;
 }
+

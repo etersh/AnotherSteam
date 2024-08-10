@@ -29,20 +29,17 @@ export function CommonButton({ name }) {
   );
 }
 
-
 export function LogoutButton() {
   const [user, setUser] = useAtom(userAtom);
   const router = useRouter();
 
   const handleLogout = () => {
     if (typeof window !== "undefined") {
-      // Remove user from local storage
       localStorage.removeItem("userJWT");
       setUser(null); // Reset the user state atom
-      // Redirect to login page or home page
       router.push("/");
     }
   };
 
-  return <button onClick={handleLogout}>Logout</button>;
+  return <button onClick={handleLogout} className="logout-button right">Logout</button>;
 }
