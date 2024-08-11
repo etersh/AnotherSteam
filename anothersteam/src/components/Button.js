@@ -37,7 +37,7 @@ export function LogoutButton() {
     if (typeof window !== "undefined") {
       localStorage.removeItem("userJWT");
       setUser(null); // Reset the user state atom
-      router.push("/");
+      router.push("/user/login");
     }
   };
 
