@@ -25,7 +25,7 @@ const Favorites = ({ steamid }) => {
     };
 
     fetchFavorites();
-  }, [steamid]); //CHECK DEPENDENCY setFavorites?
+  }, [steamid, setFavorites]);
 
   const removeFavorite = async (gameId) => {
     try {
@@ -42,10 +42,9 @@ const Favorites = ({ steamid }) => {
 
       if (!response.ok) {
         throw new Error(`Error: ${response.status}`);
+      } else {
+        setFavorites(favorites.filter((game) => game !== gameId)); //added
       }
-
-      //update the favorites list after successful removal
-      setFavorites(favorites.filter((game) => game !== gameId));
     } catch (err) {
       setError(err.message);
     }
@@ -64,10 +63,7 @@ const Favorites = ({ steamid }) => {
         <ul>
           {favorites.map((game, index) => (
             <li key={index}>
-              {game}{' '}
-              <button onClick={() => removeFavorite(game)}>
-                Remove from Favorites
-              </button>
+              {game} <button onClick={() => removeFavorite(game)}>❌</button>
             </li>
           ))}
         </ul>

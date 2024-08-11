@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useAtom } from 'jotai';
-import { userAtom, viewedAtom } from '@/state/store';
+import { favoriteAtom, userAtom, viewedAtom } from '@/state/store';
 // import { set } from 'mongoose';
 
 export default function GameDetail() {
@@ -12,6 +12,7 @@ export default function GameDetail() {
   const [error, setError] = useState(null);
   const [allViewedGames, setAllViewedGames] = useAtom(viewedAtom);
 
+  const [favorites, setFavorites] = useAtom(favoriteAtom); //added
   const [addFavoriteErr, setAddFavoriteErr] = useState(null);
   const [addFavoriteSuccess, setAddFavoriteSuccess] = useState(false);
 
@@ -71,9 +72,10 @@ export default function GameDetail() {
       if (!response.ok) {
         setAddFavoriteSuccess(false);
         if (response.status === 400) {
-          setAddFavoriteErr('Game is already in favorites'); //TEMPORARILY SET without checking which error
+          setAddFavoriteErr('Game is already in favorites');
         }
       } else {
+        setFavorites([...favorites, id]); //added
         setAddFavoriteSuccess(true);
       }
     } catch (error) {
@@ -84,6 +86,7 @@ export default function GameDetail() {
   if (error) return <div>Error: {addFavoriteErr}</div>;
   if (!gameInfo) return <div>Loading...</div>;
 
+  //for the "Add to Favorites" button, temporarily added another button's css
   return (
     <>
       <div className="id-container">
