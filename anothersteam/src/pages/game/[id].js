@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { useRouter } from "next/router";
-import { useAtom } from "jotai";
-import { viewedAtom } from "@/state/store";
+import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import { useAtom } from 'jotai';
+import { userAtom, viewedAtom } from '@/state/store';
+// import { set } from 'mongoose';
 
 export default function GameDetail() {
   const router = useRouter();
@@ -11,12 +12,17 @@ export default function GameDetail() {
   const [error, setError] = useState(null);
   const [allViewedGames, setAllViewedGames] = useAtom(viewedAtom);
 
+  const [addFavoriteErr, setAddFavoriteErr] = useState(null);
+  const [addFavoriteSuccess, setAddFavoriteSuccess] = useState(false);
+
+  const [user] = useAtom(userAtom);
+
   useEffect(() => {
     if (id) {
       fetch(`/api/single-game?id=${id}`)
         .then((res) => {
           if (res.status === 304) {
-            console.log("Using cached data for game");
+            console.log('Using cached data for game');
             return res.json();
           }
           return res.json();
@@ -37,7 +43,7 @@ export default function GameDetail() {
             };
 
             const updatedViewed = [...allViewedGames, newGame];
-            localStorage.setItem("viewedGames", JSON.stringify(updatedViewed));
+            localStorage.setItem('viewedGames', JSON.stringify(updatedViewed));
             setAllViewedGames(updatedViewed);
           }
         })
@@ -45,37 +51,72 @@ export default function GameDetail() {
     }
   }, [id, allViewedGames]);
 
-  if (error) return <div>Error: {error}</div>;
+  const addFavorite = async () => {
+    try {
+      setAddFavoriteSuccess(false);
+      setAddFavoriteErr(null);
+
+      const response = await fetch('/api/user/addFavorite', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          steamid: user.steamid,
+          gameId: id,
+          gameName: gameInfo.name,
+        }),
+      });
+
+      if (!response.ok) {
+        setAddFavoriteSuccess(false);
+        if (response.status === 400) {
+          setAddFavoriteErr('Game is already in favorites'); //TEMPORARILY SET without checking which error
+        }
+      } else {
+        setAddFavoriteSuccess(true);
+      }
+    } catch (error) {
+      setAddFavoriteErr(error.message);
+    }
+  };
+
+  if (error) return <div>Error: {addFavoriteErr}</div>;
   if (!gameInfo) return <div>Loading...</div>;
 
   return (
     <>
       <div className="id-container">
-        <h2 style={{ margin: "2rem 0 1px 0" }}>{gameInfo.name}</h2>
-        <p style={{ color: "var(--text-dim)" }}>{id}</p>
+        <h2 style={{ margin: '2rem 0 1px 0' }}>{gameInfo.name}</h2>
+        <p style={{ color: 'var(--text-dim)' }}>{id}</p>
         <div className="id-media">
           <video
             autoPlay
             muted
             loop
             playsInline
-            style={{ width: "600px", marginRight: "1rem" }}
+            style={{ width: '600px', marginRight: '1rem' }}
           >
-            <source src={gameInfo.movies[0].webm["480"]} type="video/webm" />
+            <source src={gameInfo.movies[0].webm['480']} type="video/webm" />
           </video>
           <div className="id-info">
             <img
               src={gameInfo.header_image}
               alt={gameInfo.name}
-              style={{ width: "100%" }}
+              style={{ width: '100%' }}
             />
             <p>{gameInfo.short_description}</p>
             {gameInfo.is_free ? (
-               <p>FREE </p>
+              <p>FREE </p>
             ) : (
-              <p>
-                {gameInfo.price_overview?.final_formatted}
-              </p>
+              <p>{gameInfo.price_overview?.final_formatted}</p>
+            )}
+            <button onClick={addFavorite} className="logout-button">
+              Add to Favorites
+            </button>
+            {addFavoriteErr && <p style={{ color: 'red' }}>{addFavoriteErr}</p>}
+            {addFavoriteSuccess && (
+              <p style={{ color: 'green' }}>Game added to favorites!</p>
             )}
           </div>
         </div>

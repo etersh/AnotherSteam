@@ -5,7 +5,7 @@ export const recentlyViewedAtom = atom([]);
 export const viewedAtom = atom([]);
 
 // FAVOURITE LIST
-export const favouriteAtom = atom([]);
+export const favoriteAtom = atom([]);
 
 // USER
 export const userAtom = atom([]);
