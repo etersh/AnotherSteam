@@ -39,8 +39,8 @@ const Login = () => {
       localStorage.setItem("userJWT", result.token);
       setUser(result.user); // Update the user state atom
 
-      console.log("(/user/login) userJWT: ", result.token);
-      console.log("(/user/login) User: ", user);
+      // console.log("(/user/login) userJWT: ", result.token);
+      // console.log("(/user/login) User: ", user);
       console.log("(/user/login) Login successful");
 
       // router.push(`/user/${user.steamid}`);

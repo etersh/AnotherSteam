@@ -1,7 +1,6 @@
 // src/pages/api/auth/login.js
 
-// Purpose: Get user if credentials match
-// Called by login page
+// PURPOSE: Get user if credentials match
 
 // npm install mongoose jsonwebtoken bcryptjs
 

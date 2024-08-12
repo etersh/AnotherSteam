@@ -1,14 +1,12 @@
-// src/context/UserContext.js
+// // src/context/UserContext.js
 import React, { createContext, useState, useEffect, useContext } from 'react';
-
 import { useAtom } from 'jotai';
-import { userAtom, steamUserAtom } from '@/state/store';
+import { userAtom } from '@/state/store';
 
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useAtom(userAtom);
-  const [steamUser, setSteamUser] = useAtom(steamUserAtom);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -16,7 +14,7 @@ export const UserProvider = ({ children }) => {
     async function fetchUserData() {
       if (!user || !user.steamid) {
         // If there's no user or steamid, reset the user state and stop loading
-        // setUser(null);
+        setUser(null);
         setLoading(false);
         return;
       }
@@ -27,7 +25,7 @@ export const UserProvider = ({ children }) => {
           throw new Error('Failed to fetch user information');
         }
         const data = await res.json();
-        setSteamUser(data.userData);
+        setUser(data.userData);
         setError(null);
         console.log("(UserContext) user info:", data.userData);
       } catch (error) {
@@ -39,10 +37,10 @@ export const UserProvider = ({ children }) => {
     }
 
     fetchUserData();
-  }, [user, setUser]);
+  }, [user?.steamid, setUser]);
 
   return (
-    <UserContext.Provider value={{ user: steamUser, loading, error }}>
+    <UserContext.Provider value={{ user, loading, error }}>
       {children}
     </UserContext.Provider>
   );
