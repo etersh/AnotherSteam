@@ -10,3 +10,5 @@ export const favoriteAtom = atom([]);
 // USER
 export const userAtom = atom([]);
 export const isAuthenticatedAtom = atom((get) => !!get(userAtom));
+
+export const steamUserAtom = atom([]);
