@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useAtom } from 'jotai';
 import { favoriteAtom, userAtom, viewedAtom } from '@/state/store';
-// import { set } from 'mongoose';
 
 export default function GameDetail() {
   const router = useRouter();
@@ -12,11 +11,20 @@ export default function GameDetail() {
   const [error, setError] = useState(null);
   const [allViewedGames, setAllViewedGames] = useAtom(viewedAtom);
 
-  const [favorites, setFavorites] = useAtom(favoriteAtom); //added
+  const [favorites, setFavorites] = useAtom(favoriteAtom);
   const [addFavoriteErr, setAddFavoriteErr] = useState(null);
   const [addFavoriteSuccess, setAddFavoriteSuccess] = useState(false);
 
   const [user] = useAtom(userAtom);
+
+  const [userJWT, setUserJWT] = useState(null); //added
+
+  //added
+  useEffect(() => {
+    const isLogin = localStorage.getItem('userJWT');
+    setUserJWT(isLogin);
+    console.log(isLogin); //debug
+  }, []);
 
   useEffect(() => {
     if (id) {
@@ -53,33 +61,36 @@ export default function GameDetail() {
   }, [id, allViewedGames]);
 
   const addFavorite = async () => {
-    try {
-      setAddFavoriteSuccess(false);
-      setAddFavoriteErr(null);
-
-      const response = await fetch('/api/user/addFavorite', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          steamid: user.steamid,
-          gameId: id,
-          gameName: gameInfo.name,
-        }),
-      });
-
-      if (!response.ok) {
+    if (userJWT) {
+      //if statement added
+      try {
         setAddFavoriteSuccess(false);
-        if (response.status === 400) {
-          setAddFavoriteErr('Game is already in favorites');
+        setAddFavoriteErr(null);
+
+        const response = await fetch('/api/user/addFavorite', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            steamid: user.steamid,
+            gameId: id,
+            gameName: gameInfo.name,
+          }),
+        });
+
+        if (!response.ok) {
+          setAddFavoriteSuccess(false);
+          if (response.status === 400) {
+            setAddFavoriteErr('Game is already in favorites');
+          }
+        } else {
+          setFavorites([...favorites, id]);
+          setAddFavoriteSuccess(true);
         }
-      } else {
-        setFavorites([...favorites, id]); //added
-        setAddFavoriteSuccess(true);
+      } catch (error) {
+        setAddFavoriteErr(error.message);
       }
-    } catch (error) {
-      setAddFavoriteErr(error.message);
     }
   };
 
@@ -114,13 +125,34 @@ export default function GameDetail() {
             ) : (
               <p>{gameInfo.price_overview?.final_formatted}</p>
             )}
-            <button onClick={addFavorite} className="logout-button">
+
+            {/* FIXING */}
+
+            {userJWT ? (
+              <>
+                <button onClick={addFavorite} className="logout-button">
+                  Add to Favorites
+                </button>
+                {addFavoriteErr && (
+                  <p style={{ color: 'red' }}>{addFavoriteErr}</p>
+                )}
+                {addFavoriteSuccess && (
+                  <p style={{ color: 'green' }}>Game added to favorites!</p>
+                )}
+              </>
+            ) : (
+              ''
+            )}
+
+            {/* FIXING */}
+
+            {/* <button onClick={addFavorite} className="logout-button">
               Add to Favorites
             </button>
             {addFavoriteErr && <p style={{ color: 'red' }}>{addFavoriteErr}</p>}
             {addFavoriteSuccess && (
               <p style={{ color: 'green' }}>Game added to favorites!</p>
-            )}
+            )} */}
           </div>
         </div>
       </div>

@@ -1,5 +1,4 @@
 // src/components/ProtectedRoute.js
-
 import { useAtomValue } from 'jotai';
 import { isAuthenticatedAtom } from '@/state/store';
 import { useRouter } from 'next/router';
