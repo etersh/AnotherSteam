@@ -3,7 +3,7 @@ import React from "react";
 import { useUser } from "@/context/UserContext";
 
 const UserInfo = () => {
-  const { user } = useUser(); //  , loading, error 
+  const { steamUser } = useUser(); //  , loading, error 
 
   // if (loading) return <p>Loading...</p>;
   // if (error) return <div>Error: {error.message}</div>;
@@ -16,12 +16,12 @@ const UserInfo = () => {
 
   return (
     <>
-      {user ? (
+      {steamUser ? (
         <div>
           <div className="user-info">
             <h2>
               <img
-                src={user.steamPropic}
+                src={steamUser.steamPropic}
                 style={{
                   marginLeft: "8px",
                   marginRight: "10px",
@@ -29,15 +29,15 @@ const UserInfo = () => {
                 }}
                 alt="Profile"
               />
-              {user.steamName}
+              {steamUser.steamName}
             </h2>
-            <p>Name: {user.realName}</p>
-            <p>Steam ID: {user.steamid}</p>
+            <p>Name: {steamUser.realName}</p>
+            <p>Steam ID: {steamUser.steamid}</p>
             <p>
               Country:{" "}
-              {user.countryCode !== "Not Available" ? (
+              {steamUser.countryCode !== "Not Available" ? (
                 <img
-                  src={getFlag(user.countryCode)}
+                  src={getFlag(steamUser.countryCode)}
                   style={{ marginLeft: "8px" }}
                   alt="Country flag"
                 />
@@ -45,7 +45,7 @@ const UserInfo = () => {
                 "Not Available"
               )}
             </p>
-            <p>City: {user.cityid}</p>
+            <p>City: {steamUser.cityid}</p>
           </div>
         </div>
       ) : (

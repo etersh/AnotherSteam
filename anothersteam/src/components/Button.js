@@ -2,7 +2,7 @@ import React from "react";
 import { useRouter } from "next/router";
 
 import { useAtom } from "jotai";
-import { userAtom } from "@/state/store";
+import { userAtom, steamUserAtom } from "@/state/store";
 
 export function HomeButton() {
   return <button className="button home-button">Home</button>;
@@ -31,13 +31,15 @@ export function CommonButton({ name }) {
 
 export function LogoutButton() {
   const [user, setUser] = useAtom(userAtom);
+  const [steamUser, setSteamUser] = useAtom(steamUserAtom);
   const router = useRouter();
 
   const handleLogout = () => {
     if (typeof window !== "undefined") {
       localStorage.removeItem("userJWT");
       setUser(null); // Reset the user state atom
-      router.push("/");
+      setSteamUser(null);
+      router.push("/user/login");
     }
   };
 

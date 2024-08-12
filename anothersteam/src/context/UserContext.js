@@ -1,31 +1,37 @@
-// // src/context/UserContext.js
+// src/context/UserContext.js
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import { useAtom } from 'jotai';
-import { userAtom } from '@/state/store';
+import { useRouter } from 'next/router';
+
+import { userAtom, steamUserAtom } from '@/state/store'; // userAtom should the DB, steamUser from api call
+
 
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
+
+  const router = useRouter();
+  const { steamid } = router.query;
+
+
   const [user, setUser] = useAtom(userAtom);
+  const [steamUser, setSteamUser] = useAtom(steamUserAtom);
+
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     async function fetchUserData() {
-      if (!user || !user.steamid) {
-        // If there's no user or steamid, reset the user state and stop loading
-        setUser(null);
-        setLoading(false);
-        return;
-      }
+
 
       try {
-        const res = await fetch(`/api/user-info?steamid=${user.steamid}`);
+        const res = await fetch(`/api/user-info?steamid=${steamid}`);
         if (!res.ok) {
           throw new Error('Failed to fetch user information');
         }
         const data = await res.json();
-        setUser(data.userData);
+        setSteamUser(data.userData);
+
         setError(null);
         console.log("(UserContext) user info:", data.userData);
       } catch (error) {
@@ -37,10 +43,10 @@ export const UserProvider = ({ children }) => {
     }
 
     fetchUserData();
-  }, [user?.steamid, setUser]);
+  }, [steamid]);
 
   return (
-    <UserContext.Provider value={{ user, loading, error }}>
+    <UserContext.Provider value={{ steamUser, loading, error }}>
       {children}
     </UserContext.Provider>
   );
