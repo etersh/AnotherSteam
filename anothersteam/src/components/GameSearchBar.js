@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
+import { useAtomValue } from "jotai";
+import { isAuthenticatedAtom } from "@/state/store";
 
 export default function GameSearch() {
+  const isAuthenticated = useAtomValue(isAuthenticatedAtom);
   const router = useRouter();
   const {
     register,
@@ -25,36 +28,40 @@ export default function GameSearch() {
   };
 
   return (
-    <div>
-      {errors.gameid && <span className="">{errors.gameid.message}</span>}
-      <form onSubmit={handleSubmit(validateForm)} id="searchForm">
-        <div className="search-bar-container">
-          <input
-            type="text"
-            id="userInput"
-            placeholder="search game by id or name"
-            className="search-bar"
-            aria-label="searchById"
-            {...register("gameid", {
-              // required: "Game ID / Name is required",
-              // minLength: {
-              //   value: 7,
-              //   message: "Game ID must be 7 characters long",
-              // },
-            })}
-          />
-          <button type="submit" className="search-button">
-            <img src="/steam/icon/search.png" alt="Search Icon" />
-          </button>
-          {/* <button  className="hidden">
+    <>
+      {isAuthenticated && (
+        <div>
+          {errors.gameid && <span className="">{errors.gameid.message}</span>}
+          <form onSubmit={handleSubmit(validateForm)} id="searchForm">
+            <div className="search-bar-container">
+              <input
+                type="text"
+                id="userInput"
+                placeholder="search game by id or name"
+                className="search-bar"
+                aria-label="searchById"
+                {...register("gameid", {
+                  // required: "Game ID / Name is required",
+                  // minLength: {
+                  //   value: 7,
+                  //   message: "Game ID must be 7 characters long",
+                  // },
+                })}
+              />
+              <button type="submit" className="search-button">
+                <img src="/steam/icon/search.png" alt="Search Icon" />
+              </button>
+              {/* <button  className="hidden">
           Search
         </button> */}
-        </div>
-      </form>
+            </div>
+          </form>
 
-      {/* <div id="">{errorMessage}</div> */}
-      {errorMessage && <div>{errorMessage}</div>}
-      {/* <SearchResult data={data} error={errorMessage}/> */}
-    </div>
+          {/* <div id="">{errorMessage}</div> */}
+          {errorMessage && <div>{errorMessage}</div>}
+          {/* <SearchResult data={data} error={errorMessage}/> */}
+        </div>
+      )}
+    </>
   );
 }

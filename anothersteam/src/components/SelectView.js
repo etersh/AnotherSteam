@@ -50,6 +50,7 @@ const customStyles = {
     width: 'auto',
     minWidth: '300px',
     zIndex: 1,
+    right: 0
   }),
   menuList: (provided) => ({
     ...provided,
