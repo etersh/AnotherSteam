@@ -4,6 +4,7 @@ import { favoriteAtom } from "@/state/store";
 
 const Favorites = ({ steamid }) => {
 	const [favorites, setFavorites] = useAtom(favoriteAtom);
+	const [gamesDetails, setGamesDetails] = useState([]);
 	const [error, setError] = useState(null);
 
 	useEffect(() => {
@@ -27,6 +28,33 @@ const Favorites = ({ steamid }) => {
 		fetchFavorites();
 	}, [steamid, setFavorites]);
 
+	useEffect(() => {
+		const fetchGameDetails = async () => {
+			try {
+				const details = await Promise.all(
+					favorites.map(async (gameId) => {
+						const response = await fetch(`/api/single-game?id=${gameId}`);
+						if (!response.ok) {
+							throw new Error(`Error fetching game details for ID: ${gameId}`);
+						}
+						const data = await response.json();
+						return {
+							id: gameId,
+							name: data.singleGame[gameId].data.name,
+						};
+					})
+				);
+				setGamesDetails(details);
+			} catch (err) {
+				setError(err.message);
+			}
+		};
+
+		if (favorites.length > 0) {
+			fetchGameDetails();
+		}
+	}, [favorites]);
+
 	const removeFavorite = async (gameId) => {
 		try {
 			const response = await fetch("/api/user/removeFavorite", {
@@ -43,7 +71,8 @@ const Favorites = ({ steamid }) => {
 			if (!response.ok) {
 				throw new Error(`Error: ${response.status}`);
 			} else {
-				setFavorites(favorites.filter((game) => game !== gameId)); //added
+				setFavorites(favorites.filter((game) => game !== gameId));
+				setGamesDetails(gamesDetails.filter((game) => game.id !== gameId));
 			}
 		} catch (err) {
 			setError(err.message);
@@ -57,13 +86,14 @@ const Favorites = ({ steamid }) => {
 	return (
 		<div>
 			<h2>Favorite Games</h2>
-			{favorites.length === 0 ? (
+			{gamesDetails.length === 0 ? (
 				<p>No favorite games found.</p>
 			) : (
 				<ul>
-					{favorites.map((game, index) => (
-						<li key={index}>
-							{game} <button onClick={() => removeFavorite(game)}>❌</button>
+					{gamesDetails.map((game) => (
+						<li key={game.id}>
+							{game.name} (ID: {game.id}){" "}
+							<button onClick={() => removeFavorite(game.id)}>❌</button>
 						</li>
 					))}
 				</ul>
