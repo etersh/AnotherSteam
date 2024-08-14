@@ -91,7 +91,8 @@ a:hover {
   background-color: var(--bg-highlight);
 }
 
-.signin-button, .register-button {
+.signin-button,
+.register-button {
   margin: 1rem;
   width: 260px;
   height: 50px;
@@ -102,7 +103,7 @@ a:hover {
   border: none;
 }
 
-.signin-color{
+.signin-color {
   background: linear-gradient(
     to right,
     var(--btn-primary-blue),
@@ -110,17 +111,18 @@ a:hover {
   );
 }
 
-.register-color{
+.register-color {
   background: linear-gradient(
     to right,
-    hsl(79, 58%, 54%, 90%),var(--accent-green)
+    hsl(79, 58%, 54%, 90%),
+    var(--accent-green)
   );
 }
 
-.signin-button:hover, .register-button:hover {
+.signin-button:hover,
+.register-button:hover {
   filter: brightness(1.1); /* Makes the button brighter on hover */
 }
-
 
 .signup-button {
   margin-top: 2rem;
@@ -129,10 +131,26 @@ a:hover {
   font-weight: 100;
   color: var(--text-dim);
 }
-.login-button, .logout-button {
+.login-button,
+.logout-button {
   border: none;
   background-color: transparent;
   color: var(--text-dim);
+  cursor: pointer;
+}
+
+.clear-button {
+  background-color: transparent;
+  border: none;
+  color: var(--text-dim);
+  align-self: center;
+}
+.clear-button:hover {
+  color: var(--accent-red);
+  cursor: pointer;
+}
+.text-click:hover{
+  color: var(--color-primary);
   cursor: pointer;
 }
 
@@ -141,7 +159,6 @@ a:hover {
 .logout-button:hover {
   color: var(--color-primary);
 }
-
 
 .delete-view {
   background-color: transparent;
@@ -180,7 +197,7 @@ a:hover {
   cursor: pointer;
 }
 
-.user-button:hover{
+.user-button:hover {
   filter: brightness(1.2);
 }
 
@@ -343,10 +360,10 @@ a:hover {
 }
 
 .gamecard-price {
-  position: absolute; 
-  bottom: 1rem; 
-  right: 1rem; 
-  color: var(--text-dim); 
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  color: var(--text-dim);
 }
 
 .gamecard img {
@@ -397,8 +414,7 @@ a:hover {
   margin: 0;
 }
 
-
-.recently-played{
+.recently-played {
   display: flex;
   position: relative;
   width: 500px;
@@ -406,14 +422,14 @@ a:hover {
   padding: 1rem;
 }
 
-.recently-played-hour{
-  position: absolute; 
-  bottom: 0.6rem; 
-  right: 0.6rem; 
-  color: var(--text-dim); 
+.recently-played-hour {
+  position: absolute;
+  bottom: 0.6rem;
+  right: 0.6rem;
+  color: var(--text-dim);
 }
 
-.recently-played img{
+.recently-played img {
   max-width: 200px;
   border-radius: 2px;
 }
@@ -516,35 +532,35 @@ a:hover {
 }
 
 /* [id] */
-.id-container{
+.id-container {
   display: flex;
   flex-direction: column;
   margin: auto;
   width: 1000px;
 }
 
-.id-media{
+.id-media {
   display: flex;
   background-color: var(--bg-highlight);
   padding: 1rem 2rem;
   border-radius: 2px;
 }
 
-.id-media p{
+.id-media p {
   margin: 1rem 0 0 0;
   font-size: smaller;
 }
 
-.id-info{
+.id-info {
   display: flex;
   flex-direction: column;
   width: 1000px;
 }
 
 /* USER */
-.user-container{
+.user-container {
   display: flex;
-  background-color:hsl(212, 32%, 8%, 20%);
+  background-color: hsl(212, 32%, 8%, 20%);
   margin: auto;
   margin-top: 3rem;
   border-radius: 3px;
@@ -553,37 +569,37 @@ a:hover {
   align-items: center;
 }
 
-.user-info-container{
+.user-info-container {
   display: flex;
   flex-direction: column;
-  background-color:hsl(213, 15%, 14%, 60%);
-  padding: 0.8rem;
+  background-color: hsl(213, 15%, 14%, 60%);
+  padding: 1rem;
 }
 
-.user-info{
+.user-info {
   display: flex;
   margin-top: 2rem;
 }
 
-.user-propic{
+.user-propic {
   width: 100px;
-  height: 100px; 
+  height: 100px;
   border: 2px solid var(--text-dim);
   border-radius: 3px;
 }
 
-.friend-propic{
+.friend-propic {
   width: 40px;
-  height: 40px; 
+  height: 40px;
   border-radius: 2px;
 }
 
-.user-text-minor{
+.user-text-minor {
   color: var(--bg-hover);
   font-size: smaller;
 }
 
-.country-flag{
+.country-flag {
   align-self: center;
   opacity: 0.8;
   border-radius: 3px;
@@ -605,7 +621,6 @@ a:hover {
 .align-vertical-center {
   align-items: center;
 }
-
 
 .justify-space-between {
   justify-content: space-between;
@@ -645,7 +660,7 @@ a:hover {
   gap: 2rem;
 }
 
-.mt-none{
+.mt-none {
   margin-top: 0;
 }
 .mt-xs {
@@ -661,6 +676,9 @@ a:hover {
   margin-top: 4rem;
 }
 
+.mb-none {
+  margin-bottom: 0;
+}
 .mb-xs {
   margin-bottom: 0.5rem;
 }
@@ -687,19 +705,21 @@ a:hover {
   margin-left: 4rem;
 }
 
+.ml-auto{
+  margin-left: auto;
+}
 
-.mg-auto{
+.mg-auto {
   margin: auto;
 }
 
-.mg-none{
+.mg-none {
   margin: 0;
 }
 
-.pd-none{
+.pd-none {
   padding: 0;
 }
-
 
 .hidden {
   display: none;
@@ -769,4 +789,3 @@ a:hover {
 .text-decor-none {
   text-decoration: none;
 }
-

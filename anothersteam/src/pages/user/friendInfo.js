@@ -38,7 +38,7 @@ const FriendInfo = () => {
   return (
 	<div className="user-info-container">
       <p className="mg-none user-text-minor text-highlight">Friends</p>
-      <div className="mt-s">
+      <div className="mt-s  ml-xs">
         {friends.map((friend, index) => (
           <div key={index} className="friend-info mb-s">
             <div className="flex align-center">

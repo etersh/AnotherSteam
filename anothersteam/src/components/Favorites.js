@@ -90,25 +90,35 @@ const Favorites = ({ steamid }) => {
   }
 
   return (
-    <div>
+    <div className="user-info-container">
       <p className="mg-none user-text-minor text-highlight">Favorites</p>
-      {gamesDetails.length === 0 ? (
-        <p>No favorite games found.</p>
-      ) : (
-        <ul>
-          {gamesDetails.map((game) => (
-            <li key={game.id}>
-              <span
-                style={{ cursor: "pointer" }}
-                onClick={() => handleGameClick(game.id)}
-              >
-                {game.name} (ID: {game.id}){" "}
-              </span>{" "}
-              <button onClick={() => removeFavorite(game.id)}>❌</button>
-            </li>
-          ))}
-        </ul>
-      )}
+      <div className="mt-s ml-xs">
+        {gamesDetails.length === 0 ? (
+          <p>No favorite games found.</p>
+        ) : (
+          <>
+            {gamesDetails.map((game) => (
+              <div key={game.id}>
+                <div className="flex justify-space-between">
+                  <p
+                    onClick={() => handleGameClick(game.id)}
+                    className="mg-none align-self-center text-click"
+                  >
+                    {game.name}
+                  </p>
+                  <button
+                    onClick={() => removeFavorite(game.id)}
+                    className="clear-button ml-auto"
+                  >
+                    X
+                  </button>
+                </div>
+                <p className="user-text-minor mt-xs mb-xs">{game.id}</p>
+              </div>
+            ))}
+          </>
+        )}
+      </div>
     </div>
   );
 };
