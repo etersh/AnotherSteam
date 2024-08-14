@@ -94,7 +94,7 @@ const Favorites = ({ steamid }) => {
       <p className="mg-none user-text-minor text-highlight">Favorites</p>
       <div className="mt-s ml-xs">
         {gamesDetails.length === 0 ? (
-          <p>No favorite games found.</p>
+          <p className="user-text-minor">No favourite games</p>
         ) : (
           <>
             {gamesDetails.map((game) => (
