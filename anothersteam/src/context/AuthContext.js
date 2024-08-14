@@ -1,4 +1,31 @@
 // // src/context/AuthContext.js
+
+
+import React, { createContext, useState, useEffect } from 'react';
+
+export const AuthContext = createContext(null);
+
+export const AuthProvider = ({ children }) => {
+  const [user, setUser] = useState(null);
+  const [userToken, setUserToken] = useState(null);
+
+  useEffect(() => {
+    const token = localStorage.getItem("userJWT");
+    const steamid = localStorage.getItem("userSteamid");
+
+    if (token && steamid) {
+      setUserToken(token); // Set the userToken with the token from localStorage
+      setUser(steamid); // Set the user with the steamid from localStorage
+    }
+  }, []);
+
+  return (
+    <AuthContext.Provider value={{ user, userToken, setUser, setUserToken }}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
+
 // import React, { createContext, useState, useEffect, useContext } from 'react';
 // import { useRouter } from 'next/router';
 

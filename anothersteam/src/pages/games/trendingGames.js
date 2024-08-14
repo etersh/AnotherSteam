@@ -1,4 +1,4 @@
-// src/pages/games/trending.js
+// src/pages/games/trendingGames.js
 
 import React, { useEffect, useState } from "react";
 import { CommonButton } from "@/components/Button";

@@ -8,7 +8,7 @@ export default async function handler(req, res) {
    // Ensure userId is available
    if (!steamid) {
      return res.status(400).json({ error: 'User ID is required' });
-   }
+   }  
 
   try {
     // const cacheKey = 'userInfo';

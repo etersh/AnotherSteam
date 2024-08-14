@@ -1,4 +1,33 @@
-// // src/context/UserContext.js
+// // // src/context/UserContext.js
+
+
+// import React, { createContext, useState, useEffect } from 'react';
+
+// export const UserContext = createContext(null);
+
+// export const UserProvider = ({ children }) => {
+//   const [user, setUser] = useState(null);
+//   const [userToken, setUserToken] = useState(null);
+
+//   useEffect(() => {
+//     const token = localStorage.getItem("userJWT");
+//     const steamid = localStorage.getItem("userSteamid");
+
+//     if (token && steamid) {
+//       setUserToken(token); // Set the userToken with the token from localStorage
+//       setUser(steamid); // Set the user with the steamid from localStorage
+//     }
+//   }, []);
+
+//   return (
+//     <UserContext.Provider value={{ user, userToken, setUser, setUserToken }}>
+//       {children}
+//     </UserContext.Provider>
+//   );
+// };
+
+
+
 // import React, { createContext, useState, useEffect, useContext } from 'react';
 // import { useAtom } from 'jotai';
 // // import { useRouter } from 'next/router';
