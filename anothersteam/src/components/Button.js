@@ -38,6 +38,7 @@ export function LogoutButton() {
   const handleLogout = () => {
     if (typeof window !== "undefined") {
       localStorage.removeItem("userJWT");
+      localStorage.removeItem("userSteamid");
       setUser(null); // Reset the user state atom
       setSteamUser(null);
       setUserToken(null);

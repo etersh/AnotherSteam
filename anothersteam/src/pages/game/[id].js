@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useAtom } from 'jotai';
-import { favoriteAtom, userTokenAtom, steamUserAtom, viewedAtom } from '@/state/store'; 
+import { favoriteAtom, userTokenAtom, userAtom, viewedAtom } from '@/state/store'; 
 
 export default function GameDetail() {
   const router = useRouter();
@@ -12,8 +12,9 @@ export default function GameDetail() {
   const [allViewedGames, setAllViewedGames] = useAtom(viewedAtom);
 
   const [favorites, setFavorites] = useAtom(favoriteAtom);
-  const [userToken] = useAtom(userTokenAtom);
-  // const [steamUser] = useAtom(steamUserAtom);
+
+  const [userToken, setUserToken] = useAtom(userTokenAtom);
+  const [user, setUser] = useAtom(userAtom);
 
   const [addFavoriteErr, setAddFavoriteErr] = useState(null);
   const [addFavoriteSuccess, setAddFavoriteSuccess] = useState(false);
@@ -24,7 +25,9 @@ export default function GameDetail() {
   //added
   useEffect(() => {
     const isLogin = localStorage.getItem('userJWT');
-    userToken(isLogin);
+    const isSteamid = localStorage.getItem('userSteamid');
+    setUserToken(isLogin);
+    setUser(isSteamid);
     console.log(isLogin); //debug
   }, []);
 

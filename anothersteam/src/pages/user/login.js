@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 import { useAtom } from "jotai";
 import { userAtom, userTokenAtom } from "@/state/store";
 
-// import jwtDecode from "jwt-decode";
+import jwtDecode from "jwt-decode";
 
 const Login = () => {
   const {
@@ -37,16 +37,20 @@ const Login = () => {
     });
 
     const result = await response.json();
-    
+
     if (response.ok) {
-      localStorage.setItem("userJWT", result.token);
 
       // setUserToken(token)
       // setUser(result.token.steamid); // Update the user state atom. SHOULD IT BE DB OR TOKEN
 
       // const decodedToken = jwtDecode(result.token);
-      setUserToken(result.token)
+      // console.log("(login) decodedToken :", decodedToken);
+
+      setUserToken(result.token);
       setUser(result.user.steamid); // Store the steamid
+
+      localStorage.setItem("userJWT", result.token);
+      localStorage.setItem("userSteamid", result.user.steamid);
 
       // console.log("(/user/login) userJWT: ", result.token);
       // console.log("(/user/login) User: ", user);
@@ -61,9 +65,7 @@ const Login = () => {
   return (
     <div className="login-background login-background-filter">
       <div className="login-container">
-        <h1 className="font-w-900 font-motiva-test">
-          Sign in
-        </h1>
+        <h1 className="font-w-900 font-motiva-test">Sign in</h1>
         <form onSubmit={handleSubmit(onSubmit)} className="form-control">
           <div>
             <label
@@ -80,9 +82,14 @@ const Login = () => {
             {/* Uncomment to display errors */}
             {/* {errors.username && <p>{errors.username.message}</p>} */}
           </div>
-  
+
           <div>
-            <label htmlFor="password" className="font-motiva-test font-w-300 text-smaller">PASSWORD</label>
+            <label
+              htmlFor="password"
+              className="font-motiva-test font-w-300 text-smaller"
+            >
+              PASSWORD
+            </label>
             <input
               {...register("password", {
                 required: true,
@@ -97,17 +104,18 @@ const Login = () => {
             {/* Uncomment to display errors */}
             {/* {errors.password && <p>{errors.password.message}</p>} */}
           </div>
-  
+
           <button type="submit" className="signin-button signin-color">
             Sign in
           </button>
-  
-          <Link href="/user/register" className="signup-button">Don&apos;t have an account yet?</Link>
+
+          <Link href="/user/register" className="signup-button">
+            Don&apos;t have an account yet?
+          </Link>
         </form>
       </div>
     </div>
   );
-  
 };
 
 export default Login;

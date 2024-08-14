@@ -8,7 +8,7 @@ import { userAtom, steamUserAtom } from "@/state/store"; // , userTokenAtom
 
 const UserInfo = () => {
   const [steamUser, setSteamUser] = useAtom(steamUserAtom)
-  const [user, setUser] = useAtom(userAtom)
+  const [user] = useAtom(userAtom)
   // const router = useRouter();
   // const { steamid } = router.query;
 
