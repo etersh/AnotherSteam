@@ -6,8 +6,6 @@ import "slick-carousel/slick/slick-theme.css"; // slick-carousel theme styles
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
-// import { AuthProvider } from "@/context/AuthContext";
-
 export default function App({ Component, pageProps }) {
   return (
     <>

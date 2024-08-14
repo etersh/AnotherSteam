@@ -9,8 +9,6 @@ import { steamUserAtom } from "@/state/store";
 
 function Header() {
   const [steamUser] = useAtom(steamUserAtom);
-  // const steamUser = localStorage.getItem("userSteamData")
-  // const steamUser = JSON.parse(localStorage.getItem("userSteamData"));
   const [hydrated, setHydrated] = useState(false); // State to track hydration
 
   useEffect(() => {
@@ -23,8 +21,8 @@ function Header() {
     }
   }, [steamUser]);
 
+  // Avoid rendering anything on the server
   if (!hydrated) {
-    // Avoid rendering anything on the server
     return null;
   }
 
