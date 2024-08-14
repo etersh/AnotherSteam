@@ -15,7 +15,6 @@ export const favoriteAtom = atom([]);
 export const userTokenAtom = atom(
   typeof window !== "undefined" ? localStorage.getItem("userJWT") : null
 );
-
 // authentication base on if userJWT is found
 export const isAuthenticatedAtom = atom((get) => !!get(userTokenAtom));
 
