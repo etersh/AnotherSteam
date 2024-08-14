@@ -1,19 +1,22 @@
-// new userInformation.js
-// import { useRouter } from 'next/router';
+// src/pages/user/[steamid].js
+
 import React, { useEffect, useState } from "react";
 import UserInfo from "./userInfo";
-import RecentlyPlayedGames from './recentlyPlayedGames';
-import FriendInfo from './friendInfo';
+import RecentlyPlayedGames from "./recentlyPlayedGames";
+import FriendInfo from "./friendInfo";
 import ProtectedRoute from "@/components/ProtectedRoute";
-import Favorites from '@/components/Favorites';
+import Favorites from "@/components/Favorites";
+import { useRouter } from "next/router";
 
 import { useAtom } from "jotai";
-import { userAtom } from "@/state/store"; // , userTokenAtom
+import { userAtom, isAuthenticatedAtom } from "@/state/store"; // , userTokenAtom
 
 export default function User() {
+  const router = useRouter();
   const [user] = useAtom(userAtom);
+  const [isAuthenticated] = useAtom(isAuthenticatedAtom);
   const [hydrated, setHydrated] = useState(false); // State to track hydration
-  // const { steamid } = router.query;
+
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -24,8 +27,10 @@ export default function User() {
     // Avoid rendering anything on the server
     return null;
   }
-  if (!user) {
-    return <p>Loading...</p>;
+  if (!isAuthenticated) {
+    // return <p>Loading...</p>;
+
+    router.push("/user/login");
   }
 
   return (

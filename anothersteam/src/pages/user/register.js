@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/router";
 
 const Register = () => {
   const {
@@ -7,6 +8,9 @@ const Register = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  const router = useRouter();
+  const [successMessage, setSuccessMessage] = useState('');
 
   const onSubmit = async (data) => {
     const { username, password, steamid } = data;
@@ -18,7 +22,10 @@ const Register = () => {
     const result = await response.json();
     if (response.ok) {
       console.log("Registration successful", result);
-      // Optionally redirect the user to the login page or somewhere else
+      setSuccessMessage('Registration successful! Redirecting to login...');
+      setTimeout(() => {
+        router.push('/user/login'); // Use the router to navigate to the login page
+      }, 3000);  // Redirect after 3 seconds
     } else {
       console.error("Registration failed", result);
     }
@@ -82,6 +89,7 @@ const Register = () => {
           <button type="submit" className="register-button register-color">
             Register
           </button>
+          {successMessage && <p className="success-message">{successMessage}</p>}
         </form>
       </div>
     </div>

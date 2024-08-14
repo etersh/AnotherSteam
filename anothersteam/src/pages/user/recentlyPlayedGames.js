@@ -1,3 +1,5 @@
+// src/pages/user/recentlyPlayedGames.js
+
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
