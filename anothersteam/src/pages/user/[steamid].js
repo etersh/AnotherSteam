@@ -35,11 +35,17 @@ export default function User() {
 
   return (
     <ProtectedRoute>
-      <div>
-        <UserInfo />
-        <RecentlyPlayedGames />
-        <FriendInfo />
-        {error ? <p>Error: {error}</p> : <Favorites steamid={user} />}
+      <div className="user-container">
+        <div className="flex flex-col">
+          <UserInfo />
+          <div className="flex">
+          <RecentlyPlayedGames />
+          <div className="flex flex-col">
+            <FriendInfo />
+            {error ? <p>Error: {error}</p> : <Favorites steamid={user} />}
+          </div>
+          </div>
+        </div>
       </div>
     </ProtectedRoute>
   );

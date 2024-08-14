@@ -184,7 +184,7 @@ a:hover {
   filter: brightness(1.2);
 }
 
-.user-profile-pic {
+.user-button-pic {
   width: 26px; /* Adjust size as needed */
   height: 26px; /* Adjust size as needed */
   border-radius: 8%;
@@ -428,7 +428,6 @@ a:hover {
 }
 
 /* LOGIN */
-
 .login-background-filter::before {
   content: "";
   position: absolute;
@@ -521,6 +520,16 @@ a:hover {
   width: 1000px;
 }
 
+/* USER */
+.user-container{
+  display: flex;
+  background-color: var(--bg-highlight);
+  margin: auto;
+  margin-top: 3rem;
+  width: 70%;
+  justify-content: center;
+  align-items: center;
+}
 
 /* COMMON */
 .flex {

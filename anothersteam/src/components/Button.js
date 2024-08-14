@@ -16,7 +16,7 @@ export function UserButton({ name, profilePic }) {
   return (
     <button className="button user-button">
       <div className="flex align-vertical-center">
-        <img src={profilePic} className="user-profile-pic" />
+        <img src={profilePic} className="user-button-pic" />
         {name}
       </div>
     </button>

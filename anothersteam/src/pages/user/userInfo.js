@@ -46,11 +46,7 @@ const UserInfo = () => {
           <h2>
             <img
               src={steamUser.steamPropic}
-              style={{
-                marginLeft: "8px",
-                marginRight: "10px",
-                width: "200px",
-              }}
+          className="user-propic"
               alt="Profile"
             />
             {steamUser.steamName}
