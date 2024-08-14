@@ -6,7 +6,9 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 
 import { useAtom } from "jotai";
-import { userAtom } from "@/state/store";
+import { userAtom, userTokenAtom } from "@/state/store";
+
+// import jwtDecode from "jwt-decode";
 
 const Login = () => {
   const {
@@ -16,12 +18,13 @@ const Login = () => {
   } = useForm();
 
   const [user, setUser] = useAtom(userAtom);
+  const [, setUserToken] = useAtom(userTokenAtom);
   const router = useRouter();
 
   useEffect(() => {
     console.log("(/user/login) User state updated:", user);
     if (user) {
-      router.push(`/user/${user.steamid}`);
+      router.push(`/user/${user}`);
     }
   }, [user, router]);
 
@@ -34,10 +37,16 @@ const Login = () => {
     });
 
     const result = await response.json();
-
+    
     if (response.ok) {
       localStorage.setItem("userJWT", result.token);
-      setUser(result.user); // Update the user state atom
+
+      // setUserToken(token)
+      // setUser(result.token.steamid); // Update the user state atom. SHOULD IT BE DB OR TOKEN
+
+      // const decodedToken = jwtDecode(result.token);
+      setUserToken(result.token)
+      setUser(result.user.steamid); // Store the steamid
 
       // console.log("(/user/login) userJWT: ", result.token);
       // console.log("(/user/login) User: ", user);

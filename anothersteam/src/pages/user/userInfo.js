@@ -1,12 +1,37 @@
 // src/pages/user/userInfo.js
-import React from "react";
-import { useUser } from "@/context/UserContext";
+import React, {useEffect} from "react";
+// import { useUser } from "@/context/UserContext";
+// import { useRouter } from "next/router";
+
+import { useAtom } from "jotai";
+import { userAtom, steamUserAtom } from "@/state/store"; // , userTokenAtom
 
 const UserInfo = () => {
-  const { steamUser } = useUser(); //  , loading, error 
+  const [steamUser, setSteamUser] = useAtom(steamUserAtom)
+  const [user, setUser] = useAtom(userAtom)
+  // const router = useRouter();
+  // const { steamid } = router.query;
+
+  // const { steamUser } = useUser(); //  , loading, error 
 
   // if (loading) return <p>Loading...</p>;
   // if (error) return <div>Error: {error.message}</div>;
+
+
+	useEffect(() => {
+		if (user) {
+			fetch(`/api/user-info?steamid=${user}`)
+			.then((res) => res.json())
+			.then((data) => {
+				if (data.err) {
+					throw new Error(data.err);
+				}
+				setSteamUser(data.userData);
+			})
+			.catch((err) => setError(err.message));
+		}
+	}, [user]);
+
 
   const getFlag = (countryCode) => {
     return countryCode !== "Not Available"

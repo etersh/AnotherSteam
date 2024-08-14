@@ -3,14 +3,24 @@ import Link from "next/link";
 import { UserButton, LogoutButton } from "./Button";
 // import { useRouter } from 'next/router';
 import Navbar from "./Navbar";
-import { useUser } from "@/context/UserContext";
+// import { useUser } from "@/context/UserContext";
+
+import { useAtom } from "jotai";
+import { steamUserAtom } from "@/state/store"; //  userAtom,
 
 function Header() {
-  const { steamUser, loading, error } = useUser(); // user
+  // const { steamUser, loading, error } = useUser(); // user
 
-
+const [steamUser] = useAtom(steamUserAtom)
   // if (loading) return <p>Loading...</p>;
   // if (error) return <p>Error: {error.message}</p>;
+
+  useEffect(() => {
+    if (steamUser) {
+      console.log("User has logged in:", steamUser);
+      // Perform any actions needed after user login, e.g., fetch additional data, etc.
+    }
+  }, [steamUser]);
 
   return (
     <>

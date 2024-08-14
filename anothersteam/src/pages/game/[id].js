@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useAtom } from 'jotai';
-import { favoriteAtom, userAtom, viewedAtom } from '@/state/store';
+import { favoriteAtom, userTokenAtom, steamUserAtom, viewedAtom } from '@/state/store'; 
 
 export default function GameDetail() {
   const router = useRouter();
@@ -12,17 +12,19 @@ export default function GameDetail() {
   const [allViewedGames, setAllViewedGames] = useAtom(viewedAtom);
 
   const [favorites, setFavorites] = useAtom(favoriteAtom);
+  const [userToken] = useAtom(userTokenAtom);
+  // const [steamUser] = useAtom(steamUserAtom);
+
   const [addFavoriteErr, setAddFavoriteErr] = useState(null);
   const [addFavoriteSuccess, setAddFavoriteSuccess] = useState(false);
 
-  const [user] = useAtom(userAtom);
 
-  const [userJWT, setUserJWT] = useState(null); //added
+  // const [userJWT, setUserJWT] = useState(null); //added
 
   //added
   useEffect(() => {
     const isLogin = localStorage.getItem('userJWT');
-    setUserJWT(isLogin);
+    userToken(isLogin);
     console.log(isLogin); //debug
   }, []);
 
@@ -61,7 +63,7 @@ export default function GameDetail() {
   }, [id, allViewedGames]);
 
   const addFavorite = async () => {
-    if (userJWT) {
+    if (userToken) {
       //if statement added
       try {
         setAddFavoriteSuccess(false);
@@ -128,7 +130,7 @@ export default function GameDetail() {
 
             {/* FIXING */}
 
-            {userJWT ? (
+            {userToken ? (
               <>
                 <button onClick={addFavorite} className="logout-button">
                   Add to Favorites

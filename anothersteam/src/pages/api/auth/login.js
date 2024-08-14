@@ -20,7 +20,7 @@ export default async function handler(req, res) {
   if (user && bcrypt.compareSync(password, user.password)) {
     // If the credentials are valid, create a JWT
     const token = jwt.sign(
-      { id: user._id }, // Payload: user's id
+      { id: user._id, steamid: user.steamid }, // Payload: user's id
       process.env.JWT_SECRET, // Secret key for signing the token
       { expiresIn: "1d" } // Token validity: 1 day
     );
