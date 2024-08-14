@@ -39,16 +39,16 @@ const FriendInfo = () => {
 		<div>
 			{friends.map((friend, index) => (
 				<div key={index} className="friend-info">
-					<h2>
+					<h3>
 						{friend.name}
 						<img src={friend.profilePic} style={{ marginLeft: "8px" }} />
-					</h2>
+					</h3>
+					{friend.steamID}
 					<p>
 						Friend Since:{" "}
 						{new Date(friend.friendSince * 1000).toLocaleDateString("en-GB")}
 					</p>
-					<p>Name: {friend.realName}</p>
-					<p>Steam ID: {friend.steamID}</p>
+		
 					<p>
 						Country:{" "}
 						{friend.countryCode !== "Not Available" ? (
@@ -60,7 +60,6 @@ const FriendInfo = () => {
 							"Not Available"
 						)}
 					</p>
-					<p>City: {friend.cityID}</p>
 				</div>
 			))}
 		</div>

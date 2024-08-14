@@ -54,9 +54,8 @@ const UserInfo = () => {
               alt="Profile"
             />
             {steamUser.steamName}
+            <p>{steamUser.steamid}</p>
           </h2>
-          <p>Name: {steamUser.realName}</p>
-          <p>Steam ID: {steamUser.steamid}</p>
           <p>
             Country:{" "}
             {steamUser.countryCode !== "Not Available" ? (
@@ -69,7 +68,6 @@ const UserInfo = () => {
               "Not Available"
             )}
           </p>
-          <p>City: {steamUser.cityid}</p>
         </div>
       )}
     </div>

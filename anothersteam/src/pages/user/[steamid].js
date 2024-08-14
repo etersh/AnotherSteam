@@ -35,12 +35,10 @@ export default function User() {
 
   return (
     <ProtectedRoute>
-      <h1>User steam ID: {user}</h1>
       <div>
         <UserInfo />
         <RecentlyPlayedGames />
         <FriendInfo />
-
         {error ? <p>Error: {error}</p> : <Favorites steamid={user} />}
       </div>
     </ProtectedRoute>
