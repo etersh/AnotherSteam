@@ -2,10 +2,10 @@
 // import { useRouter } from 'next/router';
 import React, { useEffect, useState } from "react";
 import UserInfo from "./userInfo";
-// import RecentlyPlayedGames from './recentlyPlayedGames';
-// import FriendInfo from './friendInfo';
+import RecentlyPlayedGames from './recentlyPlayedGames';
+import FriendInfo from './friendInfo';
 import ProtectedRoute from "@/components/ProtectedRoute";
-// import Favorites from '@/components/Favorites';
+import Favorites from '@/components/Favorites';
 
 import { useAtom } from "jotai";
 import { userAtom } from "@/state/store"; // , userTokenAtom
@@ -13,6 +13,8 @@ import { userAtom } from "@/state/store"; // , userTokenAtom
 export default function User() {
   const [user] = useAtom(userAtom);
   const [hydrated, setHydrated] = useState(false); // State to track hydration
+  // const { steamid } = router.query;
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     setHydrated(true); // Mark as hydrated once the component has mounted
@@ -31,17 +33,10 @@ export default function User() {
       <h1>User steam ID: {user}</h1>
       <div>
         <UserInfo />
-        {/* <RecentlyPlayedGames />
-        <FriendInfo /> */}
-        {/* {error ? (
-          <p>Error: {error}</p>
-        ) : (
-          <Favorites
-            steamid={steamid}
-            favorites={favorites}
-            setFavorites={setFavorites}
-          />
-        )} */}
+        <RecentlyPlayedGames />
+        <FriendInfo />
+
+        {error ? <p>Error: {error}</p> : <Favorites steamid={user} />}
       </div>
     </ProtectedRoute>
   );
