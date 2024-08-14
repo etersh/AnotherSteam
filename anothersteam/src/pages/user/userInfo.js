@@ -19,14 +19,7 @@ const UserInfo = () => {
             throw new Error(data.err);
           }
 
-          // const { steamName, steamPropic } = data.userData;
-
-          // localStorage.setItem("userSteamName", steamName);
-          // localStorage.setItem("userSteamPropic", steamPropic);
-
-          localStorage.setItem("userSteamData",JSON.stringify(data.userData) );
-
-          // setSteamUser({ steamName, steamPropic });
+          localStorage.setItem("userSteamData", JSON.stringify(data.userData));
           setSteamUser(data.userData);
 
           setLoading(false); // Stop loading after success

@@ -20,7 +20,8 @@ export const AuthProvider = ({ children }) => {
     if (token && steamid) {
       setUserToken(token); // Set the userToken with the token from localStorage
       setUser(steamid); // Set the user with the steamid from localStorage
-      setSteamUser(userSteamdata);
+    //   setSteamUser(userSteamdata);
+    setSteamUser(JSON.parse(localStorage.getItem("userSteamData")));
     }
   }, []);
 
