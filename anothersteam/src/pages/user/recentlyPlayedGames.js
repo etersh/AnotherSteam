@@ -32,13 +32,14 @@ const RecentlyPlayedGames = () => {
   if (error) return <div>Error: {error}</div>;
 
   return (
-    <div>
-      <div className="game-list">
+    <div className="user-info-container">
+      <p className="mg-none user-text-minor text-highlight">Recently played</p>{" "}
+      <div className="mt-s">
         {games.map((game, index) => (
-          <div key={index} className="game">
-            <h2>{game.name}</h2>
+          <div key={index} className="recently-played">
             <img src={game.photo} alt={game.name} />
-            <p>Playtime: {game.playtime} hours</p>
+            <p className="mt-none ml-s">{game.name}</p>
+            <p className="mg-none recently-played-hour">Played {game.playtime} hours</p>
           </div>
         ))}
       </div>

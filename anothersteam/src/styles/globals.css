@@ -397,6 +397,27 @@ a:hover {
   margin: 0;
 }
 
+
+.recently-played{
+  display: flex;
+  position: relative;
+  width: 500px;
+  background-color: var(--bg-main);
+  padding: 1rem;
+}
+
+.recently-played-hour{
+  position: absolute; 
+  bottom: 0.6rem; 
+  right: 0.6rem; 
+  color: var(--text-dim); 
+}
+
+.recently-played img{
+  max-width: 200px;
+  border-radius: 2px;
+}
+
 /* HOME PAGE */
 .home {
   display: flex;
@@ -523,13 +544,20 @@ a:hover {
 /* USER */
 .user-container{
   display: flex;
-  background-color: hsl(213, 15%, 14%, 60%);
+  background-color:hsl(212, 32%, 8%, 20%);
   margin: auto;
   margin-top: 3rem;
   border-radius: 3px;
   width: 70%;
   justify-content: center;
   align-items: center;
+}
+
+.user-info-container{
+  display: flex;
+  flex-direction: column;
+  background-color:hsl(213, 15%, 14%, 60%);
+  padding: 0.8rem;
 }
 
 .user-info{
@@ -544,7 +572,13 @@ a:hover {
   border-radius: 3px;
 }
 
-.user-id-text{
+.friend-propic{
+  width: 40px;
+  height: 40px; 
+  border-radius: 2px;
+}
+
+.user-text-minor{
   color: var(--bg-hover);
   font-size: smaller;
 }
@@ -611,6 +645,9 @@ a:hover {
   gap: 2rem;
 }
 
+.mt-none{
+  margin-top: 0;
+}
 .mt-xs {
   margin-top: 0.5rem;
 }
@@ -622,6 +659,19 @@ a:hover {
 }
 .mt-l {
   margin-top: 4rem;
+}
+
+.mb-xs {
+  margin-bottom: 0.5rem;
+}
+.mb-s {
+  margin-bottom: 1rem;
+}
+.mb-m {
+  margin-bottom: 2rem;
+}
+.mb-l {
+  margin-bottom: 4rem;
 }
 
 .ml-xs {
@@ -641,6 +691,15 @@ a:hover {
 .mg-auto{
   margin: auto;
 }
+
+.mg-none{
+  margin: 0;
+}
+
+.pd-none{
+  padding: 0;
+}
+
 
 .hidden {
   display: none;

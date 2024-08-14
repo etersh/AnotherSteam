@@ -37,9 +37,9 @@ export default function User() {
       <div className="user-container">
         <div className="flex flex-col">
           <UserInfo />
-          <div className="flex">
+          <div className="flex mt-m mb-m">
           <RecentlyPlayedGames />
-          <div className="flex flex-col">
+          <div className="flex flex-col ml-m">
             <FriendInfo />
             {error ? <p>Error: {error}</p> : <Favorites steamid={user} />}
           </div>

@@ -36,29 +36,39 @@ const FriendInfo = () => {
   //size:16/24/32/48/64px supported
 
   return (
-    <div>
-      {friends.map((friend, index) => (
-        <div key={index} className="friend-info">
-          <div className="flex align-center">
-            <img src={friend.profilePic} style={{ marginLeft: "8px" }} />
-            <span className="align-self-center">{friend.name}</span>
-          </div>
-          {/* {friend.steamID} */}
-          <p>
-            Friend since:{" "}
-            {new Date(friend.friendSince * 1000).toLocaleDateString("en-GB")}
-          </p>
+	<div className="user-info-container">
+      <p className="mg-none user-text-minor text-highlight">Friends</p>
+      <div className="mt-s">
+        {friends.map((friend, index) => (
+          <div key={index} className="friend-info mb-s">
+            <div className="flex align-center">
+              <img
+                src={friend.profilePic}
+                className="friend-propic align-self-center "
+              />
+              <div className="flex flex-col ml-xs">
+                <p className="mt-none mb-xs">{friend.name}</p>
+                <p className="mg-none user-text-minor">
+                  Friend since:{" "}
+                  {new Date(friend.friendSince * 1000).toLocaleDateString(
+                    "en-GB"
+                  )}
+                </p>
+              </div>
+            </div>
+            {/* {friend.steamID} */}
 
-		  <div className="flex align-center">
-		  <span className="align-self-center">Country:{" "}</span>
-            {friend.countryCode !== "Not Available" ? (
-              <img src={getFlag(friend.countryCode)} />
-            ) : (
-              "Not Available"
-            )}
+            {/* <div className="flex align-center">
+              <span className="align-self-center">Country: </span>
+              {friend.countryCode !== "Not Available" ? (
+                <img src={getFlag(friend.countryCode)} />
+              ) : (
+                "Not Available"
+              )}
+            </div> */}
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };

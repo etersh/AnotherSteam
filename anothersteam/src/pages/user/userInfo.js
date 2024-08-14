@@ -51,14 +51,17 @@ const UserInfo = () => {
           />
           <div className="ml-s">
             {steamUser.steamName}
-            <p className="user-id-text">{steamUser.steamid}</p>
-          {steamUser.countryCode !== "Not Available" ? (
-            <img src={getFlag(steamUser.countryCode)} alt="Country flag" className="country-flag"/>
-          ) : (
-            <></>
-          )}
+            <p className="user-text-minor">{steamUser.steamid}</p>
+            {steamUser.countryCode !== "Not Available" ? (
+              <img
+                src={getFlag(steamUser.countryCode)}
+                alt="Country flag"
+                className="country-flag"
+              />
+            ) : (
+              <></>
+            )}
           </div>
-
         </div>
       )}
     </>
