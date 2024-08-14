@@ -523,12 +523,36 @@ a:hover {
 /* USER */
 .user-container{
   display: flex;
-  background-color: var(--bg-highlight);
+  background-color: hsl(213, 15%, 14%, 60%);
   margin: auto;
   margin-top: 3rem;
+  border-radius: 3px;
   width: 70%;
   justify-content: center;
   align-items: center;
+}
+
+.user-info{
+  display: flex;
+  margin-top: 2rem;
+}
+
+.user-propic{
+  width: 100px;
+  height: 100px; 
+  border: 2px solid var(--text-dim);
+  border-radius: 3px;
+}
+
+.user-id-text{
+  color: var(--bg-hover);
+  font-size: smaller;
+}
+
+.country-flag{
+  align-self: center;
+  opacity: 0.8;
+  border-radius: 3px;
 }
 
 /* COMMON */
@@ -599,6 +623,20 @@ a:hover {
 .mt-l {
   margin-top: 4rem;
 }
+
+.ml-xs {
+  margin-left: 0.5rem;
+}
+.ml-s {
+  margin-left: 1rem;
+}
+.ml-m {
+  margin-left: 2rem;
+}
+.ml-l {
+  margin-left: 4rem;
+}
+
 
 .mg-auto{
   margin: auto;

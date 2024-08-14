@@ -21,16 +21,6 @@ export default function GameDetail() {
 	const [isAuthenticated] = useAtom(isAuthenticatedAtom);
 	const [user] = useAtom(userAtom);
 
-	// const [userJWT, setUserJWT] = useState(null); //added
-
-	//added
-	// useEffect(() => {
-	// 	const isLogin = localStorage.getItem("userJWT");
-	// 	setUserJWT(isLogin);
-	// 	console.log(isLogin); //debug
-	// }, []);
-
-
 	useEffect(() => {
 		if (id) {
 			fetch(`/api/single-game?id=${id}`)

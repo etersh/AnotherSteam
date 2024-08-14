@@ -38,35 +38,30 @@ const UserInfo = () => {
   };
 
   return (
-    <div>
+    <>
       {loading && <p>Loading user data...</p>}
       {error && <p>Error: {error}</p>}
+
       {!loading && !error && steamUser && (
         <div className="user-info">
-          <h2>
-            <img
-              src={steamUser.steamPropic}
-          className="user-propic"
-              alt="Profile"
-            />
+          <img
+            src={steamUser.steamPropic}
+            className="user-propic"
+            alt="Profile"
+          />
+          <div className="ml-s">
             {steamUser.steamName}
-            <p>{steamUser.steamid}</p>
-          </h2>
-          <p>
-            Country:{" "}
-            {steamUser.countryCode !== "Not Available" ? (
-              <img
-                src={getFlag(steamUser.countryCode)}
-                style={{ marginLeft: "8px" }}
-                alt="Country flag"
-              />
-            ) : (
-              "Not Available"
-            )}
-          </p>
+            <p className="user-id-text">{steamUser.steamid}</p>
+          {steamUser.countryCode !== "Not Available" ? (
+            <img src={getFlag(steamUser.countryCode)} alt="Country flag" className="country-flag"/>
+          ) : (
+            <></>
+          )}
+          </div>
+
         </div>
       )}
-    </div>
+    </>
   );
 };
 

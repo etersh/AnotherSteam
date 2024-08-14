@@ -29,7 +29,6 @@ export default function User() {
   }
   if (!isAuthenticated) {
     // return <p>Loading...</p>;
-
     router.push("/user/login");
   }
 
