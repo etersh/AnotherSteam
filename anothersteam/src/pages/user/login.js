@@ -40,9 +40,6 @@ const Login = () => {
 
     if (response.ok) {
 
-      // setUserToken(token)
-      // setUser(result.token.steamid); // Update the user state atom. SHOULD IT BE DB OR TOKEN
-
       // const decodedToken = jwtDecode(result.token);
       // console.log("(login) decodedToken :", decodedToken);
 
@@ -52,11 +49,7 @@ const Login = () => {
       localStorage.setItem("userJWT", result.token);
       localStorage.setItem("userSteamid", result.user.steamid);
 
-      // console.log("(/user/login) userJWT: ", result.token);
-      // console.log("(/user/login) User: ", user);
       console.log("(/user/login) Login successful");
-
-      // router.push(`/user/${user.steamid}`);
     } else {
       console.error("Login failed");
     }
@@ -79,8 +72,7 @@ const Login = () => {
               placeholder=""
               type="text"
             />
-            {/* Uncomment to display errors */}
-            {/* {errors.username && <p>{errors.username.message}</p>} */}
+
           </div>
 
           <div>
@@ -101,8 +93,7 @@ const Login = () => {
               placeholder=""
               type="password"
             />
-            {/* Uncomment to display errors */}
-            {/* {errors.password && <p>{errors.password.message}</p>} */}
+
           </div>
 
           <button type="submit" className="signin-button signin-color">

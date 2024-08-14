@@ -29,25 +29,6 @@ export function CommonButton({ name }) {
   );
 }
 
-// export function LogoutButton() {
-//   const [, setUser] = useAtom(userAtom);
-//   const [, setSteamUser] = useAtom(steamUserAtom);
-//   const [, setUserToken] = useAtom(userTokenAtom);
-//   const router = useRouter();
-
-//   const handleLogout = () => {
-//     if (typeof window !== "undefined") {
-//       localStorage.removeItem("userJWT");
-//       localStorage.removeItem("userSteamid");
-//       setUser(null); // Reset the user state atom
-//       setSteamUser(null);
-//       setUserToken(null);
-//       router.push("/user/login");
-//     }
-//   };
-
-//   return <button onClick={handleLogout} className="logout-button">Logout</button>;
-// }
 export function LogoutButton() {
   const [, setUser] = useAtom(userAtom);
   const [, setSteamUser] = useAtom(steamUserAtom);
@@ -58,6 +39,7 @@ export function LogoutButton() {
     if (typeof window !== "undefined") {
       localStorage.removeItem("userJWT");
       localStorage.removeItem("userSteamid");
+      localStorage.removeItem("userSteamData");
       setUser(null); // Reset the user state atom
       setSteamUser(null);
       setUserToken(null);
