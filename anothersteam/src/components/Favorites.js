@@ -1,11 +1,13 @@
 import { useAtom } from "jotai";
 import { useState, useEffect } from "react";
 import { favoriteAtom } from "@/state/store";
+import { useRouter } from "next/router";
 
 const Favorites = ({ steamid }) => {
 	const [favorites, setFavorites] = useAtom(favoriteAtom);
 	const [gamesDetails, setGamesDetails] = useState([]);
 	const [error, setError] = useState(null);
+	const router = useRouter();
 
 	useEffect(() => {
 		const fetchFavorites = async () => {
@@ -79,6 +81,10 @@ const Favorites = ({ steamid }) => {
 		}
 	};
 
+	const handleGameClick = (gameId) => {
+		router.push(`/game/${gameId}`);
+	};
+
 	if (error) {
 		return <div>Error: {error}</div>;
 	}
@@ -92,7 +98,12 @@ const Favorites = ({ steamid }) => {
 				<ul>
 					{gamesDetails.map((game) => (
 						<li key={game.id}>
-							{game.name} (ID: {game.id}){" "}
+							<span
+								style={{ cursor: "pointer" }}
+								onClick={() => handleGameClick(game.id)}
+							>
+								{game.name} (ID: {game.id}){" "}
+							</span>{" "}
 							<button onClick={() => removeFavorite(game.id)}>❌</button>
 						</li>
 					))}
